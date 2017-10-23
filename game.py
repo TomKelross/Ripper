@@ -40,16 +40,14 @@ def main(): #KYLE
         ############################################
         # DEBUGGING REMOVE ON COMPLETION           #
         #############################################
-        disp.reset_display()
-        print(starting_location)
-        print(player.getName())
-        location = player.getLocation()
-        print(location)
-        print("Location" + location.name)
-        print(location.people)
-        print(location.description)
-        print(location.inventory)
-        print(str(player.returnInventory()))
+        # disp.reset_display()
+        # location = player.getLocation()
+        # print(location)
+        # print("Location" + location.name)
+        # print(location.people)
+        # print(location.description)
+        # print(location.inventory)
+        # print(str(player.returnInventory()))
         #############################################
 
         # Print the map
@@ -201,6 +199,8 @@ def print_time(): # Peter
 
 #
 def print_room(location): # Peter
+    disp.update_room_display(location.name)
+    return True
     print(" "*40 + "╔" + "═"* len(location.name) + "╗") 
     print("═"*40 + "╣" + (location.name).upper() + "╠" + "═"*30)
     print(" "*40 + "╚" + "═"* len(location.name) + "╝")
