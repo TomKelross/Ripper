@@ -13,7 +13,7 @@ class DisplayManager():
 		self.lines = ['' for x in range(self._line_nums)]
 		self.top_bar = "Ripper v1.0"
 
-	def print(self,message):
+	def print(self,message=""):
 		#Add 
 		self.lines.pop(0)
 		self.lines.append(message) 
@@ -35,6 +35,9 @@ class DisplayManager():
 		#https://stackoverflow.com/questions/2084508/clear-terminal-in-python
 		os.system('cls' if os.name == 'nt' else 'clear')
 
+	def reset_display(self):
+		self.lines = ['' for x in range(self._line_nums)]
+
 	def show_display(self):
 		self._print_func(self.top_bar)
 		for line in self.lines:
@@ -49,14 +52,14 @@ class DisplayManager():
 		return self._input_func(message)
 
 
-disp = DisplayManager()
-print = disp.print
-input = disp.get_input
+# disp = DisplayManager()
+# print = disp.print
+# input = disp.get_input
 
 
-while True:
-	disp.type("Welcome to Ripper")
-	disp.type("Can you solve the mystery",0.08)
-	print(input(">"))
+# while True:
+# 	disp.type("Welcome to Ripper")
+# 	disp.type("Can you solve the mystery",0.08)
+# 	print(input(">"))
 	
 
