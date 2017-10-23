@@ -36,19 +36,11 @@ def main(): #KYLE
         # DEBUGGING REMOVE ON COMPLETION           #
         #############################################
         print(player.getName())
-<<<<<<< HEAD
-        print("Location" + player.getLocation())
-        print(getLocation[player.getLocation()]["name"])
-        print(getLocation[player.getLocation()]["description"])
-        print(getLocation[player.getLocation()]["people"])
-        print(getLocation[player.getLocation()]["inventory"])
-=======
         location = player.getLocation()
         print("Location" + location.name)
         print(location.people)
         print(location.description)
         print(location.inventory)
->>>>>>> 2dbf72934cfe0ce50e374c53187c84ae40648730
         print(str(player.returnInventory()))
         #############################################
 
