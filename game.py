@@ -193,9 +193,8 @@ def print_map(): # Nathan
 
 #
 def print_time(): # Peter
-    print()
-    print("Today is " + time.getDay() + ", the time is " + str(time.getTime()) + str(":00"))
-    print()
+    disp.update_top_bar("Ripper v1.0 / " + time.getDay() + ", the time is " + str(time.getTime()) + ":00")
+
 
 #
 def print_room(location): # Peter
