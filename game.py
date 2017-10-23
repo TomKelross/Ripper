@@ -19,10 +19,11 @@ print = disp.print
 input = disp.get_input
 
 list_of_character_objects = Factory.character_factory()
-list_of_location_objects = Factory.location_factory()
-
 characters = CharacterManager(list_of_character_objects)
+list_of_location_objects = Factory.location_factory(characters)
 locations = LocationManager(list_of_location_objects)
+
+
 time = Time()
 narrative = Narrative(time,disp)
 from events import add_events
@@ -35,9 +36,10 @@ player = Player("Decetive Joe Smith")
 
 def main(): #KYLE
 
-    #Put the player in scotland yard
+    # get_location returns a location object from the name of a location
+    # In this case, we are starting at scotland yard, so we get the scotland yard location
     starting_location = locations.get_location("Scotland Yard")
-    print(starting_location)
+    # And set the player current location here
     player.setLocation(starting_location)
 
     while True:
@@ -55,24 +57,25 @@ def main(): #KYLE
         # print(str(player.returnInventory()))
         #############################################
 
+        # Check and run and scheduled events that should have happened by now
         narrative.check()
-        print(narrative.events)
+
         # Print the map
         print_map()
         
-        # Prints the time 
+        # Updates the top of the screen with the current time information
         print_time()
 
-        # Prints the room information
-        current_location = player.getLocation() 
+        current_location = player.getLocation()
+        # Updates the room display at the top of the screen with information about the current room
         print_room(current_location)
-
         # Prints items in the room
-        print_room_items() 
+        print_room_items(current_location)
 
         # Ask the user for their command
         command = input("> ")
 
+        # Make sure the input is properly sanitised
         #command = normialze_input(command) Kawthar
         
         # Converts the command to a list
@@ -210,16 +213,12 @@ def print_time(): # Peter
 #
 def print_room(location): # Peter
     disp.update_room_display(location.name)
-    return True
-    print(" "*40 + "╔" + "═"* len(location.name) + "╗") 
-    print("═"*40 + "╣" + (location.name).upper() + "╠" + "═"*30)
-    print(" "*40 + "╚" + "═"* len(location.name) + "╝")
     print(location.description)
     print(location.people)
-    print(location.inventory)
+
 
 #
-def print_room_items(): # Peter
+def print_room_items(location): # Peter
     pass
 
 

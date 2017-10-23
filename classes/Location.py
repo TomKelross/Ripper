@@ -1,49 +1,49 @@
 class Location(object):
+    def __init__(self, name, description, people=[], inventory=[]):
+        self.name = name
+        self.description = description
+        self.people = people
+        self.inventory = inventory
 
-	def __init__(self,name,description,people=[],inventory=[]):
-		self.name = name
-		self.description = description
-		self.people = people
-		self.inventory = inventory
 
-	def __repr__(self):
-		return "< Location {} with {} people>".format(self.name,len(self.people))
 
-	def get_name(self):
-		return self.name
+    def __repr__(self):
+        return "< Location {} with {} people>".format(self.name, len(self.people))
 
-	def set_name(self,name):
-		self.name = name
+    def get_name(self):
+        return self.name
 
-	def get_description(self):
-		return self.description
+    def set_name(self, name):
+        self.name = name
 
-	def set_description(self,description):
-		self.description = description
+    def get_description(self):
+        return self.description
 
-	def get_people(self):
-		return self.people
+    def set_description(self, description):
+        self.description = description
 
-	def remove_person(self,person):
-		self.people.remove(person)
+    def get_people(self):
+        return self.people
 
-	def add_person(self,person):
-		self.people.append(person)
+    def remove_person(self, person):
+        self.people.remove(person)
 
-	def set_people(self,people):
-		self.people = people
+    def add_person(self, person):
+        self.people.append(person)
+
+    def set_people(self, people):
+        self.people = people
+
 
 class LocationManager(object):
+    def __init__(self, list_of_locations):
+        self.locations = list_of_locations
 
-	def __init__(self,list_of_locations):
-		self.locations = list_of_locations
+    def get_location(self, name):
+        for location in self.locations:
+            if location.name == name:
+                return location
+        return False
 
-	def get_location(self,name):
-		for location in self.locations:
-			if location.name == name:
-				return location
-		return False
-
-	def get_all_locations(self):
-		return self.locations
-
+    def get_all_locations(self):
+        return self.locations
