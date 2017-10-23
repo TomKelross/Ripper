@@ -10,6 +10,7 @@ bank = {
     "people": [],
     
     "inventory": [],
+
 }
 
 # Church
@@ -123,3 +124,4 @@ getLocation = {
     "Marketplace": marketplace,
     "Gamestore": gamestore,
 }
+location_list = [bank,church,hospital,scotland,thames,factory,krills,docks,marketplace,gamestore]

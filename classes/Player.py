@@ -11,7 +11,7 @@ class Player:
     __notes = []
 
     # Players location
-    __location = "Scotland"
+    __location = False
 
     # Players inventory
     __inventory = []
@@ -19,6 +19,9 @@ class Player:
     # Default Constructor
     def __init__(self, name):
         self.__name = name
+
+    def __repr__(self):
+        return "<Player {}>".format(self.__name)
     
     #  Gets the player's name
     def getName(self):   

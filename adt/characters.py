@@ -10,7 +10,7 @@ krill = {
 
     "check": "none",
     
-    "diaglogue": ["Hello there Dective, How can I help you?"],
+    "dialogue": ["Hello there Dective, How can I help you?"],
     
 }
 clark = {
@@ -24,10 +24,13 @@ clark = {
 
     "check": "none",
 
-    "diaglogue" : ["Please leave me alone!"],
+    "dialogue" : ["Please leave me alone!"],
 
 }
+
 getCharacter = {
     "Krill": krill,
     "Clark Davidson": clark, 
 }
+
+char_list = [krill,clark]
