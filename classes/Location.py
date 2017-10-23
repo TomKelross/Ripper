@@ -44,3 +44,6 @@ class LocationManager(object):
 				return location
 		return False
 
+	def get_all_locations(self):
+		return self.locations
+

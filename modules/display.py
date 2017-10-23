@@ -4,7 +4,7 @@ import time
 
 class DisplayManager():
 
-	_line_nums = 20
+	_line_nums = 40
 	_print_func = print
 	_input_func = input
 

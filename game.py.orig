@@ -5,7 +5,6 @@ from classes.Location import LocationManager
 from classes.Player import Player
 from classes.Time import Time
 from modules.parser import *
-from modules.display import DisplayManager
 from adt.locations import *
 from adt.items import *
 from adt.characters import *
@@ -20,10 +19,6 @@ list_of_location_objects = Factory.location_factory()
 characters = CharacterManager(list_of_character_objects)
 locations = LocationManager(list_of_location_objects)
 player = Player("Decetive Joe Smith")
-
-disp = DisplayManager()
-print = disp.print
-input = disp.get_input
 
 # Creates a Timer Object
 time = Time()
@@ -40,15 +35,24 @@ def main(): #KYLE
         ############################################
         # DEBUGGING REMOVE ON COMPLETION           #
         #############################################
-        disp.reset_display()
-        print(starting_location)
         print(player.getName())
+<<<<<<< HEAD
+        print("Location" + player.getLocation())
+        
+        
+        print(getLocation[player.getLocation()]["name"])
+        print(getLocation[player.getLocation()]["description"])
+        print(getLocation[player.getLocation()]["people"])
+        print(getLocation[player.getLocation()]["inventory"])
+=======
         location = player.getLocation()
-        print(location)
         print("Location" + location.name)
+        print("Time" + str(time.getTime()))
+        print("Day" + time.getDay())
         print(location.people)
         print(location.description)
         print(location.inventory)
+>>>>>>> 2dbf72934cfe0ce50e374c53187c84ae40648730
         print(str(player.returnInventory()))
         #############################################
 
@@ -58,9 +62,8 @@ def main(): #KYLE
         # Prints the time 
         print_time()
 
-        # Prints the room information
-        current_location = player.getLocation() 
-        print_room(current_location)
+        # Prints the room information 
+        print_room()
 
         # Prints items in the room
         print_room_items() 
@@ -121,10 +124,8 @@ def execute_go(goto): #KYLE
     # Allows us to access player
     global player
 
-    location = locations.get_location(goto)
-
-    if location:
-        player.setLocation(location)
+    if goto in getLocation:
+        player.setLocation(goto)
     else:
         print("not found")
 
@@ -195,18 +196,13 @@ def print_map(): # Nathan
 
 #
 def print_time(): # Peter
-    print()
-    print("Today is " + time.getDay() + ", the time is " + str(time.getTime()) + str(":00"))
-    print()
+    print("=" * 100)
+    print("Time: " + str(time.getTime()) + str(":00"))
+    print("Day: " + time.getDay())
 
 #
-def print_room(location): # Peter
-    print(" "*40 + "╔" + "═"* len(location.name) + "╗") 
-    print("═"*40 + "╣" + (location.name).upper() + "╠" + "═"*30)
-    print(" "*40 + "╚" + "═"* len(location.name) + "╝")
-    print(location.description)
-    print(location.people)
-    print(location.inventory)
+def print_room(): # Peter
+    pass
 
 #
 def print_room_items(): # Peter
@@ -214,16 +210,16 @@ def print_room_items(): # Peter
 
 
 def print_locations(): # Kyle
-     
-    i = 1
-    print("You can go to...\n")
-    all_locations = locations.get_all_locations()
     
-    for location in all_locations: 
-        print("{} : {}".format(i, location.name))
-        i += 1
-    input("Press any key to continue")
-       
+    i = 1;
+    
+    print("You can go to...\n")
+    
+    for location in getLocation:
+        
+        print("{} : {}".format(i, location))
+        
+        i = i + 1
 
 if __name__ == "__main__":
     main()
