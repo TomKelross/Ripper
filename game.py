@@ -121,6 +121,8 @@ def execute_go(goto): #KYLE
 
     location = locations.get_location(goto)
 
+    time.advance_time(30) #Travelling anywhere takes half an hour
+
     if location:
         player.setLocation(location)
     else:
@@ -193,7 +195,11 @@ def print_map(): # Nathan
 
 #
 def print_time(): # Peter
-    disp.update_top_bar("Ripper v1.0 / " + time.getDay() + ", the time is " + str(time.getTime()) + ":00")
+    disp.update_top_bar("Ripper v1.0 / Week "
+                        + str(time.get_week()) + " "
+                        + time.get_day_name() + ", the time is "
+                        + time.get_time_string()
+                        )
 
 
 #

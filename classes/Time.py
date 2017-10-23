@@ -35,6 +35,9 @@ class Time:
     def set_week(self,week):
         self.week = week
 
+    def get_week(self):
+        return self.week
+
     def advance_time(self, time_to_add):
         current_time = self.time
         minutes_in_day = 24 * 60
@@ -71,6 +74,7 @@ class Time:
 
     def get_day_name(self):
         return self.__day_names[self.day - 1]
+
 
 
     # Sets Time
