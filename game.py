@@ -192,7 +192,7 @@ def print_time(): # Peter
 #
 def print_room(location): # Peter
     print(" "*40 + "╔" + "═"* len(location.name) + "╗") 
-    print("═"*40 + "╣" + (location.name).upper() + "╠" + "═"*40)
+    print("═"*40 + "╣" + (location.name).upper() + "╠" + "═"*30)
     print(" "*40 + "╚" + "═"* len(location.name) + "╝")
     print(location.description)
     print(location.people)
