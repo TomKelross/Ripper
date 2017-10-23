@@ -11,22 +11,27 @@ from adt.items import *
 from adt.characters import *
 
 from story import nextEvent
+from story import Narrative
 
 # Creates a Player Object
+disp = DisplayManager()
+print = disp.print
+input = disp.get_input
 
 list_of_character_objects = Factory.character_factory()
 list_of_location_objects = Factory.location_factory()
 
 characters = CharacterManager(list_of_character_objects)
 locations = LocationManager(list_of_location_objects)
+time = Time()
+narrative = Narrative(time,disp)
+from events import add_events
+add_events(narrative)
 player = Player("Decetive Joe Smith")
 
-disp = DisplayManager()
-print = disp.print
-input = disp.get_input
 
 # Creates a Timer Object
-time = Time()
+
 
 def main(): #KYLE
 
@@ -50,6 +55,8 @@ def main(): #KYLE
         # print(str(player.returnInventory()))
         #############################################
 
+        narrative.check()
+        print(narrative.events)
         # Print the map
         print_map()
         
@@ -64,7 +71,7 @@ def main(): #KYLE
         print_room_items() 
 
         # Ask the user for their command
-        command = input("Please enter your command: ")
+        command = input("> ")
 
         #command = normialze_input(command) Kawthar
         
@@ -121,12 +128,14 @@ def execute_go(goto): #KYLE
 
     location = locations.get_location(goto)
 
-    time.advance_time(30) #Travelling anywhere takes half an hour
+
 
     if location:
         player.setLocation(location)
+        time.advance_time(30)  # Travelling anywhere takes half an hour
     else:
-        print("not found")
+        time.advance_time(5)  # Loose five minutes for faffing around
+        print("Couldn't find that location")
 
 def execute_wait(hours): #KYLE
 

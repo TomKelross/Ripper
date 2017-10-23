@@ -38,6 +38,12 @@ class Time:
     def get_week(self):
         return self.week
 
+    def get_day(self):
+        return self.day
+
+    def get_time(self):
+        return self.time
+
     def advance_time(self, time_to_add):
         current_time = self.time
         minutes_in_day = 24 * 60
