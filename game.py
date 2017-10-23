@@ -1,3 +1,7 @@
+from classes import Factory
+from classes.Character import Character
+from classes.Character import CharacterManager
+from classes.Location import LocationManager
 from classes.Player import Player
 from classes.Time import Time
 from modules.parser import *
@@ -8,6 +12,12 @@ from adt.characters import *
 from story import nextEvent
 
 # Creates a Player Object
+
+list_of_character_objects = Factory.character_factory()
+list_of_location_objects = Factory.location_factory()
+
+characters = CharacterManager(list_of_character_objects)
+locations = LocationManager(list_of_location_objects)
 player = Player("Decetive Joe Smith")
 
 # Creates a Timer Object
@@ -15,19 +25,24 @@ time = Time()
 
 def main(): #KYLE
 
+    #Put the player in scotland yard
+    starting_location = locations.get_location("Scotland Yard")
+    print(starting_location)
+    player.setLocation(starting_location)
+
     while True:
          
         ############################################
         # DEBUGGING REMOVE ON COMPLETION           #
         #############################################
         print(player.getName())
-        print("Location" + player.getLocation())
+        location = player.getLocation()
+        print("Location" + location.name)
         print("Time" + str(time.getTime()))
         print("Day" + time.getDay())
-        print(getLocation[player.getLocation()]["name"])
-        print(getLocation[player.getLocation()]["description"])
-        print(getLocation[player.getLocation()]["people"])
-        print(getLocation[player.getLocation()]["inventory"])
+        print(location.people)
+        print(location.description)
+        print(location.inventory)
         print(str(player.returnInventory()))
         #############################################
 
@@ -123,7 +138,7 @@ def execute_talk(who): #KYLE
     for i in room["people"]:
         if i["name"] == who:
             flag = True
-            print(i["diaglogue"])
+            print(i["dialogue"])
             break
 
     if flag == False:

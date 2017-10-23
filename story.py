@@ -15,8 +15,8 @@ def nextEvent(time, day):
     if time == 17 and day == "Wednesday":
         krills["people"].remove(krill)
         print("Krill has been killed by a higher power, maybe someone with a keyboard??")
-        clark["diaglogue"].pop()
-        clark["diaglogue"].append("I didn't see nuttin!!!!")
+        clark["dialogue"].pop()
+        clark["dialogue"].append("I didn't see nuttin!!!!")
 
     if time == 17 and day == "Friday":
         krills["people"].append(krill)
