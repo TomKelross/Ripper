@@ -22,8 +22,8 @@ def main(): #KYLE
         #############################################
         print(player.getName())
         print("Location" + player.getLocation())
-        print("Time" + str(time.getTime()))
-        print("Day" + time.getDay())
+        
+        
         print(getLocation[player.getLocation()]["name"])
         print(getLocation[player.getLocation()]["description"])
         print(getLocation[player.getLocation()]["people"])
@@ -171,7 +171,9 @@ def print_map(): # Nathan
 
 #
 def print_time(): # Peter
-    pass
+    print("=" * 100)
+    print("Time: " + str(time.getTime()) + str(":00"))
+    print("Day: " + time.getDay())
 
 #
 def print_room(): # Peter
