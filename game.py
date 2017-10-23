@@ -5,6 +5,7 @@ from classes.Location import LocationManager
 from classes.Player import Player
 from classes.Time import Time
 from modules.parser import *
+from modules.display import DisplayManager
 from adt.locations import *
 from adt.items import *
 from adt.characters import *
@@ -19,6 +20,10 @@ list_of_location_objects = Factory.location_factory()
 characters = CharacterManager(list_of_character_objects)
 locations = LocationManager(list_of_location_objects)
 player = Player("Decetive Joe Smith")
+
+disp = DisplayManager()
+print = disp.print
+input = disp.get_input
 
 # Creates a Timer Object
 time = Time()
@@ -35,6 +40,7 @@ def main(): #KYLE
         ############################################
         # DEBUGGING REMOVE ON COMPLETION           #
         #############################################
+        disp.reset_display()
         print(player.getName())
         location = player.getLocation()
         print("Location" + location.name)
