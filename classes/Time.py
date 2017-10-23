@@ -69,6 +69,9 @@ class Time:
         minutes = time % 60
         return "{}:{}".format(hours,minutes)
 
+    def get_day_name(self):
+        return self.__day_names[self.day - 1]
+
 
     # Sets Time
     def setTime(self, time):
