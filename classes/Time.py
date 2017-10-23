@@ -60,6 +60,8 @@ class Time:
             weeks_to_advance = periods_passed(advanced_day,days_in_week)
             self.advance_week(weeks_to_advance)
             self.day = advanced_day - (days_in_week * weeks_to_advance)
+        else:
+            self.day = advanced_day
 
     def advance_week(self,weeks_to_add):
         current_week = self.week

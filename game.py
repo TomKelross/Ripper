@@ -128,15 +128,11 @@ def execute_go(goto): #KYLE
     else:
         print("not found")
 
-def execute_wait(wait): #KYLE
-        
-    wait = int(wait) + 1
+def execute_wait(hours): #KYLE
 
-    for i in range(0, wait):         
-        
-        time.incTime()
-
-    print("You wait {} hours.".format(i))
+    minute_to_wait = int(hours) * 60
+    time.advance_time(minute_to_wait)
+    print("You wait {} hours.".format(hours))
 
 def execute_talk(who): #KYLE
 
