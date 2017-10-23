@@ -50,8 +50,9 @@ def main(): #KYLE
         # Prints the time 
         print_time()
 
-        # Prints the room information 
-        print_room()
+        # Prints the room information
+        current_location = player.getLocation() 
+        print_room(current_location)
 
         # Prints items in the room
         print_room_items() 
@@ -184,13 +185,18 @@ def print_map(): # Nathan
 
 #
 def print_time(): # Peter
-    print("=" * 100)
-    print("Time: " + str(time.getTime()) + str(":00"))
-    print("Day: " + time.getDay())
+    print()
+    print("Today is " + time.getDay() + ", the time is " + str(time.getTime()) + str(":00"))
+    print()
 
 #
-def print_room(): # Peter
-    pass
+def print_room(location): # Peter
+    print(" "*40 + "╔" + "═"* len(location.name) + "╗") 
+    print("═"*40 + "╣" + (location.name).upper() + "╠" + "═"*40)
+    print(" "*40 + "╚" + "═"* len(location.name) + "╝")
+    print(location.description)
+    print(location.people)
+    print(location.inventory)
 
 #
 def print_room_items(): # Peter
