@@ -5,8 +5,6 @@ class Location(object):
         self.people = people
         self.inventory = inventory
 
-
-
     def __repr__(self):
         return "< Location {} with {} people>".format(self.name, len(self.people))
 
