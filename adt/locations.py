@@ -71,13 +71,13 @@ factory = {
     "inventory": [],
 }
 
-# Krills Tavern
-krills = {
-    "name": "Krills Tavern",
+# Kirills Tavern
+kirills = {
+    "name": "Kirills Tavern",
     
-    "description": "Welcome to Krills Tavern!",
+    "description": "Welcome to Kirills Tavern!",
 
-    "people": [krill, clark],
+    "people": [kirill, clark],
     
     "inventory": [beer, beer, beer],
 }
@@ -122,9 +122,9 @@ getLocation = {
     "Scotland": scotland,
     "Thames": thames,
     "Factory": factory,
-    "Krills": krills,
+    "Kirills": kirills,
     "Docks": docks,
     "Marketplace": marketplace,
     "Gamestore": gamestore,
 }
-location_list = [bank,church,hospital,scotland,thames,factory,krills,docks,marketplace,gamestore]
+location_list = [bank,church,hospital,scotland,thames,factory,kirills,docks,marketplace,gamestore]
