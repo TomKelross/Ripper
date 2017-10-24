@@ -213,16 +213,11 @@ def execute_read_notes(): # Johhny
 
 #
 def print_map(): # Nathan
-<<<<<<< HEAD
     if player.getLocation() == "Bank":
         asciimap.replace(218,"◈")
         print(asciimap)
-
-
-=======
     pass
     print(asciimap)
->>>>>>> fcec6cced31a6de6bf3d9302451cf06d5836eaa9
 
 #
 def print_time(): # Peter
