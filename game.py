@@ -143,7 +143,7 @@ def execute_go(goto): #KYLE
     # Allows us to access player
     global player
     print(locations) 
-    location = locations.get_location(goto)
+    location = locations.get_location_fuzzy(goto)
     print(location)
 
     if location:
