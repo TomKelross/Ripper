@@ -200,7 +200,8 @@ def execute_investigate(who): #Judith
 
 #
 def execute_look(): # Nathan
-    pass   
+    pass
+    pass
 
 #
 def execute_take_note(note): #Johnny
@@ -212,6 +213,9 @@ def execute_read_notes(): # Johhny
 
 #
 def print_map(): # Nathan
+    if player.getLocation() == "Bank":
+        asciimap.replace(218,"◈")
+        print(asciimap)
     pass
     print(asciimap)
 

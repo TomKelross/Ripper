@@ -1,3 +1,5 @@
+from fuzzywuzzy import process
+
 class Character(object):
     def __init__(self, name="Joe Bloggs", occupation="Townsperson", gender="Male", check="None", dialogue=[]):
         self.name = name
@@ -40,3 +42,13 @@ class CharacterManager(object):
             if character.name == name:
                 return character
         return False
+    
+    def get_character_fuzzy(self,fuzzy_name):
+        all_characters = self.characters
+        names_of_all_characters = [ character.get_name() for character in all_characters]
+        best_guess = process.extract(fuzzy_name, names_of_all_characters, limit=1)
+        certainty = best_guess[0][1]
+        if certainty > 50:
+            return self.get_character(best_guess[0][0])
+        else:
+            return False
