@@ -13,6 +13,7 @@ from adt.locations import *
 from adt.items import *
 from adt.characters import *
 from adt.ascimap import asciimap
+from adt.Logo import logo
 from adt.containers import *
 
 from story import nextEvent
@@ -51,6 +52,9 @@ player = Player("Detective Joe Smith")
 
 
 def main(): #KYLE
+
+    for line in logo:
+        disp.type(line,0.005)
 
     # get_location returns a location object from the name of a location
     # In this case, we are starting at scotland yard, so we get the scotland yard location

@@ -11,7 +11,7 @@ class DisplayManager():
     def __init__(self):
         # Fill the display with empty lines
         self.lines = ['' for x in range(self._line_nums)]
-        self.top_bar = "Ripper v1.0"
+        self.top_bar = ""
         self.room_lines = ['','','']
 
     def print(self, message="",update=True):
