@@ -12,10 +12,14 @@ from modules.display import DisplayManager
 from adt.locations import *
 from adt.items import *
 from adt.characters import *
+from adt.ascimap import asciimap
 from adt.containers import *
 
 from story import nextEvent
 from story import Narrative
+
+from colorama import init, Fore, Back, Style
+init()
 
 # Creates a Player Object
 disp = DisplayManager()
@@ -76,7 +80,7 @@ def main(): #KYLE
         narrative.check()
 
         # Print the map
-        print_map()
+        # print_map()
 
         current_location = player.getLocation()
         # Updates the room display at the top of the screen with information about the current room
@@ -86,7 +90,12 @@ def main(): #KYLE
         print_characters(locations)
 
         # Ask the user for their command
-        command = input("> ")
+        command_given = False
+        command = ""
+        while not command_given:
+            command = input("> ")
+            if not command == "":
+                command_given = True
 
         # Make sure the input is properly sanitised
         command = normalize_input(command)
@@ -98,7 +107,7 @@ def main(): #KYLE
         # time.incTime()
 
         # Excute the next event
-        # nextEvent(time.getTime(), time.getDay())
+        nextEvent(time.getTime(), time.getDay())
 
 def commands(command): #KYLE
    
@@ -118,7 +127,6 @@ def commands(command): #KYLE
             print("Talk to who?")
     elif command[0] == "take":
         if len(command) > 1:
-            print("takinggggggg")
             execute_take(command[1])
         else:
             print("Take what?")
@@ -137,14 +145,14 @@ def commands(command): #KYLE
     elif command[0] == "read":
             execute_read_notes()
     else:
-        print("Your command made no sense")
+        print(Fore.RED + " Your command made no sense" + Style.RESET_ALL)
 
 def execute_go(goto): #KYLE
     print(goto)
     # Allows us to access player
     global player
     print(locations) 
-    location = locations.get_location(goto)
+    location = locations.get_location_fuzzy(goto)
     print(location)
 
     if location:
@@ -162,18 +170,17 @@ def execute_wait(hours): #KYLE
 
 def execute_talk(who): #KYLE
 
-    flag = False
-
     location = player.getLocation()
+    people_in_room = location.get_people()
 
-    for i in room["people"]:
-        if i["name"] == who:
-            flag = True
-            print(i["dialogue"])
-            break
-
-    if flag == False:
-        print("That person doesn't seem to be here.")
+    if people_in_room:
+        person_to_talk_to = characters.get_character_fuzzy(who,people_in_room)
+        if person_to_talk_to:
+            print(person_to_talk_to.next_dialogue())
+        else:
+            print("Couldn't find who you meant to talk to")
+    else:
+        print("There is no one here to talk to")
 
 def execute_take(item_to_take): #KYLE
 
@@ -202,6 +209,7 @@ def execute_investigate(who): #Judith
 #
 def execute_look(): # Nathan
     pass
+    pass
 
 #
 def execute_take_note(): #Jonny
@@ -217,11 +225,15 @@ def execute_read_notes(): #Jonny
         i = i + 1
 #
 def print_map(): # Nathan
+    if player.getLocation() == "Bank":
+        asciimap.replace(218,"◈")
+        print(asciimap)
     pass
+    print(asciimap)
 
 #
 def print_time(): # Peter
-    disp.update_top_bar("Ripper v1.0 / Week "
+    disp.update_top_bar(Fore.GREEN + "Ripper v1.0 " + Style.RESET_ALL + "Week "
                         + str(time.get_week()) + " "
                         + time.get_day_name() + ", the time is "
                         + time.get_time_string()
@@ -244,7 +256,17 @@ def print_characters(location):
 
     current_location = player.getLocation()
     people_in_room = current_location.get_people()
-    print(people_in_room)
+    print(Fore.GREEN + "People that were found here:" + Style.RESET_ALL)
+    for people in people_in_room:
+        if  people.gender == "male":
+            print(Fore.BLUE + (people.name).center(70, " ") + Style.RESET_ALL)
+        elif people.gender == "female":
+            print(Fore.MAGENTA + (people.name).center(70, " ") + Style.RESET_ALL)
+
+    
+
+
+
     # print(location.get_location(player.get_location()).get_people())
 
 def print_locations(): # Kyle

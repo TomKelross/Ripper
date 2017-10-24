@@ -1,3 +1,6 @@
+from fuzzywuzzy import process
+
+
 class Location(object):
     def __init__(self, name, description, people=[], inventory=[],containers=[]):
         self.name = name
@@ -46,3 +49,15 @@ class LocationManager(object):
 
     def get_all_locations(self):
         return self.locations
+
+    def get_location_fuzzy(self,fuzzy_name):
+        all_locations = self.locations
+        names_of_all_locations = [ location.get_name() for location in all_locations]
+        best_guess = process.extract(fuzzy_name, names_of_all_locations, limit=1)
+        certainty = best_guess[0][1]
+        if certainty > 50:
+            return self.get_location(best_guess[0][0])
+        else:
+            return False
+
+
