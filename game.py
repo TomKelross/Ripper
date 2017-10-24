@@ -1,3 +1,4 @@
+
 from classes import Factory
 from classes.Character import Character
 from classes.Character import CharacterManager
@@ -71,6 +72,7 @@ def main(): #KYLE
         print_room(current_location)
         # Prints items in the room
         print_room_items(current_location)
+        print_characters(locations)
 
         # Ask the user for their command
         command = input("> ")
@@ -210,13 +212,20 @@ def print_time(): # Peter
 def print_room(location): # Peter
     disp.update_room_display(location.name)
     print(location.description)
-    print(location.people)
+    if location.people == []:
+        print("")
+
 
 
 #
 def print_room_items(location): # Peter
     pass
+def print_characters(location):
 
+    current_location = player.getLocation()
+    people_in_room = current_location.get_people()
+    print(people_in_room)
+    # print(location.get_location(player.get_location()).get_people())
 
 def print_locations(): # Kyle
      
