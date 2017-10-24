@@ -141,7 +141,7 @@ def commands(command): #KYLE
         else:
             print("Wait how long?")    
     else:
-        print(Fore.RED + "✘ Your command made no sense" + Style.RESET_ALL)
+        print(Fore.RED + " Your command made no sense" + Style.RESET_ALL)
 
 def execute_go(goto): #KYLE
     print(goto)
@@ -248,7 +248,17 @@ def print_characters(location):
 
     current_location = player.getLocation()
     people_in_room = current_location.get_people()
-    print(people_in_room)
+    print(Fore.GREEN + "People that were found here:" + Style.RESET_ALL)
+    for people in people_in_room:
+        if  people.gender == "male":
+            print(Fore.BLUE + (people.name).center(70, " ") + Style.RESET_ALL)
+        elif people.gender == "female":
+            print(Fore.MAGENTA + (people.name).center(70, " ") + Style.RESET_ALL)
+
+    
+
+
+
     # print(location.get_location(player.get_location()).get_people())
 
 def print_locations(): # Kyle
