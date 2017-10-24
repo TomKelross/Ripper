@@ -80,7 +80,7 @@ def main(): #KYLE
         narrative.check()
 
         # Print the map
-        print_map()
+        # print_map()
 
         current_location = player.getLocation()
         # Updates the room display at the top of the screen with information about the current room
@@ -230,22 +230,17 @@ def print_room(location): # Peter
     print(location.description)
     if location.people == []:
         print("")
-    
 
 
 
 #
-def print_room_items(location):
+def print_room_items(location): # Peter
     pass
 def print_characters(location):
 
     current_location = player.getLocation()
     people_in_room = current_location.get_people()
-    for people in people_in_room:
-        print (people)
-        
-
-    
+    print(people_in_room)
     # print(location.get_location(player.get_location()).get_people())
 
 def print_locations(): # Kyle
