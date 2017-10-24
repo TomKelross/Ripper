@@ -200,11 +200,8 @@ def execute_investigate(who): #Judith
 
 #
 def execute_look(): # Nathan
-<<<<<<< HEAD
-    pass    
-=======
-    pass   
->>>>>>> fcec6cced31a6de6bf3d9302451cf06d5836eaa9
+    pass
+    pass
 
 #
 def execute_take_note(note): #Johnny
