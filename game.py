@@ -9,6 +9,7 @@ from modules.display import DisplayManager
 from adt.locations import *
 from adt.items import *
 from adt.characters import *
+from adt.ascimap import asciimap
 
 from story import nextEvent
 from story import Narrative
@@ -85,7 +86,7 @@ def main(): #KYLE
         # time.incTime()
 
         # Excute the next event
-        # nextEvent(time.getTime(), time.getDay())
+        nextEvent(time.getTime(), time.getDay())
 
 def commands(command): #KYLE
    
@@ -105,7 +106,6 @@ def commands(command): #KYLE
             print("Talk to who?")
     elif command[0] == "take":
         if len(command) > 1:
-            print("takinggggggg")
             execute_take(command[1])
         else:
             print("Take what?")
@@ -183,7 +183,7 @@ def execute_investigate(who): #Judith
 
 #
 def execute_look(): # Nathan
-    pass
+    
 
 #
 def execute_take_note(note): #Johnny
@@ -196,6 +196,7 @@ def execute_read_notes(): # Johhny
 #
 def print_map(): # Nathan
     pass
+print(asciimap)
 
 #
 def print_time(): # Peter

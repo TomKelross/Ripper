@@ -11,7 +11,6 @@ from modules.parser import *
 # This module controls the story....
 
 def nextEvent(time, day):
-    print(time, day)
 
     if time == 17 and day == "Wednesday":
         krills["people"].remove(krill)
