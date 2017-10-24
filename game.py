@@ -89,7 +89,12 @@ def main(): #KYLE
         print_characters(locations)
 
         # Ask the user for their command
-        command = input("> ")
+        command_given = False
+        command = ""
+        while not command_given:
+            command = input("> ")
+            if not command == "":
+                command_given = True
 
         # Make sure the input is properly sanitised
         command = normalize_input(command)
@@ -133,9 +138,13 @@ def commands(command): #KYLE
         if len(command) > 1:
             execute_wait(command[1])
         else:
-            print("Wait how long?")    
+            print("Wait how long?")
+    elif command[0] == "make":
+            execute_take_note()
+    elif command[0] == "read":
+            execute_read_notes()
     else:
-        print(Fore.RED + "✘ Your command made no sense" + Style.RESET_ALL)
+        print(Fore.RED + " Your command made no sense" + Style.RESET_ALL)
 
 def execute_go(goto): #KYLE
     print(goto)
@@ -160,18 +169,17 @@ def execute_wait(hours): #KYLE
 
 def execute_talk(who): #KYLE
 
-    flag = False
-
     location = player.getLocation()
+    people_in_room = location.get_people()
 
-    for i in room["people"]:
-        if i["name"] == who:
-            flag = True
-            print(i["dialogue"])
-            break
-
-    if flag == False:
-        print("That person doesn't seem to be here.")
+    if people_in_room:
+        person_to_talk_to = characters.get_character_fuzzy(who,people_in_room)
+        if person_to_talk_to:
+            print(person_to_talk_to.next_dialogue())
+        else:
+            print("Couldn't find who you meant to talk to")
+    else:
+        print("There is no one here to talk to")
 
 def execute_take(item_to_take): #KYLE
 
@@ -203,13 +211,17 @@ def execute_look(): # Nathan
     pass
 
 #
-def execute_take_note(note): #Johnny
-    pass
+def execute_take_note(): #Jonny
+    note = input("Write a Note for yourself:")
+    player.setNotes(note)
 
 #
-def execute_read_notes(): # Johhny
-    pass
-
+def execute_read_notes(): #Jonny
+    i = 1
+    note = player.getNotes()
+    for word in note:
+        print("{}:{}".format(i,word))
+        i = i + 1
 #
 def print_map(): # Nathan
     if player.getLocation() == "Bank": 
@@ -254,7 +266,17 @@ def print_characters(location):
 
     current_location = player.getLocation()
     people_in_room = current_location.get_people()
-    print(people_in_room)
+    print(Fore.GREEN + "People that were found here:" + Style.RESET_ALL)
+    for people in people_in_room:
+        if  people.gender == "male":
+            print(Fore.BLUE + (people.name).center(70, " ") + Style.RESET_ALL)
+        elif people.gender == "female":
+            print(Fore.MAGENTA + (people.name).center(70, " ") + Style.RESET_ALL)
+
+    
+
+
+
     # print(location.get_location(player.get_location()).get_people())
 
 def print_locations(): # Kyle

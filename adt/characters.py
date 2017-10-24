@@ -10,7 +10,7 @@ kirill = {
 
     "check": "none",
     
-    "dialogue": ["Hello there Dective, How can I help you?"],
+    "dialogue": ["Hello there Dective, How can I help you?","Bugs are evil"],
     
 }
 clark = {
