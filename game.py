@@ -80,7 +80,7 @@ def main(): #KYLE
         narrative.check()
 
         # Print the map
-        print_map()
+        # print_map()
 
         current_location = player.getLocation()
         # Updates the room display at the top of the screen with information about the current room
@@ -143,7 +143,7 @@ def execute_go(goto): #KYLE
     # Allows us to access player
     global player
     print(locations) 
-    location = locations.get_location(goto)
+    location = locations.get_location_fuzzy(goto)
     print(location)
 
     if location:
@@ -200,7 +200,11 @@ def execute_investigate(who): #Judith
 
 #
 def execute_look(): # Nathan
+<<<<<<< HEAD
     pass    
+=======
+    pass   
+>>>>>>> fcec6cced31a6de6bf3d9302451cf06d5836eaa9
 
 #
 def execute_take_note(note): #Johnny
@@ -212,11 +216,16 @@ def execute_read_notes(): # Johhny
 
 #
 def print_map(): # Nathan
+<<<<<<< HEAD
     if player.getLocation() == "Bank":
         asciimap.replace(218,"◈")
         print(asciimap)
 
 
+=======
+    pass
+    print(asciimap)
+>>>>>>> fcec6cced31a6de6bf3d9302451cf06d5836eaa9
 
 #
 def print_time(): # Peter
