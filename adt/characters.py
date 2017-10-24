@@ -1,6 +1,6 @@
-krill = {
+kirill = {
     
-    "name": "Krill",
+    "name": "Kirill",
 
     "occupation": "Barman",
 
@@ -37,8 +37,8 @@ police_man = {
 }
 
 getCharacter = {
-    "Krill": krill,
+    "Kirill": kirill,
     "Clark Davidson": clark, 
 }
 
-char_list = [krill,clark,police_man]
+char_list = [kirill,clark,police_man]

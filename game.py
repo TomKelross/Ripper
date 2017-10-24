@@ -26,7 +26,6 @@ disp = DisplayManager()
 print = disp.print
 input = disp.get_input
 
-
 list_of_item_objects = Factory.item_factory()
 items = ItemManager(list_of_item_objects)
 
@@ -80,7 +79,7 @@ def main(): #KYLE
         narrative.check()
 
         # Print the map
-        # print_map()
+        print_map()
 
         current_location = player.getLocation()
         # Updates the room display at the top of the screen with information about the current room
@@ -213,12 +212,26 @@ def execute_read_notes(): # Johhny
 
 #
 def print_map(): # Nathan
-    if player.getLocation() == "Bank":
+    if player.getLocation() == "Bank": 
+        asciimap = asciimap.replace(218,"◈")
+    if player.getLocation() == "Church": 
+        asciimap.replace(472,"◈")
+    if player.getLocation() == "Hospital": 
         asciimap.replace(218,"◈")
-        print(asciimap)
-    pass
-    print(asciimap)
-
+    if player.getLocation() == "Scotland": 
+        asciimap.replace(218,"◈")
+    if player.getLocation() == "Thames": 
+        asciimap.replace(218,"◈")
+    if player.getLocation() == "Factory": 
+        asciimap.replace(218,"◈")
+    if player.getLocation() == "Kirills": 
+        asciimap.replace(218,"◈")
+    if player.getLocation() == "Docks": 
+        asciimap.replace(218,"◈")
+    if player.getLocation() == "Marketplace": 
+        asciimap.replace(218,"◈")
+    if player.getLocation() == "Gamestore": 
+        asciimap.replace(218,"◈")
 #
 def print_time(): # Peter
     disp.update_top_bar(Fore.GREEN + "Ripper v1.0 " + Style.RESET_ALL + "Week "
@@ -227,15 +240,12 @@ def print_time(): # Peter
                         + time.get_time_string()
                         )
 
-
 #
 def print_room(location): # Peter
     disp.update_room_display(location.name)
     print(location.description)
     if location.people == []:
         print("")
-
-
 
 #
 def print_room_items(location): # Peter
