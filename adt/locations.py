@@ -1,5 +1,6 @@
 from adt.items import *
 from adt.characters import *
+from adt.containers import *
 
 # Bank of England
 bank = {
@@ -44,6 +45,8 @@ scotland = {
     "people": [police_man],
     
     "inventory": [],
+
+    "container" : [drawers]
 }
 
 # Thames

@@ -21,15 +21,17 @@ class Character(object):
     def move_to(self,location):
         self.location = location
 
-    def talk(self):
-        counter = self._dialogue_counter
+    def get_name(self):
+        return self.name
+
+    def next_dialogue(self):
         dialogue = self.dialogue
 
-        if counter < len(dialogue):
-            counter += 1
-            return dialogue[counter - 1]
+        if self._dialogue_counter < len(dialogue):
+            self._dialogue_counter += 1
+            return dialogue[self._dialogue_counter - 1]
         else:
-            counter = 0
+            self._dialogue_counter = 0
             return dialogue[0]
 
 
@@ -43,10 +45,14 @@ class CharacterManager(object):
                 return character
         return False
     
-    def get_character_fuzzy(self,fuzzy_name):
-        all_characters = self.characters
-        names_of_all_characters = [ character.get_name() for character in all_characters]
-        best_guess = process.extract(fuzzy_name, names_of_all_characters, limit=1)
+    def get_character_fuzzy(self,fuzzy_name,search_space=False):
+        if search_space:
+            characters_to_match = search_space
+        else:
+            characters_to_match = self.characters
+
+        names_of_characters = [ character.get_name() for character in characters_to_match]
+        best_guess = process.extract(fuzzy_name, names_of_characters, limit=1)
         certainty = best_guess[0][1]
         if certainty > 50:
             return self.get_character(best_guess[0][0])

@@ -90,7 +90,12 @@ def main(): #KYLE
         print_characters(locations)
 
         # Ask the user for their command
-        command = input("> ")
+        command_given = False
+        command = ""
+        while not command_given:
+            command = input("> ")
+            if not command == "":
+                command_given = True
 
         # Make sure the input is properly sanitised
         command = normalize_input(command)
@@ -161,18 +166,17 @@ def execute_wait(hours): #KYLE
 
 def execute_talk(who): #KYLE
 
-    flag = False
-
     location = player.getLocation()
+    people_in_room = location.get_people()
 
-    for i in room["people"]:
-        if i["name"] == who:
-            flag = True
-            print(i["dialogue"])
-            break
-
-    if flag == False:
-        print("That person doesn't seem to be here.")
+    if people_in_room:
+        person_to_talk_to = characters.get_character_fuzzy(who,people_in_room)
+        if person_to_talk_to:
+            print(person_to_talk_to.next_dialogue())
+        else:
+            print("Couldn't find who you meant to talk to")
+    else:
+        print("There is no one here to talk to")
 
 def execute_take(item_to_take): #KYLE
 
