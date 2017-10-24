@@ -2,9 +2,10 @@ from fuzzywuzzy import process
 
 
 class Location(object):
-    def __init__(self, name, description, people=[], inventory=[],containers=[]):
+    def __init__(self, name, description,exits=[], people=[], inventory=[],containers=[]):
         self.name = name
         self.description = description
+        self.exits = exits
         self.people = people
         self.inventory = inventory
         self.containers = containers

@@ -12,6 +12,10 @@ bank = {
     
     "inventory": [],
 
+    "exits" : {"east" : "Hospital",
+               "south" : "Scotland Yard",
+               "west" : "Church",
+               }
 }
 
 # Church
@@ -23,6 +27,10 @@ church = {
     "people": [],
 
     "inventory": [],
+
+    "exits": {"north": "Bank of England",
+              "south": "Scotland Yard",
+              }
 }
 
 # Hospital
@@ -34,6 +42,10 @@ hospital ={
     "people": [],
     
     "inventory": [],
+
+    "exits": {"north": "Bank of England",
+              "south": "Scotland Yard",
+              }
 }
 
 # Scotland Yard
@@ -46,7 +58,13 @@ scotland = {
     
     "inventory": [],
 
-    "container" : [drawers]
+    "container" : [drawers],
+
+    "exits" : {"east" : "Hospital",
+               "north" : "Bank of England",
+               "west" : "Church",
+               "south" : "Thames"
+               }
 }
 
 # Thames
@@ -58,6 +76,11 @@ thames = {
     "people": [],
 
     "inventory": [],
+
+    "exits": {
+              "north": "Scotland Yard",
+              "south": "Kirills Tavern"
+              }
 }
 
 # Factory
@@ -69,6 +92,10 @@ factory = {
     "people": [],
 
     "inventory": [],
+
+    "exits": {
+        "east": "Kirills Tavern",
+    }
 }
 
 # Kirills Tavern
@@ -80,6 +107,13 @@ kirills = {
     "people": [kirill, clark],
     
     "inventory": [beer, beer, beer],
+
+    "exits": {
+        "north": "Thames",
+        "east": "Docks",
+        "south" : "Marketplace",
+        "west" : "Factory"
+    }
 }
 
 # Docks
@@ -90,7 +124,11 @@ docks = {
 
     "people": [],
 
-    "inventory" : []
+    "inventory" : [],
+
+    "exits": {
+        "west": "Kirills Tavern",
+    }
 }
 
 # Marketpalce
@@ -101,7 +139,12 @@ marketplace = {
 
     "people": [],
     
-    "inventory": []
+    "inventory": [],
+
+    "exits": {
+        "north": "Kirills Tavern",
+        "south": "XXX GAMESTORE"
+    }
 }
 
 # Gamestore
@@ -112,8 +155,17 @@ gamestore = {
 
     "people": [],
     
-    "inventory": []
+    "inventory": [],
+
+    "exits": {
+        "north": "MARKETPLACE",
+    }
 }
+
+# northern_courtyard = {
+#     "name" : 'Northern Courtyard'
+#     "description" {}
+# }
 
 getLocation = {
     "Bank": bank,

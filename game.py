@@ -19,6 +19,8 @@ from adt.containers import *
 from story import nextEvent
 from story import Narrative
 
+from fuzzywuzzy import process
+
 from colorama import init, Fore, Back, Style
 init()
 
@@ -54,15 +56,14 @@ player = Player("Detective Joe Smith")
 def main(): #KYLE
 
     # for line in logo:
-    #     disp.type(line,0.001)
+    #     disp.type(line,0.000001)
 
-    # print("hello")
     # get_location returns a location object from the name of a location
     # In this case, we are starting at scotland yard, so we get the scotland yard location
     starting_location = locations.get_location("Scotland Yard")
     # And set the player current location here
     narrative.check()
-    change_location(starting_location)
+    change_location(starting_location,False)
     while True:
          
         ############################################
@@ -154,20 +155,27 @@ def commands(command): #KYLE
     else:
         print(Fore.RED + " Your command made no sense" + Style.RESET_ALL)
 
-def execute_go(goto): #KYLE
-    print(goto)
-    # Allows us to access player
-    global player
-    print(locations) 
-    location = locations.get_location_fuzzy(goto)
-    print(location)
+def execute_go(direction): #KYLE
+    current_location = player.getLocation()
+    possible_exits = current_location.exits
 
-    if location:
-        change_location(location)
-        time.advance_time(30)  # Travelling anywhere takes half an hour
+    best_guess = process.extract(direction, possible_exits.keys(), limit=1)
+    certainty = best_guess[0][1]
+    direction = ""
+    if certainty > 80:
+        direction = best_guess[0][0]
     else:
-        time.advance_time(5)  # Loose five minutes for faffing around
-        print("Couldn't find that location")
+        print("What direction did you mean")
+
+
+    if direction in possible_exits:
+        location_name = possible_exits.get(direction)
+        location = locations.get_location_fuzzy(location_name)
+        change_location(location)
+        time.advance_time(30)
+    else:
+        print("You can't travel in that direction")
+        time.advance_time(5)
 
 def execute_wait(hours): #KYLE
 
@@ -183,7 +191,19 @@ def execute_talk(who): #KYLE
     if people_in_room:
         person_to_talk_to = characters.get_character_fuzzy(who,people_in_room)
         if person_to_talk_to:
-            print(person_to_talk_to.next_dialogue())
+            dialogue = person_to_talk_to.next_dialogue()
+            dialogue_count = person_to_talk_to.get_dialogue_count()
+            total_dialogues = person_to_talk_to.get_dialogue_length()
+            dialogue_counter = ( Fore.GREEN + " ("
+                                + Fore.LIGHTGREEN_EX + str(dialogue_count)
+                                + Fore.GREEN + "/"
+                                + Fore.LIGHTGREEN_EX + str(total_dialogues)
+                                + Fore.GREEN + ")" + Style.RESET_ALL
+                                )
+            print(Fore.GREEN + "[" + Fore.LIGHTGREEN_EX + person_to_talk_to.name + Fore.GREEN + "] "
+                  + Fore.WHITE + dialogue
+                  + dialogue_counter
+                  + Style.RESET_ALL)
         else:
             print("Couldn't find who you meant to talk to")
     else:
@@ -217,9 +237,10 @@ def execute_investigate(who): #Judith
 def execute_look(target=False): # Nathan
     # Prints items in the room
     current_location = player.getLocation()
-    print(current_location.description)
+    print_description(current_location)
+    print_exits(current_location)
     print_room_items(current_location)
-    print_characters(locations)
+    print_characters(current_location)
     pass
 
 #
@@ -264,32 +285,55 @@ def print_time(): # Peter
                         + time.get_time_string()
                         )
 
-#
+
+
+def print_exits(location):
+    print(Fore.GREEN + "From here you can travel:" + Style.RESET_ALL)
+    for exit in location.exits:
+        print(Fore.LIGHTYELLOW_EX + exit.upper() + Fore.WHITE +
+              " for " + Fore.LIGHTYELLOW_EX + location.exits[exit]
+              + Style.RESET_ALL)
+
+def print_description(location):
+    print(Fore.GREEN + "[Description] " + Style.RESET_ALL + location.description)
+    print()
+
 def update_room_display(location): # Peter
     disp.update_room_display(location.name)
 
 #
 def print_room_items(location): # Peter
-    pass
+    item_list_string = ""
+    if location.inventory:
+        print(Fore.GREEN + "Items in room:" + Style.RESET_ALL)
+        for item in location.inventory:
+            item_list_string += (Fore.LIGHTYELLOW_EX + item.name)
+        print(item_list_string)
+    else:
+        print(Fore.LIGHTBLACK_EX + "There are no items here" + Style.RESET_ALL)
+
+def print_room_containers(location):
+    print(Fore.GREEN + "Containers:" + Style.RESET_ALL)
+    for container in location.containers:
+        print(container.name)
 
 
 def print_characters(location):
-   
-    
-    # current_location = player.getLocation()
-    
-
-
-    current_location = player.getLocation()
-    people_in_room = current_location.get_people()    
-    print(Fore.GREEN + "People that were found here:" + Style.RESET_ALL)
-    for people in people_in_room:
-        if  people.gender == "male":
-            print(Fore.BLUE + (people.name).center(70, " ") + Style.RESET_ALL)
-        elif people.gender == "female":
-            print(Fore.MAGENTA + (people.name).center(70, " ") + Style.RESET_ALL)
-    if not people_in_room:
-            print(Fore.RED + "There are no people here"+ Style.RESET_ALL)
+    current_location = location
+    people_in_room = current_location.get_people()
+    people_string = ""
+    if people_in_room:
+        print(Fore.GREEN + "People that were found here:" + Style.RESET_ALL)
+        for people in people_in_room:
+            if not people.alive:
+                people_string += " " + (Fore.BLACK + people.name + Style.RESET_ALL + " ")
+            elif people.gender == "male":
+                people_string += " " + (Fore.BLUE + people.name + Style.RESET_ALL + " ")
+            elif people.gender == "female":
+                people_string += " " + (Fore.MAGENTA + people.name + Style.RESET_ALL + " ")
+        print(people_string.center(20))
+    else:
+        print(Fore.LIGHTBLACK_EX + "There are no people here" + Style.RESET_ALL)
 
     
 
@@ -312,11 +356,11 @@ def print_locations(): # Kyle
         i += 1
     input("Press any key to continue")
 
-def change_location(location):
+def change_location(location,reset_display=True):
     player.setLocation(location)
-    print(location.description)
-    print_room_items(location)
-    print_characters(location)
+    if reset_display:
+        disp.reset_display()
+    execute_look()
 
 
 if __name__ == "__main__":

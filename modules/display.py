@@ -1,6 +1,7 @@
 import os
 import sys
 import time
+from colorama import Fore, Style
 
 
 class DisplayManager():
@@ -33,7 +34,12 @@ class DisplayManager():
     def update_top_bar(self, message):
         self.top_bar = message
 
-    def update_room_display(self,room_name):
+    def update_room_display(self,room_name,murder_scene = False):
+        if murder_scene:
+            room_name = Fore.RED + room_name.upper() + Style.RESET_ALL
+        else:
+            room_name = room_name.upper()
+
         self.room_lines[0] = (" " * 40 + "╔" + "═" * len(room_name) + "╗")
         self.room_lines[1] = ("═" * 40 + "╣" + room_name.upper() + "╠" + "═" * 30)
         self.room_lines[2] = (" " * 40 + "╚" + "═" * len(room_name) + "╝")

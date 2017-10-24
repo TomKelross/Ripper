@@ -36,6 +36,7 @@ def create_location(location_dict, characters, items,containers):
     name = location_dict["name"]
     description = location_dict["description"]
     inventory = location_dict["inventory"]
+    exits = location_dict.get("exits",[])
     
     people = []
     for person_dict in location_dict["people"]:
@@ -53,7 +54,7 @@ def create_location(location_dict, characters, items,containers):
         containers.append(person_object)
         
         
-    location_object = Location(name,description,people,inventory,containers)
+    location_object = Location(name,description,exits,people,inventory,containers)
 
     return location_object
 
