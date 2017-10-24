@@ -7,3 +7,5 @@ beer = {
 getItem = {
     "Beer": beer
 }
+
+item_list = [beer]

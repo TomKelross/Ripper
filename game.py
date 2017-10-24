@@ -1,7 +1,10 @@
+
 from classes import Factory
 from classes.Character import Character
 from classes.Character import CharacterManager
 from classes.Location import LocationManager
+from classes.Container import ContainerManager
+from classes.Item import ItemManager
 from classes.Player import Player
 from classes.Time import Time
 from modules.parser import *
@@ -9,19 +12,34 @@ from modules.display import DisplayManager
 from adt.locations import *
 from adt.items import *
 from adt.characters import *
+<<<<<<< HEAD
 from adt.ascimap import asciimap
+=======
+from adt.containers import *
+>>>>>>> 9334f309eac896ec3e7438ffc3fea97661b97331
 
 from story import nextEvent
 from story import Narrative
+
+from colorama import init, Fore, Back, Style
+init()
 
 # Creates a Player Object
 disp = DisplayManager()
 print = disp.print
 input = disp.get_input
 
+
+list_of_item_objects = Factory.item_factory()
+items = ItemManager(list_of_item_objects)
+
+list_of_container_objects = Factory.container_factory(items)
+containers = ContainerManager(list_of_container_objects)
+
 list_of_character_objects = Factory.character_factory()
 characters = CharacterManager(list_of_character_objects)
-list_of_location_objects = Factory.location_factory(characters)
+
+list_of_location_objects = Factory.location_factory(characters,items,containers)
 locations = LocationManager(list_of_location_objects)
 
 
@@ -29,7 +47,7 @@ time = Time()
 narrative = Narrative(time,disp)
 from events import add_events
 add_events(narrative)
-player = Player("Decetive Joe Smith")
+player = Player("Detective Joe Smith")
 
 
 # Creates a Timer Object
@@ -58,20 +76,21 @@ def main(): #KYLE
         # print(str(player.returnInventory()))
         #############################################
 
+        # Updates the top of the screen with the current time information
+        print_time()
+
         # Check and run and scheduled events that should have happened by now
         narrative.check()
 
         # Print the map
         print_map()
-        
-        # Updates the top of the screen with the current time information
-        print_time()
 
         current_location = player.getLocation()
         # Updates the room display at the top of the screen with information about the current room
         print_room(current_location)
         # Prints items in the room
         print_room_items(current_location)
+        print_characters(locations)
 
         # Ask the user for their command
         command = input("> ")
@@ -120,14 +139,15 @@ def commands(command): #KYLE
         else:
             print("Wait how long?")    
     else:
-        print("Your command made no sense")
+        print(Fore.RED + "✘ Your command made no sense" + Style.RESET_ALL)
 
 def execute_go(goto): #KYLE
-
+    print(goto)
     # Allows us to access player
     global player
-
+    print(locations) 
     location = locations.get_location(goto)
+    print(location)
 
     if location:
         player.setLocation(location)
@@ -146,7 +166,7 @@ def execute_talk(who): #KYLE
 
     flag = False
 
-    room = getLocation[player.getLocation()]
+    location = player.getLocation()
 
     for i in room["people"]:
         if i["name"] == who:
@@ -200,7 +220,7 @@ print(asciimap)
 
 #
 def print_time(): # Peter
-    disp.update_top_bar("Ripper v1.0 / Week "
+    disp.update_top_bar(Fore.GREEN + "Ripper v1.0 " + Style.RESET_ALL + "Week "
                         + str(time.get_week()) + " "
                         + time.get_day_name() + ", the time is "
                         + time.get_time_string()
@@ -211,13 +231,20 @@ def print_time(): # Peter
 def print_room(location): # Peter
     disp.update_room_display(location.name)
     print(location.description)
-    print(location.people)
+    if location.people == []:
+        print("")
+
 
 
 #
 def print_room_items(location): # Peter
     pass
+def print_characters(location):
 
+    current_location = player.getLocation()
+    people_in_room = current_location.get_people()
+    print(people_in_room)
+    # print(location.get_location(player.get_location()).get_people())
 
 def print_locations(): # Kyle
      
