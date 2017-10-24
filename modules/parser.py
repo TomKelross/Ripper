@@ -1,5 +1,5 @@
 
-banned_words = ["to", 0]
+banned_words = ["to", "the",0]
 
 def remove_spaces(text):
     
@@ -40,7 +40,7 @@ def filter_words(words, text):
 
     for word in words:
         
-        word = word.lower()
+        # word = word.lower()
         print(word)
 
         if word.isalpha() == True:

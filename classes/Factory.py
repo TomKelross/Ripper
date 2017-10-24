@@ -1,5 +1,7 @@
 from adt.characters import char_list
 from adt.locations import location_list
+from adt.items import item_list
+from classes.Item import Item
 from .Character import Character
 from .Location import Location
 
@@ -51,3 +53,23 @@ def location_factory(characters):
         list_of_locations.append(location_o)
 
     return list_of_locations
+
+def create_item(item_dict):
+    name = item_dict["name"]
+    description = item_dict["description"]
+    mass = item_dict.get("mass",1)
+    value = item_dict.get("value",0)
+    droppable = item_dict.get("droppable",False)
+
+    item_object = Item(name, description, mass, value, droppable)
+
+    return item_object
+
+
+def item_factory():
+    list_of_items = []
+    for item_dict in item_list:
+        item_o = create_item(item_dict)
+        list_of_items.append(item_o)
+
+    return list_of_items
