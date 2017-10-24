@@ -131,7 +131,11 @@ def commands(command): #KYLE
         if len(command) > 1:
             execute_wait(command[1])
         else:
-            print("Wait how long?")    
+            print("Wait how long?")
+    elif command[0] == "make":
+            execute_take_note()
+    elif command[0] == "read":
+            execute_read_notes()
     else:
         print("Your command made no sense")
 
@@ -200,13 +204,17 @@ def execute_look(): # Nathan
     pass
 
 #
-def execute_take_note(note): #Johnny
-    pass
+def execute_take_note(): #Jonny
+    note = input("Write a Note for yourself:")
+    player.setNotes(note)
 
 #
-def execute_read_notes(): # Johhny
-    pass
-
+def execute_read_notes(): #Jonny
+    i = 1
+    note = player.getNotes()
+    for word in note:
+        print("{}:{}".format(i,word))
+        i = i + 1
 #
 def print_map(): # Nathan
     pass
