@@ -12,10 +12,17 @@ from modules.display import DisplayManager
 from adt.locations import *
 from adt.items import *
 from adt.characters import *
+<<<<<<< HEAD
+from adt.ascimap import asciimap
+=======
 from adt.containers import *
+>>>>>>> 9334f309eac896ec3e7438ffc3fea97661b97331
 
 from story import nextEvent
 from story import Narrative
+
+from colorama import init, Fore, Back, Style
+init()
 
 # Creates a Player Object
 disp = DisplayManager()
@@ -98,7 +105,7 @@ def main(): #KYLE
         # time.incTime()
 
         # Excute the next event
-        # nextEvent(time.getTime(), time.getDay())
+        nextEvent(time.getTime(), time.getDay())
 
 def commands(command): #KYLE
    
@@ -118,7 +125,6 @@ def commands(command): #KYLE
             print("Talk to who?")
     elif command[0] == "take":
         if len(command) > 1:
-            print("takinggggggg")
             execute_take(command[1])
         else:
             print("Take what?")
@@ -133,14 +139,14 @@ def commands(command): #KYLE
         else:
             print("Wait how long?")    
     else:
-        print("Your command made no sense")
+        print(Fore.RED + "✘ Your command made no sense" + Style.RESET_ALL)
 
 def execute_go(goto): #KYLE
     print(goto)
     # Allows us to access player
     global player
     print(locations) 
-    location = locations.get_location(goto)
+    location = locations.get_location_fuzzy(goto)
     print(location)
 
     if location:
@@ -160,7 +166,7 @@ def execute_talk(who): #KYLE
 
     flag = False
 
-    room = getLocation[player.getLocation()]
+    location = player.getLocation()
 
     for i in room["people"]:
         if i["name"] == who:
@@ -197,7 +203,7 @@ def execute_investigate(who): #Judith
 
 #
 def execute_look(): # Nathan
-    pass
+    
 
 #
 def execute_take_note(note): #Johnny
@@ -210,10 +216,11 @@ def execute_read_notes(): # Johhny
 #
 def print_map(): # Nathan
     pass
+print(asciimap)
 
 #
 def print_time(): # Peter
-    disp.update_top_bar("Ripper v1.0 / Week "
+    disp.update_top_bar(Fore.GREEN + "Ripper v1.0 " + Style.RESET_ALL + "Week "
                         + str(time.get_week()) + " "
                         + time.get_day_name() + ", the time is "
                         + time.get_time_string()
