@@ -205,7 +205,6 @@ def execute_investigate(who): #Judith
 #
 def execute_look(): # Nathan
     pass
-    pass
 
 #
 def execute_take_note(note): #Johnny
@@ -245,15 +244,26 @@ def print_room(location): # Peter
 def print_room_items(location): # Peter
     pass
 def print_characters(location):
+   
+    
+    # current_location = player.getLocation()
+    
+
 
     current_location = player.getLocation()
-    people_in_room = current_location.get_people()
+    people_in_room = current_location.get_people()    
     print(Fore.GREEN + "People that were found here:" + Style.RESET_ALL)
     for people in people_in_room:
         if  people.gender == "male":
             print(Fore.BLUE + (people.name).center(70, " ") + Style.RESET_ALL)
         elif people.gender == "female":
             print(Fore.MAGENTA + (people.name).center(70, " ") + Style.RESET_ALL)
+    if not people_in_room:
+            print(Fore.RED + "There are no people here"+ Style.RESET_ALL)
+
+    
+
+    
 
     
 
