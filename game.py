@@ -200,7 +200,7 @@ def execute_investigate(who): #Judith
 
 #
 def execute_look(): # Nathan
-    passr    
+    pass   
 
 #
 def execute_take_note(note): #Johnny
@@ -213,7 +213,7 @@ def execute_read_notes(): # Johhny
 #
 def print_map(): # Nathan
     pass
-    print(asciimap.encode("utf-8"))
+    print(asciimap)
 
 #
 def print_time(): # Peter
