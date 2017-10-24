@@ -27,12 +27,6 @@ def remove_punct(text):
     # Return string to the subprogram.
     return string
 
-def string_to_list(text):
-
-    list = text.split(" ")
-
-    return list
-
 def filter_words(words, text):
 
     important_words = []
@@ -48,20 +42,12 @@ def filter_words(words, text):
 
     return important_words
 
-text = " Hello my name to is Kyle "
+def normalize_input(text):
 
-test = remove_spaces(text)
+    text = remove_spaces(text)
 
-print(test)
+    text = remove_punct(text)
 
-test = remove_punct(text)
+    text = filter_words(text, banned_words)
 
-print(test)
-
-test = string_to_list(text)
-
-print(test)
-
-test = filter_words(test, banned_words)
-
-print(test)
+    return text
