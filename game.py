@@ -76,18 +76,16 @@ def main(): #KYLE
         command = input("> ")
 
         # Make sure the input is properly sanitised
-        #command = normialze_input(command) Kawthar
+        command = normalize_input(command)
         
-        # Converts the command to a list
-        command = string_to_list(command)
-        
+        # Execute the command    
         commands(command)
 
         # Increments the Time
-        time.incTime()
+        # time.incTime()
 
         # Excute the next event
-        nextEvent(time.getTime(), time.getDay())
+        # nextEvent(time.getTime(), time.getDay())
 
 def commands(command): #KYLE
    
@@ -130,8 +128,6 @@ def execute_go(goto): #KYLE
     global player
 
     location = locations.get_location(goto)
-
-
 
     if location:
         player.setLocation(location)
