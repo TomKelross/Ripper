@@ -26,6 +26,7 @@ disp = DisplayManager()
 print = disp.print
 input = disp.get_input
 
+
 list_of_item_objects = Factory.item_factory()
 items = ItemManager(list_of_item_objects)
 
@@ -55,8 +56,8 @@ def main(): #KYLE
     # In this case, we are starting at scotland yard, so we get the scotland yard location
     starting_location = locations.get_location("Scotland Yard")
     # And set the player current location here
-    player.setLocation(starting_location)
-
+    narrative.check()
+    change_location(starting_location)
     while True:
          
         ############################################
@@ -79,14 +80,11 @@ def main(): #KYLE
         narrative.check()
 
         # Print the map
-        print_map()
+        # print_map()
 
         current_location = player.getLocation()
         # Updates the room display at the top of the screen with information about the current room
-        print_room(current_location)
-        # Prints items in the room
-        print_room_items(current_location)
-        print_characters(locations)
+        update_room_display(current_location)
 
         # Ask the user for their command
         command_given = False
@@ -143,6 +141,11 @@ def commands(command): #KYLE
             execute_take_note()
     elif command[0] == "read":
             execute_read_notes()
+    elif command[0] == "look":
+        if len(command) > 1:
+            execute_look(command[1])
+        else:
+            execute_look()
     else:
         print(Fore.RED + " Your command made no sense" + Style.RESET_ALL)
 
@@ -155,7 +158,7 @@ def execute_go(goto): #KYLE
     print(location)
 
     if location:
-        player.setLocation(location)
+        change_location(location)
         time.advance_time(30)  # Travelling anywhere takes half an hour
     else:
         time.advance_time(5)  # Loose five minutes for faffing around
@@ -206,8 +209,12 @@ def execute_investigate(who): #Judith
     pass
 
 #
-def execute_look(): # Nathan
-    pass
+def execute_look(target=False): # Nathan
+    # Prints items in the room
+    current_location = player.getLocation()
+    print(current_location.description)
+    print_room_items(current_location)
+    print_characters(locations)
     pass
 
 #
@@ -224,25 +231,25 @@ def execute_read_notes(): #Jonny
         i = i + 1
 #
 def print_map(): # Nathan
-    if player.getLocation() == "Bank": 
+    if player.getLocation() == "Bank":
         asciimap = asciimap.replace(218,"◈")
-    if player.getLocation() == "Church": 
+    if player.getLocation() == "Church":
         asciimap.replace(472,"◈")
-    if player.getLocation() == "Hospital": 
+    if player.getLocation() == "Hospital":
         asciimap.replace(218,"◈")
-    if player.getLocation() == "Scotland": 
+    if player.getLocation() == "Scotland":
         asciimap.replace(218,"◈")
-    if player.getLocation() == "Thames": 
+    if player.getLocation() == "Thames":
         asciimap.replace(218,"◈")
-    if player.getLocation() == "Factory": 
+    if player.getLocation() == "Factory":
         asciimap.replace(218,"◈")
-    if player.getLocation() == "Kirills": 
+    if player.getLocation() == "Kirills":
         asciimap.replace(218,"◈")
-    if player.getLocation() == "Docks": 
+    if player.getLocation() == "Docks":
         asciimap.replace(218,"◈")
-    if player.getLocation() == "Marketplace": 
+    if player.getLocation() == "Marketplace":
         asciimap.replace(218,"◈")
-    if player.getLocation() == "Gamestore": 
+    if player.getLocation() == "Gamestore":
         asciimap.replace(218,"◈")
 #
 def print_time(): # Peter
@@ -253,15 +260,14 @@ def print_time(): # Peter
                         )
 
 #
-def print_room(location): # Peter
+def update_room_display(location): # Peter
     disp.update_room_display(location.name)
-    print(location.description)
-    if location.people == []:
-        print("")
 
 #
 def print_room_items(location): # Peter
     pass
+
+
 def print_characters(location):
 
     current_location = player.getLocation()
@@ -289,7 +295,12 @@ def print_locations(): # Kyle
         print("{} : {}".format(i, location.name))
         i += 1
     input("Press any key to continue")
-       
+
+def change_location(location):
+    player.setLocation(location)
+    print_room_items(location)
+    print_characters(location)
+
 
 if __name__ == "__main__":
     main()

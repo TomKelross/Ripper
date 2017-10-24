@@ -1,3 +1,5 @@
+
+
 class Player:
 
     """
@@ -40,6 +42,7 @@ class Player:
     
     def setLocation(self, location):
         self.__location = location
+
    
     def getLocation(self):
         return self.__location
