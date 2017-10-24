@@ -12,11 +12,8 @@ from modules.display import DisplayManager
 from adt.locations import *
 from adt.items import *
 from adt.characters import *
-<<<<<<< HEAD
 from adt.ascimap import asciimap
-=======
 from adt.containers import *
->>>>>>> 9334f309eac896ec3e7438ffc3fea97661b97331
 
 from story import nextEvent
 from story import Narrative
@@ -203,7 +200,7 @@ def execute_investigate(who): #Judith
 
 #
 def execute_look(): # Nathan
-    
+    pass    
 
 #
 def execute_take_note(note): #Johnny
@@ -215,8 +212,11 @@ def execute_read_notes(): # Johhny
 
 #
 def print_map(): # Nathan
-    pass
-print(asciimap)
+    if player.getLocation() == "Bank":
+        asciimap.replace(218,"◈")
+        print(asciimap)
+
+
 
 #
 def print_time(): # Peter
