@@ -226,17 +226,22 @@ def print_room(location): # Peter
     print(location.description)
     if location.people == []:
         print("")
+    
 
 
 
 #
-def print_room_items(location): # Peter
+def print_room_items(location):
     pass
 def print_characters(location):
 
     current_location = player.getLocation()
     people_in_room = current_location.get_people()
-    print(people_in_room)
+    for people in people_in_room:
+        print (people)
+        
+
+    
     # print(location.get_location(player.get_location()).get_people())
 
 def print_locations(): # Kyle
