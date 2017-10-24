@@ -3,6 +3,8 @@ from classes import Factory
 from classes.Character import Character
 from classes.Character import CharacterManager
 from classes.Location import LocationManager
+from classes.Container import ContainerManager
+from classes.Item import ItemManager
 from classes.Player import Player
 from classes.Time import Time
 from modules.parser import *
@@ -10,6 +12,7 @@ from modules.display import DisplayManager
 from adt.locations import *
 from adt.items import *
 from adt.characters import *
+from adt.containers import *
 
 from story import nextEvent
 from story import Narrative
@@ -19,9 +22,17 @@ disp = DisplayManager()
 print = disp.print
 input = disp.get_input
 
+
+list_of_item_objects = Factory.item_factory()
+items = ItemManager(list_of_item_objects)
+
+list_of_container_objects = Factory.container_factory(items)
+containers = ContainerManager(list_of_container_objects)
+
 list_of_character_objects = Factory.character_factory()
 characters = CharacterManager(list_of_character_objects)
-list_of_location_objects = Factory.location_factory(characters)
+
+list_of_location_objects = Factory.location_factory(characters,items,containers)
 locations = LocationManager(list_of_location_objects)
 
 
@@ -29,7 +40,7 @@ time = Time()
 narrative = Narrative(time,disp)
 from events import add_events
 add_events(narrative)
-player = Player("Decetive Joe Smith")
+player = Player("Detective Joe Smith")
 
 
 # Creates a Timer Object
@@ -58,14 +69,14 @@ def main(): #KYLE
         # print(str(player.returnInventory()))
         #############################################
 
+        # Updates the top of the screen with the current time information
+        print_time()
+
         # Check and run and scheduled events that should have happened by now
         narrative.check()
 
         # Print the map
         print_map()
-        
-        # Updates the top of the screen with the current time information
-        print_time()
 
         current_location = player.getLocation()
         # Updates the room display at the top of the screen with information about the current room
@@ -125,11 +136,12 @@ def commands(command): #KYLE
         print("Your command made no sense")
 
 def execute_go(goto): #KYLE
-
+    print(goto)
     # Allows us to access player
     global player
-
+    print(locations) 
     location = locations.get_location(goto)
+    print(location)
 
     if location:
         player.setLocation(location)

@@ -6,7 +6,7 @@ class Character(object):
         self.check = check
         self.dialogue = dialogue
 
-        self.location = "None"
+        self.location = None
 
         self.alive = True
 
@@ -15,6 +15,9 @@ class Character(object):
 
     def is_alive(self):
         return self.alive
+
+    def move_to(self,location):
+        self.location = location
 
 
 class CharacterManager(object):
