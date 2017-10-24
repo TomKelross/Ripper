@@ -41,7 +41,7 @@ scotland = {
 
     "description": "Welcome to New Scotland Yard!",
 
-    "people": [],
+    "people": [police_man],
     
     "inventory": [],
 }
