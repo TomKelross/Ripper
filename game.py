@@ -160,7 +160,7 @@ def execute_talk(who): #KYLE
 
     flag = False
 
-    room = getLocation[player.getLocation()]
+    location = player.getLocation()
 
     for i in room["people"]:
         if i["name"] == who:

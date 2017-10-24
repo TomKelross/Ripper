@@ -5,7 +5,7 @@ class Character(object):
         self.gender = gender
         self.check = check
         self.dialogue = dialogue
-
+        self._dialogue_counter = 0
         self.location = None
 
         self.alive = True
@@ -18,6 +18,17 @@ class Character(object):
 
     def move_to(self,location):
         self.location = location
+
+    def talk(self):
+        counter = self._dialogue_counter
+        dialogue = self.dialogue
+
+        if counter < len(dialogue):
+            counter += 1
+            return dialogue[counter - 1]
+        else:
+            counter = 0
+            return dialogue[0]
 
 
 class CharacterManager(object):
