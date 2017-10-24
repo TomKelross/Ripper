@@ -9,5 +9,5 @@ def start_of_game(context):
 
 def add_events(narrative):
     narrative.add_event(1,2,0,murder_one)
-    narrative.add_event(1,1,0,start_of_game)
+    # narrative.add_event(1,1,0,start_of_game)
 

@@ -53,9 +53,10 @@ player = Player("Detective Joe Smith")
 
 def main(): #KYLE
 
-    for line in logo:
-        disp.type(line,0.005)
+    # for line in logo:
+    #     disp.type(line,0.001)
 
+    # print("hello")
     # get_location returns a location object from the name of a location
     # In this case, we are starting at scotland yard, so we get the scotland yard location
     starting_location = locations.get_location("Scotland Yard")
@@ -313,6 +314,7 @@ def print_locations(): # Kyle
 
 def change_location(location):
     player.setLocation(location)
+    print(location.description)
     print_room_items(location)
     print_characters(location)
 
