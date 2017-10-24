@@ -2,6 +2,7 @@ from classes import Factory
 from classes.Character import Character
 from classes.Character import CharacterManager
 from classes.Location import LocationManager
+from classes.Container import ContainerManager
 from classes.Item import ItemManager
 from classes.Player import Player
 from classes.Time import Time
@@ -10,6 +11,7 @@ from modules.display import DisplayManager
 from adt.locations import *
 from adt.items import *
 from adt.characters import *
+from adt.containers import *
 
 from story import nextEvent
 from story import Narrative
@@ -19,11 +21,17 @@ disp = DisplayManager()
 print = disp.print
 input = disp.get_input
 
-list_of_character_objects = Factory.character_factory()
-characters = CharacterManager(list_of_character_objects)
+
 list_of_item_objects = Factory.item_factory()
 items = ItemManager(list_of_item_objects)
-list_of_location_objects = Factory.location_factory(characters)
+
+list_of_container_objects = Factory.container_factory(items)
+containers = ContainerManager(list_of_container_objects)
+
+list_of_character_objects = Factory.character_factory()
+characters = CharacterManager(list_of_character_objects)
+
+list_of_location_objects = Factory.location_factory(characters,items,containers)
 locations = LocationManager(list_of_location_objects)
 
 

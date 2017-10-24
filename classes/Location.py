@@ -1,9 +1,10 @@
 class Location(object):
-    def __init__(self, name, description, people=[], inventory=[]):
+    def __init__(self, name, description, people=[], inventory=[],containers=[]):
         self.name = name
         self.description = description
         self.people = people
         self.inventory = inventory
+        self.containers = containers
 
 
 
