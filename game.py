@@ -17,6 +17,9 @@ from adt.containers import *
 from story import nextEvent
 from story import Narrative
 
+from colorama import init, Fore, Back, Style
+init()
+
 # Creates a Player Object
 disp = DisplayManager()
 print = disp.print
@@ -133,7 +136,7 @@ def commands(command): #KYLE
         else:
             print("Wait how long?")    
     else:
-        print("Your command made no sense")
+        print(Fore.RED + "✘ Your command made no sense" + Style.RESET_ALL)
 
 def execute_go(goto): #KYLE
     print(goto)
@@ -213,7 +216,7 @@ def print_map(): # Nathan
 
 #
 def print_time(): # Peter
-    disp.update_top_bar("Ripper v1.0 / Week "
+    disp.update_top_bar(Fore.GREEN + "Ripper v1.0 " + Style.RESET_ALL + "Week "
                         + str(time.get_week()) + " "
                         + time.get_day_name() + ", the time is "
                         + time.get_time_string()

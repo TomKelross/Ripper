@@ -1,3 +1,6 @@
+
+
+
 class Location(object):
     def __init__(self, name, description, people=[], inventory=[],containers=[]):
         self.name = name
