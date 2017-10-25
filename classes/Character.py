@@ -1,4 +1,5 @@
 from fuzzywuzzy import process
+from colorama import Fore,Back,Style
 
 class Character(object):
     def __init__(self, name="Joe Bloggs", occupation="Townsperson", gender="Male", check="None", dialogue=[]):
@@ -24,7 +25,7 @@ class Character(object):
     def get_name(self):
         return self.name
 
-    def next_dialogue(self):
+    def next_dialogue_text(self):
         dialogue = self.dialogue
         if dialogue:
             if self._dialogue_counter < len(dialogue):
@@ -33,6 +34,22 @@ class Character(object):
             else:
                 self._dialogue_counter = 0
                 return dialogue[0]
+
+    def next_dialogue(self):
+        dialogue = self.next_dialogue_text()
+        dialogue_count = self.get_dialogue_count()
+        total_dialogues = self.get_dialogue_length()
+        dialogue_counter = (Fore.GREEN + " ("
+                            + Fore.LIGHTGREEN_EX + str(dialogue_count)
+                            + Fore.GREEN + "/"
+                            + Fore.LIGHTGREEN_EX + str(total_dialogues)
+                            + Fore.GREEN + ")" + Style.RESET_ALL
+                            )
+
+        return (Fore.GREEN + "[" + Fore.LIGHTGREEN_EX + self.name + Fore.GREEN + "] "
+        + Fore.WHITE + dialogue
+        + dialogue_counter
+        + Style.RESET_ALL)
 
     def get_dialogue_count(self):
         return self._dialogue_counter

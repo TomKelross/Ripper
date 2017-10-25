@@ -137,6 +137,7 @@ def add_events(narrative):
     narrative.add_item_take_event(knife,scene_1_found_murder_weapon)
     
     narrative.add_item_drop_event(police_badge,scene_2_analyse_knife)
+    narrative.add_item_drop_event(knife,scene_2_analyse_knife)
 
     narrative.add_time_event(1,1,1380,scene_3_murder_two)
 

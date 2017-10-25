@@ -215,19 +215,10 @@ def execute_talk(who): #KYLE
     if people_in_room:
         person_to_talk_to = characters.get_character_fuzzy(who,people_in_room)
         if person_to_talk_to:
-            dialogue = person_to_talk_to.next_dialogue()
-            dialogue_count = person_to_talk_to.get_dialogue_count()
-            total_dialogues = person_to_talk_to.get_dialogue_length()
-            dialogue_counter = ( Fore.GREEN + " ("
-                                + Fore.LIGHTGREEN_EX + str(dialogue_count)
-                                + Fore.GREEN + "/"
-                                + Fore.LIGHTGREEN_EX + str(total_dialogues)
-                                + Fore.GREEN + ")" + Style.RESET_ALL
-                                )
-            print(Fore.GREEN + "[" + Fore.LIGHTGREEN_EX + person_to_talk_to.name + Fore.GREEN + "] "
-                  + Fore.WHITE + dialogue
-                  + dialogue_counter
-                  + Style.RESET_ALL)
+            if person_to_talk_to.get_dialogue_length():
+                print(person_to_talk_to.next_dialogue())
+            else:
+                print("They don't look like they have very much to say")
         else:
             print("Couldn't find who you meant to talk to")
     else:
