@@ -16,8 +16,14 @@ class Container(object):
     def add_item(self,item):
         self.inventory.append(item)
 
+    def get_name(self):
+        return self.name
+
     def remove_item(self,item):
         return self.inventory.remove(item)
+
+    def get_description(self):
+        return self.description
 
 
 class ContainerManager(object):

@@ -30,11 +30,12 @@ def nextEvent(time, day):
 class Narrative(object):
     #This class makes sure time_events happen at the right time in the story
 
-    def __init__(self,time,display_manager,location_manager,player,item_manager):
+    def __init__(self,time,display_manager,location_manager,player,item_manager,character_manager):
         self.time_manager = time
         self.display_manager = display_manager
         self.location_manager = location_manager
         self.item_manager = item_manager
+        self.character_manager = character_manager
         self.time_events = []
         self.location_events = []
         self.item_take_events = []
@@ -78,7 +79,8 @@ class Narrative(object):
         context = {
             "display" : self.display_manager,
             "time" : self.time_manager,
-            "locations" : self.location_manager
+            "locations" : self.location_manager,
+            "characters" : self.character_manager
         }
         callback(context)
         
@@ -109,9 +111,10 @@ class Narrative(object):
             self.location_events.remove(event)
         callback = event["callback"]
         context = {
-            "display" : self.display_manager,
-            "location" : self.location_manager,
-            "player" : self.player
+            "display": self.display_manager,
+            "time": self.time_manager,
+            "locations": self.location_manager,
+            "characters": self.character_manager
         }
         callback(context)
 
@@ -136,8 +139,9 @@ class Narrative(object):
         callback = event["callback"]
         context = {
             "display": self.display_manager,
-            "item": self.item_manager,
-            "player": self.player
+            "time": self.time_manager,
+            "locations": self.location_manager,
+            "characters": self.character_manager
         }
         callback(context)
         
@@ -162,8 +166,9 @@ class Narrative(object):
         callback = event["callback"]
         context = {
             "display": self.display_manager,
-            "item": self.item_manager,
-            "player": self.player
+            "time": self.time_manager,
+            "locations": self.location_manager,
+            "characters": self.character_manager
         }
         callback(context)
 

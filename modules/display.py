@@ -5,22 +5,27 @@ from colorama import Fore, Style
 
 
 class DisplayManager():
-    _line_nums = 20
+    _line_nums = 40
     _print_func = print
     _input_func = input
 
     def __init__(self):
         # Fill the display with empty lines
-        self.lines = ['' for x in range(self._line_nums)]
+        self.lines = [{'content' : "", 'chunk' : 'default', 'tag' : '' } for x in range(self._line_nums)]
         self.top_bar = ""
-        self.room_lines = ['','','']
+        self.room_lines = [{'content' : "", 'chunk' : 'room', 'tag' : '' },
+                           {'content' : "", 'chunk' : 'room', 'tag' : '' },
+                           {'content' : "", 'chunk' : 'room', 'tag' : '' }]
         self.delayed_lines = []
         self.cinematic_mode = False
+        self.chunk_order = ['default']
+        self.current_chunk = ['default']
 
-    def print(self, message="",update=True):
+    def print(self, message="",update=True,tag=''):
         # Add
         self.lines.pop(0)
-        self.lines.append(message)
+        current_chunk = self.current_chunk
+        self.lines.append({'content' : message , 'chunk' : current_chunk, 'tag' : tag })
         if update:
             self.update_display()
 
@@ -49,9 +54,12 @@ class DisplayManager():
         else:
             room_name = room_name.upper()
 
-        self.room_lines[0] = (" " * 40 + "╔" + "═" * len(room_name) + "╗")
-        self.room_lines[1] = ("═" * 40 + "╣" + room_name.upper() + "╠" + "═" * 30)
-        self.room_lines[2] = (" " * 40 + "╚" + "═" * len(room_name) + "╝")
+        self.room_lines[0] = {'content' : (" " * 40 + "╔" + "═" * len(room_name) + "╗")
+            , 'chunk' : 'room', 'tag' : '' }
+        self.room_lines[1] = {'content' : ("═" * 40 + "╣" + room_name.upper() + "╠" + "═" * 30)
+            , 'chunk' : 'room', 'tag' : '' }
+        self.room_lines[2] = {'content' : (" " * 40 + "╚" + "═" * len(room_name) + "╝")
+            , 'chunk' : 'room', 'tag' : '' }
         pass
 
     def clear_display(self):
@@ -59,16 +67,18 @@ class DisplayManager():
         os.system('cls' if os.name == 'nt' else 'clear')
 
     def reset_display(self):
-        self.lines = ['' for x in range(self._line_nums)]
+        self.lines = [{'content' : "", 'chunk' : 'default', 'tag' : '' } for x in range(self._line_nums)]
 
     def show_display(self):
         if not self.cinematic_mode:
             self._print_func(self.top_bar)
-            self._print_func(self.room_lines[0])
-            self._print_func(self.room_lines[1])
-            self._print_func(self.room_lines[2])
+            self._print_func(self.room_lines[0]["content"])
+            self._print_func(self.room_lines[1]["content"])
+            self._print_func(self.room_lines[2]["content"])
         for line in self.lines:
-                self._print_func(line)
+            content = line.get("content","")
+            self._print_func(content)
+
 
     def set_cinematic_mode(self,bool):
         self.cinematic_mode = bool

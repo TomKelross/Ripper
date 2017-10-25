@@ -1,6 +1,7 @@
 # from .game import print
 from colorama import init,Fore,Back,Style
 from adt.locations import *
+from adt.characters import *
 
 # def murder_one(context):
 #     context['display'].print('Someone was murdered in the night')
@@ -53,7 +54,15 @@ def murder_two(context):
     #todo: turn into a murder scene
     type = context["display"].type
 
+def scene_1_found_murder_weapon(context):
+    locations = context["locations"]
+    charachters = context["characters"]
+    display = context["display"]
 
+    display.delay_print("You found the murder weapon, now take it back to the police station for DNA analysis")
+    scotland_yard = locations.get_location(scotland["name"])
+    lab_technician = charachters.get_character(scene_2_police_officer["name"])
+    scotland_yard.add_person(lab_technician)
 
 def add_events(narrative):
     # narrative.add_time_event(1, 1, 0, start_of_game_cinematic)
@@ -61,5 +70,7 @@ def add_events(narrative):
     narrative.add_location_event(kirills,tavern_first_time,sticky=True)
     narrative.add_item_take_event(police_badge, badge_pickup)
     narrative.add_item_drop_event(police_badge, badge_drop)
+
+    narrative.add_item_take_event(murder_knife,scene_1_found_murder_weapon)
     # narrative.add_event(1,1,1260,murder_two)
 
