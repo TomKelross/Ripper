@@ -48,13 +48,13 @@ def create_location(location_dict, characters, items,containers):
         item_object = items.get_item(item_dict["name"])
         inventory.append(item_object)
 
-    containers = []
+    room_containers = []
     for container_dict in location_dict.get("containers",[]):
         container = containers.get_container(container_dict["name"])
-        containers.append(person_object)
+        room_containers.append(container)
         
         
-    location_object = Location(name,description,exits,people,inventory,containers)
+    location_object = Location(name,description,exits,people,inventory,room_containers)
 
     return location_object
 

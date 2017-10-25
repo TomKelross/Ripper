@@ -58,7 +58,7 @@ scotland = {
     
     "inventory": [],
 
-    "container" : [drawers],
+    "containers" : [drawers],
 
     "exits" : {"east" : "Hospital",
                "north" : "Bank of England",

@@ -239,8 +239,13 @@ def execute_look(target=False): # Nathan
     current_location = player.getLocation()
     print_description(current_location)
     print_exits(current_location)
+    print()
     print_room_items(current_location)
+    print_room_containers(current_location)
+    print_room_investigatables(current_location)
+    print()
     print_characters(current_location)
+
     pass
 
 #
@@ -312,10 +317,26 @@ def print_room_items(location): # Peter
     else:
         print(Fore.LIGHTBLACK_EX + "There are no items here" + Style.RESET_ALL)
 
+
 def print_room_containers(location):
-    print(Fore.GREEN + "Containers:" + Style.RESET_ALL)
-    for container in location.containers:
-        print(container.name)
+    if location.containers:
+        container_string = ""
+        for container in location.containers:
+            if container.locked:
+                container_string += container.name + "(Locked)"
+            else:
+                container_string += container.name
+        print(Fore.GREEN + "Containers: " + Fore.LIGHTYELLOW_EX + container_string)
+    else:
+        print(Fore.LIGHTBLACK_EX + "There are no containers here" + Style.RESET_ALL)
+
+def print_room_investigatables(location):
+    if location.investigatables:
+        print(Fore.GREEN + "Investigatables:" + Style.RESET_ALL)
+        for investigatable in location.investigatables:
+            print(investigatable.name)
+    else:
+        print(Fore.LIGHTBLACK_EX + "There is nothing to investigate here" + Style.RESET_ALL)
 
 
 def print_characters(location):
