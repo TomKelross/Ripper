@@ -57,7 +57,7 @@ scotland = {
 
     "people": [police_man],
     
-    "inventory": [],
+    "inventory": [police_badge],
 
     "containers" : [drawers],
 

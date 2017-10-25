@@ -11,8 +11,15 @@ murder_knife = {
 
 }
 
+police_badge = {
+    "name": "Police badge",
+
+    "description": "This might make it easier to convince people to talk. It may also draw unwanted attention"
+
+}
+
 getItem = {
     "Beer": beer
 }
 
-item_list = [beer]
+item_list = [beer,murder_knife,police_badge]

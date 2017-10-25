@@ -32,6 +32,18 @@ class Location(object):
     def get_investigatables(self):
         return self.investigatables
 
+    def get_containers(self):
+        return self.containers
+
+    def get_items(self):
+        return self.inventory
+
+    def add_item(self,item):
+        self.inventory.append(item)
+
+    def remove_item(self,item):
+        self.inventory.remove(item)
+
     def remove_person(self, person):
         self.people.remove(person)
 

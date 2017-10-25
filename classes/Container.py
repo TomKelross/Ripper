@@ -10,6 +10,15 @@ class Container(object):
     def __repr__(self):
         return "<Container {}>".format(self.name)
 
+    def get_items(self):
+        return self.inventory
+
+    def add_item(self,item):
+        self.inventory.append(item)
+
+    def remove_item(self,item):
+        return self.inventory.remove(item)
+
 
 class ContainerManager(object):
     def __init__(self, list_of_Containers):

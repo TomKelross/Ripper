@@ -2,6 +2,7 @@ from adt.characters import *
 from adt.items import *
 from adt.locations import *
 from classes.Location import Location
+from classes.Item import Item
 from classes.Player import *
 from classes.Time import *
 
@@ -80,30 +81,63 @@ class Narrative(object):
         callback(context)
         
     def check_location_event(self):
-        player_location = self.player.getLocation()
+        player_location = self.player.get_location()
         
         for event in self.location_events:
             if event["location"] == player_location:
                 self.call_location_event(event)
     
-    def add_location_event(self,location,callback):
+    def add_location_event(self,location,callback,sticky=False):
         if not location is Location:
             location = self.location_manager.get_location(location["name"])
 
         event = {
             "location" : location,
-            "callback" : callback
+            "callback" : callback,
+            "sticky": False
         }
+        if sticky:
+            event["sticky"] = True
+
         self.location_events.append(event)
     
     def call_location_event(self, event):
         #remove the event from the list of location_events, as it has now been called
-        self.location_events.remove(event)
+        if not event["sticky"]:
+            self.location_events.remove(event)
         callback = event["callback"]
         context = {
             "display" : self.display_manager,
             "location" : self.location_manager,
             "player" : self.player
+        }
+        callback(context)
+
+    def check_item_event(self):
+        player_items = self.player.get_inventory()
+
+        for event in self.item_events:
+            if event["item"] in player_items:
+                self.call_item_event(event)
+
+    def add_item_event(self, item, callback):
+        if not item is Item:
+            item = self.item_manager.get_item(item["name"])
+
+        event = {
+            "item": item,
+            "callback": callback
+        }
+        self.item_events.append(event)
+
+    def call_item_event(self, event):
+        # remove the event from the list of item_events, as it has now been called
+        self.item_events.remove(event)
+        callback = event["callback"]
+        context = {
+            "display": self.display_manager,
+            "item": self.item_manager,
+            "player": self.player
         }
         callback(context)
 

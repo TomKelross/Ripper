@@ -2,18 +2,34 @@
 from colorama import init,Fore,Back,Style
 from adt.locations import *
 
-def murder_one(context):
-    context['display'].print('Someone was murdered in the night')
+# def murder_one(context):
+#     context['display'].print('Someone was murdered in the night')
 
 def start_of_game_cinematic(context):
-    type = context["display"].type
+    display = context["display"]
+    type = display.type
+    display.set_cinematic_mode(True)
     type(Style.BRIGHT + Fore.MAGENTA + "London 2017",0.08)
     type(Style.RESET_ALL + Fore.WHITE + "You walk into Scotland Yard a fresh faced Police Detective with full training",0.01)
     type("but only a week's experience to your name. The voice coming from the phone in your hand",0.009)
     type("is telling you about the homicide case - your first homicide case - that has just been discovered in",0.007)
     type("the more squalid side of town. You should go there now" + Style.RESET_ALL,0.005)
     context["display"].print()
-    print("Use help to display useful commands, make sure to investigate and talk to as many people as you can")
+    type("Use" + Fore.YELLOW + " GO "
+         + Fore.WHITE + "to get around. You can "
+         + Style.BRIGHT + Fore.YELLOW + " talk "
+         + Style.NORMAL + Fore.WHITE + " to people,"
+         + Fore.YELLOW + " investigate "
+         + Fore.WHITE + "them or other things in the room and"
+         + Fore.YELLOW + " open "
+         + Fore.WHITE + "containers for items which you can then"
+         + Fore.YELLOW + " take "
+         + Style.RESET_ALL, 0.005)
+    type("Use " + Fore.YELLOW + "HELP"
+         + Fore.WHITE + "to display useful commands if you get confused")
+    context["display"].print()
+    display.wait_for_input(False)
+    display.set_cinematic_mode(False)
 
     #todo - swap out exit for game stor for game store (murder scene)
 
@@ -24,7 +40,7 @@ def murder_one(context):
     marketplace_object.exits["south"] = gamestore_murder_location.get_name()
 
 def tavern_first_time(context):
-    context['display'].print('Kirill Eyes You With Suspicion')
+    context['display'].delay_print('Kirill Eyes You With Suspicion')
 
 
 def murder_two(context):
@@ -35,8 +51,8 @@ def murder_two(context):
 
 
 def add_events(narrative):
-    narrative.add_time_event(1, 1, 0, murder_one)
-    narrative.add_location_event(kirills,tavern_first_time)
-    # narrative.add_event(1,1,0,start_of_game_cinematic)
+    # narrative.add_time_event(1, 1, 0, start_of_game_cinematic)
+    narrative.add_time_event(1, 1, 1, murder_one)
+    narrative.add_location_event(kirills,tavern_first_time,sticky=True)
     # narrative.add_event(1,1,1260,murder_two)
 

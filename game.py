@@ -22,6 +22,8 @@ from story import Narrative
 
 from fuzzywuzzy import process
 
+import itertools
+
 from colorama import init, Fore, Back, Style
 init()
 
@@ -75,13 +77,13 @@ def main(): #KYLE
         # DEBUGGING REMOVE ON COMPLETION           #
         #############################################
         # disp.reset_display()
-        # location = player.getLocation()
+        # location = player.get_location()
         # print(location)
         # print("Location" + location.name)
         # print(location.people)
         # print(location.description)
         # print(location.inventory)
-        # print(str(player.returnInventory()))
+        # print(str(player.get_inventory()))
         #############################################
 
         # Updates the top of the screen with the current time information
@@ -93,7 +95,7 @@ def main(): #KYLE
         # Print the map
         # print_map()
 
-        current_location = player.getLocation()
+        current_location = player.get_location()
         # Updates the room display at the top of the screen with information about the current room
         update_room_display(current_location)
 
@@ -138,11 +140,16 @@ def commands(command): #KYLE
             execute_take(command[1])
         else:
             print("Take what?")
+    elif command[0] == "drop":
+        if len(command) > 1:
+            execute_drop(command[1])
+        else:
+            print("Drop what?")
     elif command[0] == "investigate":
         if len(command) > 1:
             execute_investigate(command[1])
         else:
-            print("Investigate what?")
+            print("Investigate who or what?")
     elif command[0] == "arrest":
         if len(command) > 1:
             pass
@@ -166,26 +173,31 @@ def commands(command): #KYLE
         print(Fore.RED + " Your command made no sense" + Style.RESET_ALL)
 
 def execute_go(direction): #KYLE
-    current_location = player.getLocation()
-    possible_exits = current_location.exits
+    current_location = player.get_location()
 
-    best_guess = process.extract(direction, possible_exits.keys(), limit=1)
+    exits_dict = current_location.exits
+    cardinal_directions = exits_dict.keys()
+    place_names = exits_dict.values()
+    all_possible_correct_choices = list(cardinal_directions) + list(place_names)
+    best_guess = process.extract(direction, all_possible_correct_choices, limit=1)
     certainty = best_guess[0][1]
     direction = ""
+    location = False
     if certainty > 80:
         direction = best_guess[0][0]
+        if direction in cardinal_directions:
+            location_name = exits_dict.get(direction)
+            location = locations.get_location_fuzzy(location_name)
+        elif direction in place_names:
+            location = locations.get_location_fuzzy(direction)
+        else:
+            print("Couldn't tell where you wan't to go")
+            time.advance_time(5)
     else:
-        print("What direction did you mean")
-
-
-    if direction in possible_exits:
-        location_name = possible_exits.get(direction)
-        location = locations.get_location_fuzzy(location_name)
+        print("Couldn't work out where you want to go")
+    if location:
         change_location(location)
         time.advance_time(30)
-    else:
-        print("You can't travel in that direction")
-        time.advance_time(5)
 
 def execute_wait(hours): #KYLE
 
@@ -195,7 +207,7 @@ def execute_wait(hours): #KYLE
 
 def execute_talk(who): #KYLE
 
-    location = player.getLocation()
+    location = player.get_location()
     people_in_room = location.get_people()
 
     if people_in_room:
@@ -219,29 +231,61 @@ def execute_talk(who): #KYLE
     else:
         print("There is no one here to talk to")
 
-def execute_take(item_to_take): #KYLE
+def execute_take(name_to_take): #KYLE
 
-    flag = False
+    current_location = player.get_location()
+    items_in_room = current_location.get_items()
+    item_names_in_room = [item.get_name() for item in items_in_room]
+    containers_in_room = current_location.get_containers()
 
-    room = getLocation[player.getLocation()]
+    # https: // stackoverflow.com / questions / 14807689 / python - list - comprehension - to - join - list - of - lists
+    items_in_containers = list(itertools.chain.from_iterable([cont.get_items() for cont in containers_in_room]))
 
-    for item in room["inventory"]:
-        if item["name"] == item_to_take:
-            flag = True
-            
-            player.addToInventory(item)
-            
-            room["inventory"].remove(item)
+    container_item_names = [item.get_name() for item in items_in_containers]
 
-            print("You take {}.".format(item_to_take))
+    all_possible_item_names = item_names_in_room + container_item_names
 
-            break
-    if flag == False:
-        print("That item doesn't seem to be here.")
+    if all_possible_item_names:
+        best_guess = process.extract(name_to_take, all_possible_item_names, limit=1)
+        certainty = best_guess[0][1]
+        guess_name = best_guess[0][0]
+        if certainty > 80:
+            item = items.get_item(guess_name)
+            player.add_to_inventory(item)
+
+            if item in items_in_containers:
+                for container in containers_in_room:
+                    if container.remove_item(item):
+                        break
+            if item in items_in_room:
+                current_location.remove_item(item)
+            execute_look()
+        else:
+            print("Not sure what you were trying to take")
+
+def execute_drop(name_to_drop,container=False):
+    current_location = player.get_location()
+    player_items = player.get_inventory()
+    if player_items:
+        player_item_names = [item.get_name() for item in player_items]
+        best_guess = process.extract(name_to_drop,player_item_names,limit=1)
+        certainty = best_guess[0][1]
+        guess_name = best_guess[0][0]
+        if certainty > 80:
+            item = item.get_item(guess_name)
+            player.remove_from_inventory(item)
+            current_location.add_item(item)
+        else:
+            print('Not sure what you were trying to drop')
+    else:
+        print("You have nothing to drop")
+
+
+
 
 
 def execute_investigate(target): #Judith
-    current_location = player.getLocation()
+    current_location = player.get_location()
     investigatables_in_room = current_location.get_investigatables()
 
     if investigatables_in_room:
@@ -253,51 +297,54 @@ def execute_investigate(target): #Judith
 #
 def execute_look(target=False): # Nathan
     # Prints items in the room
-    current_location = player.getLocation()
-    print_description(current_location)
+    current_location = player.get_location()
     print_exits(current_location)
     print()
+    print_inventory()
     print_room_items(current_location)
     print_room_containers(current_location)
     print_room_investigatables(current_location)
     print()
     print_characters(current_location)
+    print()
+    print_description(current_location)
+    disp.print_delayed()
 
     pass
 
 #
 def execute_take_note(): #Jonny
     note = input("Write a Note for yourself:")
-    player.setNotes(note)
+    player.set_notes(note)
 
 #
 def execute_read_notes(): #Jonny
     i = 1
-    note = player.getNotes()
+    note = player.get_notes()
     for word in note:
         print("{}:{}".format(i,word))
         i = i + 1
 #
 def print_map(): # Nathan
-    if player.getLocation() == "Bank":
+    if player.get_location() == "Bank":
         asciimap = asciimap.replace(218,"◈")
-    if player.getLocation() == "Church":
+    if player.get_location() == "Church":
         asciimap.replace(472,"◈")
-    if player.getLocation() == "Hospital":
+    if player.get_location() == "Hospital":
         asciimap.replace(218,"◈")
-    if player.getLocation() == "Scotland":
+    if player.get_location() == "Scotland":
         asciimap.replace(218,"◈")
-    if player.getLocation() == "Thames":
+    if player.get_location() == "Thames":
         asciimap.replace(218,"◈")
-    if player.getLocation() == "Factory":
+    if player.get_location() == "Factory":
         asciimap.replace(218,"◈")
-    if player.getLocation() == "Kirills":
+    if player.get_location() == "Kirills":
         asciimap.replace(218,"◈")
-    if player.getLocation() == "Docks":
+    if player.get_location() == "Docks":
         asciimap.replace(218,"◈")
-    if player.getLocation() == "Marketplace":
+    if player.get_location() == "Marketplace":
         asciimap.replace(218,"◈")
-    if player.getLocation() == "Gamestore":
+    if player.get_location() == "Gamestore":
         asciimap.replace(218,"◈")
 #
 def print_time(): # Peter
@@ -324,10 +371,20 @@ def update_room_display(location): # Peter
     disp.update_room_display(location.name)
 
 #
+
+def print_inventory():
+    if player.get_inventory():
+        item_list_string = Fore.GREEN + "Items in inventory: " + Style.RESET_ALL
+        for item in player.get_inventory():
+            item_list_string += (Fore.LIGHTYELLOW_EX + item.name)
+        print(item_list_string)
+    else:
+        print(Fore.LIGHTBLACK_EX + "You hold no items" + Style.RESET_ALL)
+
 def print_room_items(location): # Peter
-    item_list_string = ""
+
     if location.inventory:
-        print(Fore.GREEN + "Items in room:" + Style.RESET_ALL)
+        item_list_string = Fore.GREEN + "Items in room: " + Style.RESET_ALL
         for item in location.inventory:
             item_list_string += (Fore.LIGHTYELLOW_EX + item.name)
         print(item_list_string)
@@ -373,14 +430,6 @@ def print_characters(location):
     else:
         print(Fore.LIGHTBLACK_EX + "There are no people here" + Style.RESET_ALL)
 
-    
-
-    
-
-    
-
-
-
     # print(location.get_location(player.get_location()).get_people())
 
 def print_locations(): # Kyle
@@ -395,7 +444,7 @@ def print_locations(): # Kyle
     input("Press any key to continue")
 
 def change_location(location,reset_display=True):
-    player.setLocation(location)
+    player.set_location(location)
     if reset_display:
         disp.reset_display()
     narrative.check_location_event()

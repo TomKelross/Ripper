@@ -26,34 +26,34 @@ class Player:
         return "<Player {}>".format(self.__name)
     
     #  Gets the player's name
-    def getName(self):   
+    def get_name(self):
         return self.__name
 
     # Sets the player's name
-    def setName(self, name):
+    def set_name(self, name):
         self.__name = name
     
     # Sets the player's 
-    def setNotes(self, text):
+    def set_notes(self, text):
         self.__notes.append(text)
 
-    def getNotes(self):
+    def get_notes(self):
         return self.__notes
     
-    def setLocation(self, location):
+    def set_location(self, location):
         self.__location = location
 
    
-    def getLocation(self):
+    def get_location(self):
         return self.__location
 
-    def addToInventory(self, item):
+    def add_to_inventory(self, item):
         self.__inventory.append(item)
     
-    def removeToInvebtory(self, item):
+    def remove_from_inventory(self, item):
         self.__inventory.remove(item)
     
-    def returnInventory(self):
+    def get_inventory(self):
         return self.__inventory
 
     def inventoryToString(self): #BROKE

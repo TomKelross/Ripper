@@ -1,5 +1,5 @@
 
-banned_words = ["to", "the",0]
+banned_words = ["to", "the",0,"in"]
 
 def remove_spaces(text):
     
