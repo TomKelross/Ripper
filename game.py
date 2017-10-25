@@ -51,7 +51,7 @@ locations = LocationManager(list_of_location_objects)
 player = Player("Detective Joe Smith")
 
 time = Time()
-narrative = Narrative(time,disp,locations,player,items)
+narrative = Narrative(time,disp,locations,player,items,characters)
 from events import add_events
 add_events(narrative)
 
@@ -173,7 +173,7 @@ def commands(command): #KYLE
         if len(command) > 1:
             execute_look(command[1])
         else:
-            execute_look()
+            display_information()
     else:
         print(Fore.RED + " Your command made no sense" + Style.RESET_ALL)
 
@@ -265,7 +265,7 @@ def execute_take(name_to_take): #KYLE
             if item in items_in_room:
                 current_location.remove_item(item)
             narrative.check_item_take_event(item)
-            execute_look()
+            # display_information()
         else:
             print("Not sure what you were trying to take")
 
@@ -282,7 +282,7 @@ def execute_drop(name_to_drop,container=False):
             player.remove_from_inventory(item)
             current_location.add_item(item)
             narrative.check_item_drop_event(item)
-            execute_look()
+            display_information()
         else:
             print('Not sure what you were trying to drop')
     else:
@@ -301,9 +301,8 @@ def execute_examine(item_to_examine):
             item = items.get_item(guess_name)
             name = item.get_name()
             description = item.get_description()
-            print(Fore.GREEN + "[" + Fore.LIGHTYELLOW_EX + name + Fore.GREEN + "] "
-                  + Fore.WHITE + description
-                  + Style.RESET_ALL)
+            print(Fore.GREEN + "[" + Fore.LIGHTYELLOW_EX + name + Fore.GREEN + "] ")
+            print(Fore.WHITE + description + Style.RESET_ALL)
         else:
             print('Not sure what you were trying to examine')
     else:
@@ -321,8 +320,38 @@ def execute_investigate(target): #Judith
     pass
 
 #
-def execute_look(target=False): # Nathan
-    # Prints items in the room
+def execute_look(target): # Nathan
+    if target == 'around':
+        display_information()
+    else:
+        current_location = player.get_location()
+        location_containers = current_location.get_containers()
+        if location_containers:
+            container_names = [container.get_name() for container in location_containers]
+            best_guess = process.extract(target, container_names, limit=1)
+            certainty = best_guess[0][1]
+            guess_name = best_guess[0][0]
+            if certainty > 80:
+                container = containers.get_container(guess_name)
+                name = container.get_name()
+                description = container.get_description()
+                print(Fore.GREEN + "[" + Fore.YELLOW + name + Fore.GREEN + "] ")
+                print("    " + Fore.WHITE + description + Style.RESET_ALL)
+                items = container.get_items()
+                if items:
+                    print(Fore.GREEN + "  Contains: " + Style.RESET_ALL)
+                    for item in items:
+                        print("    " + Fore.LIGHTYELLOW_EX + item.name)
+                        print("       " + Fore.WHITE + item.description)
+
+            else:
+                print('Not sure what you were trying to examine')
+        else:
+            print("There are no containers to look in here")
+
+
+def display_information():
+    disp.reset_display()
     current_location = player.get_location()
     print_exits(current_location)
     print()
@@ -336,7 +365,6 @@ def execute_look(target=False): # Nathan
     print_description(current_location)
     disp.print_delayed()
 
-    pass
 
 #
 def execute_take_note(): #Jonny
@@ -402,7 +430,7 @@ def print_inventory():
     if player.get_inventory():
         item_list_string = Fore.GREEN + "Items in inventory: " + Style.RESET_ALL
         for item in player.get_inventory():
-            item_list_string += (Fore.LIGHTYELLOW_EX + item.name)
+            item_list_string += (Fore.LIGHTYELLOW_EX + item.name + " ")
         print(item_list_string)
     else:
         print(Fore.LIGHTBLACK_EX + "You hold no items" + Style.RESET_ALL)
@@ -474,7 +502,7 @@ def change_location(location,reset_display=True):
     if reset_display:
         disp.reset_display()
     narrative.check_location_event()
-    execute_look()
+    display_information()
 
 
 if __name__ == "__main__":
