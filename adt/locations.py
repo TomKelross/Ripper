@@ -25,7 +25,8 @@ church = {
 
     "description": "Welcome to Church ",
 
-    "people": [vicar],
+    # "people": [vicar],
+    "people" : [],
 
     "inventory": [],
 
@@ -40,8 +41,9 @@ hospital ={
     
     "description": "Welcome to Hospital ",
 
-    "people": [trisha , brian_ferguson , doctor],
-    
+    # "people": [trisha , brian_ferguson , doctor],
+    "people": [trisha , doctor],
+
     "inventory": [],
 
     "exits": {"north": "Bank of England",
@@ -175,8 +177,9 @@ gamestore = {
     
     "description": "Welcome to the Gamestore! ",
 
-    "people": [clark , store_owner],
-    
+    # "people": [clark , store_owner],
+    "people": [clark],
+
     "inventory": [scene_1_police_officer , clark],
 
     "exits": {
@@ -189,7 +192,8 @@ gamestore_murder = {
 
     "description": "Littered around the room are adult films and broken shelves but the cash register is untouched. A bin also stands suspiciously upright in the corner)",
 
-    "people": [scene_1_police_officer , gamestore_murder],
+    # "people": [scene_1_police_officer , gamestore_murder],
+    "people": [scene_1_police_officer],
 
     "inventory": [],
 
@@ -202,23 +206,23 @@ gamestore_murder = {
     }
 }
 
-docks_murder = {
-    "name": "Docks",
-    
-    "description": "There has been another murder!",
-
-    "people": [],
-
-    "inventory" : [],
-
-    "containers" : [boot , body_2 , seats , under_car],
-
-    "investigatables" : [],
-
-    "exits": {
-        "west": "Kirills Tavern",
-    }
-}
+# docks_murder = {
+#     "name": "Docks (Murder Scene)",
+#
+#     "description": "There has been another murder!",
+#
+#     "people": [],
+#
+#     "inventory" : [],
+#
+#     "containers" : [boot , body_2 , seats , under_car],
+#
+#     "investigatables" : [],
+#
+#     "exits": {
+#         "west": "Kirills Tavern",
+#     }
+# }
 
 marketplace_murder = {
     "name": "Marketplace",
@@ -242,8 +246,9 @@ hospital_murder ={
     
     "description": "There has been another murder!",
 
-    "people": [brian_ferguson , doctor],
-    
+    # "people": [brian_ferguson , doctor],
+    "people": [doctor],
+
     "inventory": [],
 
     "investigatables": [tissue],

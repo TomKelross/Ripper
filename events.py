@@ -12,24 +12,27 @@ def start_of_game_cinematic(context):
     screen = display.get_screen('story')
     print = screen.print
     type = screen.type
-    type(Style.BRIGHT + Fore.MAGENTA + "London 2017",0.08)
-    print(Style.RESET_ALL + Fore.WHITE + "You walk into Scotland Yard a fresh faced Police Detective with full training",0.01)
-    print("but only a week's experience to your name. The voice coming from the phone in your hand",0.009)
-    print("is telling you about the homicide case - your first homicide case - that has just been discovered in",0.007)
-    print("the more squalid side of town",0.005)
-    type(Fore.MAGENTA + "You should go there now" + Style.RESET_ALL,0.005)
+
+    type(Style.BRIGHT + Fore.MAGENTA + "London 2017")
+    print(Style.RESET_ALL + Fore.WHITE + "You walk into Scotland Yard a fresh faced Police Detective with full training")
+    print("but only a week's experience to your name. The voice coming from the phone ")
+    print("in your hand is telling you about the homicide case - your first homicide case")
+    print("that has just been discovered in the more squalid side of town")
+    print(Fore.MAGENTA + "You should go to the" + Fore.YELLOW +  " Adult Gamestore " + Fore.MAGENTA + "now!" + Style.RESET_ALL)
     context["display"].print()
     print("Use" + Fore.YELLOW + " GO "
-         + Fore.WHITE + "to get around. You can "
+         + Fore.WHITE + "to get around. You can"
          + Style.BRIGHT + Fore.YELLOW + " talk "
          + Style.NORMAL + Fore.WHITE + " to people,"
          + Fore.YELLOW + " investigate "
          + Fore.WHITE + "them or other things in the room and"
-         + Fore.YELLOW + " open "
-         + Fore.WHITE + "containers for items which you can then"
+          )
+    print(Fore.YELLOW + "Open "
+         + Fore.WHITE + "containers to find items which you can then"
          + Fore.YELLOW + " take "
-         + Style.RESET_ALL, 0.005)
-    print("Use " + Fore.YELLOW + "HELP"
+         + Style.RESET_ALL, 0.005
+          )
+    print("Use" + Fore.YELLOW + " HELP "
          + Fore.WHITE + "to display useful commands if you get confused")
     context["display"].print()
     display.wait_for_input(False)

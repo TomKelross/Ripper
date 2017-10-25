@@ -164,6 +164,8 @@ def commands(command): #KYLE
             execute_take_note()
     elif command[0] == "read":
             execute_read_notes()
+    elif command[0] == "story":
+            execute_story()
     elif command[0] == "look":
         if len(command) > 1:
             execute_look(command[1])
@@ -373,7 +375,16 @@ def execute_read_notes(): #Jonny
     for word in note:
         print("{}:{}".format(i,word))
         i = i + 1
-#
+
+
+def execute_story(): #Jonny
+    screen = disp.get_screen('story')
+    screen.update_display()
+    disp.wait_for_input(update=False)
+    disp.set_screen('default')
+    disp.update_display()
+
+
 def print_map(): # Nathan
     if player.get_location() == "Bank":
         asciimap = asciimap.replace(218,"◈")

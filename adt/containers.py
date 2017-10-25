@@ -29,15 +29,15 @@ s4_body_steven = {
 # ######
 
 seats = {
-	"name" : "Between the Seats"
-	"description" : "There is always something between the seats of a car"
-	"inventory" : [10p]
+	"name" : "Between the Seats",
+	"description" : "There is always something between the seats of a car",
+	"inventory" : [ten_pence]
 }
 
 under_car = {
-	"name" : "Underneath the Car"
-	"description" : "Underneath the Car which held the body"
-	"inventory" : [jack , cigarettes]
+	"name" : "Underneath the Car",
+	"description" : "Underneath the Car which held the body",
+	"inventory" : [jack]
 }
 
 

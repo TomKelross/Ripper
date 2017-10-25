@@ -116,7 +116,7 @@ class Screen(object):
         self.chunk_order = ['default']
         self.current_chunk = ['default']
 
-    def print(self, message, update=True, flag='', tag=''):
+    def print(self, message, update=False, flag='', tag=''):
         self.lines.pop(0)
         current_chunk = self.current_chunk
         self.lines.append({'content': message, 'chunk': current_chunk, 'tag': tag})

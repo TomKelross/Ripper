@@ -20,7 +20,7 @@ doctor = {
 
     "gender": "male",
 
-    "check": "Assault, vandalism, and property destruction."
+    "check": "Assault, vandalism, and property destruction.",
 
     "dialogue": ["Gotta go! Building full of sick people, if I hurry, maybe I can avoid them."]
 }
@@ -197,7 +197,7 @@ steven = {
 
     "check": "Theft, possession of illegal substance and witness in a 6 year murder investigation.",
  
-    "dialogue": ["I'm busy, i'm in the middle of a job."]
+    "dialogue": ["I'm busy, i'm in the middle of a job."],
 
     "alive" : False
 }
@@ -214,7 +214,7 @@ kirill = {
 
     "check": "none",
     
-    "dialogue": ["Hello there Dective, How can I help you?","Bugs are evil"],
+    "dialogue": ["Hello there Decetive, How can I help you?","Bugs are evil"],
     
 }
 clark = {
@@ -228,6 +228,7 @@ clark = {
 
     "check": "Witness in a 6 year murder investigation.",
 
+    "dialogue" : ["Please leave me alone!"],
     "dialogue" : ["Please leave me alone!"],
 
 }
