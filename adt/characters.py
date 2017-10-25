@@ -28,6 +28,7 @@ doctor = {
     "check": "Assault, vandalism, and property destruction.",
 
     "dialogue":["Gotta go! Building full of sick people, if I hurry, maybe I can avoid them."], # If visited before murder scene (6)
+    
     "extra":{
         "dialogue1": ["I saw trisha and brian arguing earlier about their shifts"] # Hospital murder Scene (6)
     }
