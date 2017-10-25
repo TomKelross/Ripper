@@ -145,6 +145,11 @@ def commands(command): #KYLE
             execute_drop(command[1])
         else:
             print("Drop what?")
+    elif command[0] == "examine":
+        if len(command) > 1:
+            execute_examine(command[1])
+        else:
+            print("Examine what?")
     elif command[0] == "investigate":
         if len(command) > 1:
             execute_investigate(command[1])
@@ -284,7 +289,25 @@ def execute_drop(name_to_drop,container=False):
         print("You have nothing to drop")
 
 
-
+def execute_examine(item_to_examine):
+    current_location = player.get_location()
+    player_items = player.get_inventory()
+    if player_items:
+        player_item_names = [item.get_name() for item in player_items]
+        best_guess = process.extract(item_to_examine, player_item_names, limit=1)
+        certainty = best_guess[0][1]
+        guess_name = best_guess[0][0]
+        if certainty > 80:
+            item = items.get_item(guess_name)
+            name = item.get_name()
+            description = item.get_description()
+            print(Fore.GREEN + "[" + Fore.LIGHTYELLOW_EX + name + Fore.GREEN + "] "
+                  + Fore.WHITE + description
+                  + Style.RESET_ALL)
+        else:
+            print('Not sure what you were trying to examine')
+    else:
+        print("You have nothing to drop")
 
 
 def execute_investigate(target): #Judith
