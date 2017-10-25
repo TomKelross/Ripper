@@ -1,14 +1,44 @@
 
-banned_words = ["to", "the",0,"in"]
+banned_words = ["to", "the", "in"]
 
 def remove_spaces(text):
-    
+    """
+    @Description:
+    This function removes extra spaces from the string
+    @Author: Kyle Morris
+    @Testers: Kawthar, Judith 
+
+    >>> remove_spaces(" go to docks ")
+    'go to docks'
+    >>> remove_spaces("  go to docks  ")
+    'go to docks'
+    >>> remove_spaces(" go  to  docks  ")
+    'go to docks'
+    >>> remove_spaces(" go  to  docks  ")
+    'go to docks'
+    """
+    #Removes whitespace
+    text = " ".join(text.split())
+
     # Removes trailing and leading spaces from text.
     text = text.strip()
 
     return text
 
 def remove_punct(text):
+    """
+    @Description: 
+    This functions removes punctuations
+    @Author: Kyle Morris
+    @Testers: Kawthar, Judith 
+
+    >>> remove_punct("!?!?!?!!?")
+    ''
+    >>> remove_punct("go! to! m!a!r!k!etplace!")
+    'go to marketplace'
+    >>> remove_punct("wait 50!")
+    'wait 50'
+    """
     
     # String represents valid characters
     string = ''
@@ -30,31 +60,67 @@ def remove_punct(text):
     # Return string to the subprogram.
     return string
 
-def filter_words(words, text):
-    
-    #List of 'important' words
+def filter_words(words, banned_words):
+    """
+    @Description:
+    This function remove the words included in banned words list from the string
+    @Author: Kyle Morris
+    @Testers: Kawthar, Judith 
+
+    >>> filter_words("to the 0 in", banned_words)
+    []
+    >>> filter_words("take the weapon", banned_words)
+    ['take', 'weapon']
+    >>> filter_words("0 items", banned_words)
+    ['items']
+    >>> filter_words("10 00000000000 50 22", banned_words)
+    ['10', '50', '22']
+    """
+
+    # List of 'important' words
     important_words = []
 
-    #Creates a list of words
+    # Creates a list of words
     words = words.split(" ")
 
     for word in words:
-        
-        # word = word.lower()
-        print(word)
 
         if word.isalpha() == True:
             if word not in banned_words:
                 important_words.append(word)
 
+        # Remove any instances of 0.
         if word.isdigit() == True:
-            if word not in banned_words: 
+            
+            # Cast to integer to check numericaly
+            word = int(word)
+            
+            # If zero then....
+            if word != 0:
+                
+                # Cast back to word
+                word = str(word)    
+
+                # Append to words
                 important_words.append(word)
-        
+
     return important_words
 
 def normalize_input(text):
+    """
+    @Descirption:
+    This function removing banned words, punctuation and extra spaces
+    @Author: Kyle Morris
+    @Testers: Kawthar, Judith 
 
+    >>> normalize_input("go to dock")
+    ['go', 'dock']
+    >>> normalize_input("go! to !factory")
+    ['go', 'factory']
+    >>> normalize_input("go  to  factory!")
+    ['go', 'factory']
+    """
+    
     # Remove trailing spaces from text
     text = remove_spaces(text)
 
