@@ -57,9 +57,11 @@ def murder_two(context):
 def scene_1_found_murder_weapon(context):
     locations = context["locations"]
     charachters = context["characters"]
-    print("You found the murder weapon, now take it back to the police station for DNA analysis")
+    display = context["display"]
+
+    display.delay_print("You found the murder weapon, now take it back to the police station for DNA analysis")
     scotland_yard = locations.get_location(scotland["name"])
-    lab_technician = charachters.get_character(scene_2_police_officer)
+    lab_technician = charachters.get_character(scene_2_police_officer["name"])
     scotland_yard.add_person(lab_technician)
 
 def add_events(narrative):

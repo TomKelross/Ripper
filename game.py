@@ -55,11 +55,6 @@ narrative = Narrative(time,disp,locations,player,items,characters)
 from events import add_events
 add_events(narrative)
 
-
-
-# Creates a Timer Object
-
-
 def main(): #KYLE
 
     # for line in logo:
@@ -117,7 +112,7 @@ def main(): #KYLE
         # time.incTime()
 
         # Excute the next event
-        nextEvent(time.getTime(), time.getDay())
+        # nextEvent(time.getTime(), time.getDay())
 
 def commands(command): #KYLE
    
@@ -265,7 +260,7 @@ def execute_take(name_to_take): #KYLE
             if item in items_in_room:
                 current_location.remove_item(item)
             narrative.check_item_take_event(item)
-            # display_information()
+            display_information()
         else:
             print("Not sure what you were trying to take")
 
