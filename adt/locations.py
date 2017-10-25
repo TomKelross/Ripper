@@ -168,7 +168,7 @@ gamestore = {
 gamestore_murder = {
     "name": "XXX GAMESTORE (Murder Scene)",
 
-    "description": "There has been a murder",
+    "description": "Littered around the room are adult films and broken shelves but the cash register is untouched. A bin also stands suspiciously upright in the corner)",
 
     "people": [scene_1_police_officer],
 
