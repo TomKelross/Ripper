@@ -37,7 +37,8 @@ class Narrative(object):
         self.item_manager = item_manager
         self.time_events = []
         self.location_events = []
-        self.item_events = []
+        self.item_take_events = []
+        self.item_drop_events = []
 
         self.player = player
 
@@ -114,14 +115,12 @@ class Narrative(object):
         }
         callback(context)
 
-    def check_item_event(self):
-        player_items = self.player.get_inventory()
+    def check_item_take_event(self,item):
+        for event in self.item_take_events:
+            if event["item"] == item:
+                self.call_item_take_event(event)
 
-        for event in self.item_events:
-            if event["item"] in player_items:
-                self.call_item_event(event)
-
-    def add_item_event(self, item, callback):
+    def add_item_take_event(self, item, callback):
         if not item is Item:
             item = self.item_manager.get_item(item["name"])
 
@@ -129,11 +128,37 @@ class Narrative(object):
             "item": item,
             "callback": callback
         }
-        self.item_events.append(event)
+        self.item_take_events.append(event)
 
-    def call_item_event(self, event):
-        # remove the event from the list of item_events, as it has now been called
-        self.item_events.remove(event)
+    def call_item_take_event(self, event):
+        # remove the event from the list of item_take_events, as it has now been called
+        self.item_take_events.remove(event)
+        callback = event["callback"]
+        context = {
+            "display": self.display_manager,
+            "item": self.item_manager,
+            "player": self.player
+        }
+        callback(context)
+        
+    def check_item_drop_event(self,item):
+        for event in self.item_drop_events:
+            if event["item"] == item:
+                self.call_item_drop_event(event)
+
+    def add_item_drop_event(self, item, callback):
+        if item is not Item:
+            item = self.item_manager.get_item(item["name"])
+
+        event = {
+            "item": item,
+            "callback": callback
+        }
+        self.item_drop_events.append(event)
+
+    def call_item_drop_event(self, event):
+        # remove the event from the list of item_drop_events, as it has now been called
+        self.item_drop_events.remove(event)
         callback = event["callback"]
         context = {
             "display": self.display_manager,

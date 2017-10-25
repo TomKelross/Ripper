@@ -259,7 +259,7 @@ def execute_take(name_to_take): #KYLE
                         break
             if item in items_in_room:
                 current_location.remove_item(item)
-            narrative.check_item_event()
+            narrative.check_item_take_event(item)
             execute_look()
         else:
             print("Not sure what you were trying to take")
@@ -276,6 +276,7 @@ def execute_drop(name_to_drop,container=False):
             item = items.get_item(guess_name)
             player.remove_from_inventory(item)
             current_location.add_item(item)
+            narrative.check_item_drop_event(item)
             execute_look()
         else:
             print('Not sure what you were trying to drop')
