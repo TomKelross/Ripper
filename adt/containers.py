@@ -6,5 +6,25 @@ drawers = {
     "inventory" : [beer,beer,beer]
 }
 
+bin = {
+	"name" : "Bin in the XXX Video Store"
+	"description" : "While the rest of the store is trashed, this bin seems supiciously upright"
+	"inventory" : [knife]
+}
 
-container_list = [drawers]
+boot = {
+	"name" : "Car Boot"
+	"description" : "Car boot in which the body was found at the Docks"
+	"inventory" : [wrench]
+}
+
+body_2 = {
+	"name" : "Body of Steven Cornwall"
+	"description" : "The Body of the late Steven Cornwall"
+	"inventory" : [phone]
+}
+
+
+
+
+container_list = [drawers , bin , boot , body_2]

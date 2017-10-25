@@ -11,7 +11,6 @@ bank = {
     "people": [],
     
     "inventory": [],
-
 }
 
 # Church
