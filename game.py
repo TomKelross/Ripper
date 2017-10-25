@@ -172,7 +172,7 @@ def commands(command): #KYLE
         else:
             display_information()
     else:
-        print(Fore.RED + " Your command made no sense" + Style.RESET_ALL)
+        print(Style.BRIGHT + Fore.RED + " Your command made no sense" + Style.RESET_ALL)
 
 def execute_go(direction): #KYLE
     current_location = player.get_location()
@@ -474,7 +474,7 @@ def print_characters(location):
             if not people.alive:
                 people_string += " " + (Fore.BLACK + people.name + Style.RESET_ALL + " ")
             elif people.gender == "male":
-                people_string += " " + (Fore.BLUE + people.name + Style.RESET_ALL + " ")
+                people_string += " " + (Fore.CYAN + people.name + Style.RESET_ALL + " ")
             elif people.gender == "female":
                 people_string += " " + (Fore.MAGENTA + people.name + Style.RESET_ALL + " ")
         print(people_string.center(20))
