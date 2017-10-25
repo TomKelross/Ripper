@@ -4,12 +4,6 @@ beer = {
     "description": "A hearty lager"
 }
 
-murder_knife = {
-    "name": "Bloody Knife",
-
-    "description": "The knife is covered in blood, this must be the murder weapon. "
-
-}
 
 police_badge = {
     "name": "Police badge",
@@ -95,4 +89,4 @@ getItem = {
 }
 
 item_list = [beer, knife, bullet, bottle, wrench, jack, cigarette, ten_pence, phone, card, cash, tissue, axe, cloth,
-             rod]
+             rod, police_badge]

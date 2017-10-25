@@ -74,6 +74,28 @@ def scene_1_found_murder_weapon(context):
     lab_technician = charachters.get_character(scene_2_police_officer["name"])
     scotland_yard.add_person(lab_technician)
 
+def scene_2_analyse_knife(context):
+    locations = context["locations"]
+    charachters = context["characters"]
+    display = context["display"]
+    type = display.type
+
+    display.set_screen("story")
+
+    display.type("The dead man was identified as Mr Clark Davidson",0.01)
+    display.type("33-year-old with no criminal background or conviction.")
+    display.type("However, he is on the Police database as having being a witness to a murder that happened six years ago")
+    display.type("There are three suspects, who have motives to want him dead")
+    display.type("Mrs Clark - Recently Filed For Divorce - Blood Type O")
+    display.type("Mr James Robin - His buisness partner - Blood Type AB")
+    display.type("Miss Diane B - His Mistress - Blood Type AB")
+    display.print()
+    display.type("The lab results on the knife show the killers blood type is AB")
+    display.wait_for_input(False)
+    display.set_screen("default")
+
+
+
 
 def add_events(narrative):
     # narrative.add_time_event(1, 1, 0, start_of_game_cinematic)
@@ -85,6 +107,8 @@ def add_events(narrative):
     narrative.add_item_take_event(police_badge, badge_pickup)
     narrative.add_item_drop_event(police_badge, badge_drop)
 
-    narrative.add_item_take_event(murder_knife,scene_1_found_murder_weapon)
+    narrative.add_item_take_event(knife,scene_1_found_murder_weapon)
+
+
     # narrative.add_event(1,1,1260,murder_two)
 
