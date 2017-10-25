@@ -132,6 +132,7 @@ docks = {
 
     "exits": {
         "west": "Kirills Tavern",
+        "south": "XXX Gamestore",
     }
 }
 
@@ -151,6 +152,7 @@ docks_murder = {
 
     "exits": {
         "west": "Kirills Tavern",
+        "south": "XXX Gamestore",
     }
 }
 
