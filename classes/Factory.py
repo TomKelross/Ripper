@@ -19,8 +19,9 @@ def create_character(char_dict):
     gender = char_dict.get("gender","male")
     check = char_dict.get("check","NA")
     dialogue = char_dict.get("dialogue",[])
+    inventory = char_dict.get("inventory",[])
 
-    char_object = Character(name, occupation, gender, check, dialogue)
+    char_object = Character(name, occupation, gender, check, dialogue,inventory)
 
     return char_object
 
@@ -37,7 +38,7 @@ def character_factory():
 def create_location(location_dict, characters, items,containers,investigatables):
     name = location_dict["name"]
     description = location_dict["description"]
-    inventory = location_dict["inventory"]
+    inventory = location_dict.get("inventory",[])
     exits = location_dict.get("exits",[])
     
     people = []
@@ -45,10 +46,10 @@ def create_location(location_dict, characters, items,containers,investigatables)
         person_object = characters.get_character(person_dict["name"])
         people.append(person_object)
 
-    inventory = []
-    for item_dict in location_dict["inventory"]:
+    item_list = []
+    for item_dict in inventory:
         item_object = items.get_item(item_dict["name"])
-        inventory.append(item_object)
+        item_list.append(item_object)
 
     room_containers = []
     for container_dict in location_dict.get("containers",[]):
@@ -60,7 +61,7 @@ def create_location(location_dict, characters, items,containers,investigatables)
         investigatable = investigatables.get_investigatable(investigatable_dict["name"])
         room_investigatables.append(investigatable)
 
-    location_object = Location(name,description,exits,people,inventory,room_containers,room_investigatables)
+    location_object = Location(name,description,exits,people,item_list,room_containers,room_investigatables)
 
     return location_object
 

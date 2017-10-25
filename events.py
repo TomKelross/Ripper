@@ -12,26 +12,29 @@ def start_of_game_cinematic(context):
     screen = display.get_screen('story')
     print = screen.print
     type = screen.type
-    type(Style.BRIGHT + Fore.MAGENTA + "London 2017",0.08)
-    print(Style.RESET_ALL + Fore.WHITE + "You walk into Scotland Yard a fresh faced Police Detective with full training",0.01)
-    print("but only a week's experience to your name. The voice coming from the phone in your hand",0.009)
-    print("is telling you about the homicide case - your first homicide case - that has just been discovered in",0.007)
-    print("the more squalid side of town",0.005)
-    type(Fore.MAGENTA + "You should go there now" + Style.RESET_ALL,0.005)
+
+    print(Style.BRIGHT + Fore.MAGENTA + "London 2017")
+    print(Style.RESET_ALL + Fore.WHITE + "You walk into Scotland Yard a fresh faced Police Detective with full training")
+    print("but only a week's experience to your name. The voice coming from the phone ")
+    print("in your hand is telling you about the homicide case - your first homicide case")
+    print("that has just been discovered in the more squalid side of town")
+    print(Fore.MAGENTA + "You should go to the" + Fore.YELLOW +  " Adult Gamestore " + Fore.MAGENTA + "now!" + Style.RESET_ALL)
     context["display"].print()
-    type("Use" + Fore.YELLOW + " GO "
-         + Fore.WHITE + "to get around. You can "
+    print("Use" + Fore.YELLOW + " GO "
+         + Fore.WHITE + "to get around. You can"
          + Style.BRIGHT + Fore.YELLOW + " talk "
          + Style.NORMAL + Fore.WHITE + " to people,"
          + Fore.YELLOW + " investigate "
          + Fore.WHITE + "them or other things in the room and"
-         + Fore.YELLOW + " open "
-         + Fore.WHITE + "containers for items which you can then"
+          )
+    print(Fore.YELLOW + "Open "
+         + Fore.WHITE + "containers to find items which you can then"
          + Fore.YELLOW + " take "
-         + Style.RESET_ALL, 0.005)
-    type("Use " + Fore.YELLOW + "HELP"
+         + Style.RESET_ALL, 0.005
+          )
+    print("Use" + Fore.YELLOW + " HELP "
          + Fore.WHITE + "to display useful commands if you get confused")
-    context["display"].print()
+    print("",True)
     display.wait_for_input(False)
     display.set_screen("default")
     display.set_cinematic_mode(False)
@@ -71,6 +74,7 @@ def scene_1_found_murder_weapon(context):
     charachters = context["characters"]
     display = context["display"]
 
+    screen = display.get_screen('story')
     display.delay_print("You found the murder weapon, now take it back to the police station for DNA analysis")
     scotland_yard = locations.get_location(scotland["name"])
     lab_technician = charachters.get_character(scene_2_police_officer["name"])
@@ -82,21 +86,43 @@ def scene_2_analyse_knife(context):
     display = context["display"]
     type = display.type
 
-    display.set_screen("story")
+    screen = display.get_screen('story')
 
-    display.print("The dead man was identified as Mr Clark Davidson")
-    display.print("33-year-old with no criminal background or conviction.")
-    display.print("However, he is on the Police database as having being a witness to a murder that happened six years ago")
-    display.print("There are three suspects, who have motives to want him dead")
-    display.print("Mrs Clark - Recently Filed For Divorce - Blood Type O")
-    display.print("Mr James Robin - His buisness partner - Blood Type AB")
-    display.print("Miss Diane B - His Mistress - Blood Type AB")
-    display.print()
-    display.print("The lab results on the knife show the killers blood print is AB")
-    display.wait_for_input(False)
-    display.set_screen("default")
+    screen.print("The dead man was identified as Mr Clark Davidson")
+    screen.print("33-year-old with no criminal background or conviction.")
+    screen.print("However, he is on the Police database as having being a witness to a murder that happened six years ago")
+    screen.print("There are three suspects, who have motives to want him dead")
+    screen.print("Mrs Clark - Recently Filed For Divorce - Blood Type O")
+    screen.print("Mr James Robin - His buisness partner - Blood Type AB")
+    screen.print("Miss Diane B - His Mistress - Blood Type AB")
+    screen.print('')
+    screen.print("The lab results on the knife show the killers blood print is AB")
+    screen.print('')
+    screen.print(Fore.MAGENTA + "You should look around the city for more " + Fore.YELLOW + " clues " + Fore.MAGENTA + "now" + Style.RESET_ALL)
+    screen.print('')
 
+    screen.update_display()
+    display.wait_for_input(update=False)
+    display.set_screen('default')
+    display.update_display()
 
+def scene_3_murder_two(context):
+    locations = context["locations"]
+    display = context["display"]
+
+    tavern_object = locations.get_location(kirills["name"])
+    docks_murder_location = locations.get_location(docks_murder["name"])
+    tavern_object.exits["east"] = docks_murder_location.get_name()
+
+    screen = display.get_screen('story')
+    screen.print("It's been less than a day since the first murder, the blood has barely dried at the scene,")
+    screen.print("and yet another body has been found at the Docks. ")
+    screen.print("Could they be linked? You must get there right away!")
+    screen.print( Fore.MAGENTA + "Go to the" + Fore.YELLOW + " docks " + Fore.MAGENTA + "now!" + Style.RESET_ALL)
+    screen.update_display()
+    display.wait_for_input(update=False)
+    display.set_screen('default')
+    display.update_display()
 
 
 def add_events(narrative):
@@ -108,10 +134,14 @@ def add_events(narrative):
     #Scene 1 events
     narrative.add_location_event(gamestore_murder,scene_1_first_arrival)
     narrative.add_item_take_event(police_badge, badge_pickup)
-    narrative.add_item_drop_event(police_badge, badge_drop)
+    # narrative.add_item_drop_event(police_badge, badge_drop)
     narrative.add_item_take_event(knife,scene_1_found_murder_weapon)
     
+    narrative.add_item_drop_event(police_badge,scene_2_analyse_knife)
     narrative.add_item_drop_event(knife,scene_2_analyse_knife)
+
+    narrative.add_time_event(1,1,1380,scene_3_murder_two)
+
 
 
     # narrative.add_event(1,1,1260,murder_two)

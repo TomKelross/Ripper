@@ -41,7 +41,7 @@ hospital ={
     "description": "Welcome to Hospital ",
 
     "people": [trisha , brian, doctor],
-    
+
     "inventory": [],
 
     "exits": {"north": "Bank of England",
@@ -64,7 +64,8 @@ scotland = {
     "exits" : {"east" : "Hospital",
                "north" : "Bank of England",
                "west" : "Church",
-               "south" : "Thames"
+               "south" : "Thames",
+               "inside" : "The Morgue"
                },
 
     "investigatables" : [ wanted_poster ]
@@ -134,6 +135,25 @@ docks = {
     }
 }
 
+docks_murder = {
+    "name": "Docks (Murder Scene)",
+
+    "description": "The body is yet unidentified and lays sprawled in the boot of a car, lifeless with a small pool of blood around his caved in skull. \nYou need to check the crime scene",
+
+    "people": [],
+
+    "inventory": [],
+
+    "containers": [s4_body_steven],
+
+    "investigatables": [s4_car_seats,s4_underneath_car],
+
+
+    "exits": {
+        "west": "Kirills Tavern",
+    }
+}
+
 # Marketpalce
 marketplace = {
     "name": "Marketplace",
@@ -158,7 +178,7 @@ gamestore = {
 
     "people": [clark],
     
-    "inventory": [scene_1_police_officer , clark],
+    # "inventory": [scene_1_police_officer , clark],
 
     "exits": {
         "north": "MARKETPLACE",
@@ -182,24 +202,24 @@ gamestore_murder = {
         "north": "MARKETPLACE",
     }
 }
+morgue = {
+    "name": "The Morgue",
 
-docks_murder = {
-    "name": "Docks",
-    
-    "description": "There has been another murder!",
+    "description": "Full of dead rotting corpses, you don't want to spend anymore time than needed here!",
+    # "people": [scene_1_police_officer , gamestore_murder],
+    "people": [dead_developer],
 
-    "people": [],
+    "inventory": [],
 
-    "inventory" : [],
-
-    "containers" : [boot , body_2 , seats , under_car],
+    "containers" : [],
 
     "investigatables" : [],
 
     "exits": {
-        "west": "Kirills Tavern",
+        "outside": "Scotland Yard",
     }
 }
+
 
 marketplace_murder = {
     "name": "Marketplace",
@@ -250,6 +270,7 @@ factory_murder = {
     }
 }
 
+
 # northern_courtyard = {
 #     "name" : 'Northern Courtyard'
 #     "description" {}
@@ -267,4 +288,5 @@ getLocation = {
     "Marketplace": marketplace,
     "Gamestore": gamestore,
 }
-location_list = [bank,church,hospital,scotland,thames,factory,kirills,docks,marketplace,gamestore,gamestore_murder]
+location_list = [bank,church,hospital,scotland,thames,factory,kirills,docks,marketplace,gamestore,
+                 gamestore_murder,docks_murder,morgue]

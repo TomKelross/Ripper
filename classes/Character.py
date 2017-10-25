@@ -1,7 +1,8 @@
 from fuzzywuzzy import process
+from colorama import Fore,Back,Style
 
 class Character(object):
-    def __init__(self, name="Joe Bloggs", occupation="Townsperson", gender="Male", check="None", dialogue=[]):
+    def __init__(self, name="Joe Bloggs", occupation="Townsperson", gender="Male", check="None", dialogue=[],inventory=[]):
         self.name = name
         self.occupation = occupation
         self.gender = gender
@@ -9,6 +10,7 @@ class Character(object):
         self.dialogue = dialogue
         self._dialogue_counter = 0
         self.location = None
+        self.inventory = []
 
         self.alive = True
 
@@ -24,21 +26,47 @@ class Character(object):
     def get_name(self):
         return self.name
 
-    def next_dialogue(self):
+    def next_dialogue_text(self):
         dialogue = self.dialogue
+        if dialogue:
+            if self._dialogue_counter < len(dialogue):
+                self._dialogue_counter += 1
+                return dialogue[self._dialogue_counter - 1]
+            else:
+                self._dialogue_counter = 0
+                return dialogue[0]
 
-        if self._dialogue_counter < len(dialogue):
-            self._dialogue_counter += 1
-            return dialogue[self._dialogue_counter - 1]
-        else:
-            self._dialogue_counter = 0
-            return dialogue[0]
+    def next_dialogue(self):
+        dialogue = self.next_dialogue_text()
+        dialogue_count = self.get_dialogue_count()
+        total_dialogues = self.get_dialogue_length()
+        dialogue_counter = (Fore.GREEN + " ("
+                            + Fore.LIGHTGREEN_EX + str(dialogue_count)
+                            + Fore.GREEN + "/"
+                            + Fore.LIGHTGREEN_EX + str(total_dialogues)
+                            + Fore.GREEN + ")" + Style.RESET_ALL
+                            )
+
+        return (Fore.GREEN + "[" + Fore.LIGHTGREEN_EX + self.name + Fore.GREEN + "] "
+        + Fore.WHITE + dialogue
+        + dialogue_counter
+        + Style.RESET_ALL)
 
     def get_dialogue_count(self):
         return self._dialogue_counter
 
     def get_dialogue_length(self):
         return len(self.dialogue)
+
+    def get_items(self):
+        return self.inventory
+
+    def add_item(self, item):
+        self.inventory.append(item)
+
+    def remove_item(self, item):
+        return self.inventory.remove(item)
+
 
 
 

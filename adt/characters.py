@@ -1,4 +1,6 @@
 
+from adt.items import *
+
 brian = {
     "name": "Brian Ferguson",
 
@@ -15,6 +17,22 @@ brian = {
     "extra":{
         "dialogue1": ["Can't believe she's dead"] # Hospital murder scene (6)
     }
+}
+dead_developer = {
+    "name": "Dead Developer",
+
+    "occupation": "Nurse",
+
+    "age": 26,
+
+    "gender": "male",
+
+    "check": "none",
+
+    "alive" : False,
+
+    "inventory" : [police_badge],
+    "dialogue":[]
 }
 doctor = {
     "name": "Dr. House",
@@ -59,7 +77,6 @@ diane_killer = {
     "check": "The Killer",
 
     "dialogue": []
-
 }
 denzel = {
     "name": "Mr Denzel Brass",
@@ -91,6 +108,7 @@ smith = {
 
     "check": "Mr Steven's Best Friend.",
 
+    "dialogue": []
 }
 blade = {
     "name": "Blade",
@@ -103,6 +121,7 @@ blade = {
 
     "check": "Used to be Mr Steven Cornwall's cellmate.",
 
+    "dialogue": []
 }
 patrick = {
     "name": "Mr Patrick",
@@ -210,8 +229,11 @@ steven = {
 
     "check": "Theft, possession of illegal substance and witness in a 6 year murder investigation.",
  
-    "dialogue": ["I'm busy, i'm in the middle of a job."]
+    "dialogue": ["I'm busy, i'm in the middle of a job."],
+
+    "alive" : False
 }
+
 kirill = {
     
     "name": "Kirill",
@@ -224,7 +246,7 @@ kirill = {
 
     "check": "none",
     
-    "dialogue": ["Hello there Dective, How can I help you?","Bugs are evil"],
+    "dialogue": ["Hello there Decetive, How can I help you?","Bugs are evil"],
     
 }
 clark = {
@@ -238,6 +260,7 @@ clark = {
 
     "check": "Witness in a 6 year murder investigation.",
 
+    "dialogue" : ["Please leave me alone!"],
     "dialogue" : ["Please leave me alone!"],
 
 }
@@ -277,7 +300,7 @@ getCharacter = {
 }
 
 
+char_list = [kirill,dead_developer,clark,police_man,scene_1_police_officer,scene_2_police_officer,denzel,barry,smith,blade,patrick,diane,james,clark_2,diane_killer,thomas,trisha,christine,steven,doctor,brian,priest]
 
-char_list = [kirill,clark,police_man,scene_1_police_officer,denzel,barry,smith,blade,patrick,diane,james,clark_2,diane_killer,thomas,trisha,christine,steven,doctor,brian,priest,scene_2_police_officer]
 
 
