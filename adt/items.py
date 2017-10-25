@@ -95,8 +95,5 @@ getItem = {
     "Beer": beer
 }
 
-<<<<<<< HEAD
 item_list = [beer , knife , bullet , bottle , wrench , jack , cigarette , 10p , phone , card , cash , tissue , axe , cloth , rod]
-=======
-item_list = [beer,murder_knife,police_badge]
->>>>>>> 80e0eb233e4e75303a473574e20c73112a15d41c
+
