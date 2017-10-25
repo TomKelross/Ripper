@@ -1,6 +1,7 @@
 from adt.items import *
 from adt.characters import *
 from adt.containers import *
+from adt.investigatables import  *
 
 # Bank of England
 bank = {
@@ -64,7 +65,9 @@ scotland = {
                "north" : "Bank of England",
                "west" : "Church",
                "south" : "Thames"
-               }
+               },
+
+    "investigatables" : [ vending_machine ]
 }
 
 # Thames

@@ -1,11 +1,13 @@
-beer = {
-    "name": "Beer",
+car_seats = {
+    "name": "Boot of car",
 
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc a faucibus nunc, at tincidunt tellus. Nunc at porttitor sem. Pellentesque eu congue augue. Aliquam porta tempor"
+    "description": "You find 10p between the seats, not much in terms of evidence but you are now richer"
 }
 
-getItem = {
-    "Beer": beer
+vending_machine = {
+    "name": "Wanted Poster",
+
+    "description": "You see a list of dangerous wanted criminals"
 }
 
-item_list = [beer]
+investigatable_list = [car_seats,vending_machine]

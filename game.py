@@ -5,6 +5,7 @@ from classes.Character import CharacterManager
 from classes.Location import LocationManager
 from classes.Container import ContainerManager
 from classes.Item import ItemManager
+from classes.Investigatable import InvestigatableManager
 from classes.Player import Player
 from classes.Time import Time
 from modules.parser import *
@@ -36,10 +37,13 @@ items = ItemManager(list_of_item_objects)
 list_of_container_objects = Factory.container_factory(items)
 containers = ContainerManager(list_of_container_objects)
 
+list_of_investigatable_objects = Factory.investigatable_factory()
+investigatables = InvestigatableManager(list_of_investigatable_objects)
+
 list_of_character_objects = Factory.character_factory()
 characters = CharacterManager(list_of_character_objects)
 
-list_of_location_objects = Factory.location_factory(characters,items,containers)
+list_of_location_objects = Factory.location_factory(characters,items,containers,investigatables)
 locations = LocationManager(list_of_location_objects)
 
 
