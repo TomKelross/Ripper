@@ -57,7 +57,7 @@ scotland = {
 
     "people": [police_man],
     
-    "inventory": [police_badge],
+    "inventory": [],
 
     "containers" : [drawers],
 
@@ -209,7 +209,7 @@ morgue = {
     # "people": [scene_1_police_officer , gamestore_murder],
     "people": [dead_developer],
 
-    "inventory": [],
+    "inventory": [police_badge],
 
     "containers" : [],
 

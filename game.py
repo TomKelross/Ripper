@@ -299,12 +299,36 @@ def execute_examine(item_to_examine):
 
 def execute_investigate(target): #Judith
     current_location = player.get_location()
-    investigatables_in_room = current_location.get_investigatables()
 
-    if investigatables_in_room:
-        thing_to_investigate = investigatables.get_investigatable_fuzzy(target, investigatables_in_room)
-        if thing_to_investigate:
-            print(thing_to_investigate.investigate())
+    investigatables_in_room = current_location.get_investigatables()
+    investigatables_names_in_room = [investigatable.get_name() for investigatable in investigatables_in_room]
+    players_in_room = current_location.get_people()
+
+    people_in_room = current_location.get_people()
+    people_names_in_room = [person.get_name() for person in people_in_room]
+
+    # https: // stackoverflow.com / questions / 14807689 / python - list - comprehension - to - join - list - of - lists
+
+
+    all_possible_investigation_names = investigatables_names_in_room + people_names_in_room
+
+    if all_possible_investigation_names:
+        best_guess = process.extract(target, all_possible_investigation_names, limit=1)
+        certainty = best_guess[0][1]
+        guess_name = best_guess[0][0]
+        if certainty > 80:
+            if guess_name in investigatables_names_in_room:
+                thing_to_investigate = investigatables.get_investigatable_fuzzy(target, investigatables_in_room)
+                if thing_to_investigate:
+                    print(thing_to_investigate.investigate())
+            elif guess_name in people_names_in_room:
+                person_to_investigate = characters.get_character_fuzzy(target, people_in_room)
+                if person_to_investigate:
+                   investigation = person_to_investigate.investigate()
+                   for line in investigation:
+                       print(line)
+        else:
+            print("Not sure what you were trying to investigate")
     pass
 
 #
@@ -467,17 +491,24 @@ def print_room_investigatables(location):
 def print_characters(location):
     current_location = location
     people_in_room = current_location.get_people()
-    people_string = ""
     if people_in_room:
-        print(Fore.GREEN + "People that were found here:" + Style.RESET_ALL)
-        for people in people_in_room:
-            if not people.alive:
-                people_string += " " + (Fore.BLACK + people.name + Style.RESET_ALL + " ")
-            elif people.gender == "male":
-                people_string += " " + (Fore.CYAN + people.name + Style.RESET_ALL + " ")
-            elif people.gender == "female":
-                people_string += " " + (Fore.MAGENTA + people.name + Style.RESET_ALL + " ")
-        print(people_string.center(20))
+        if len(people_in_room) == 1:
+            person = people_in_room[0]
+            if not person.alive:
+                print(Fore.GREEN + "Person in this room: " + Fore.BLACK + person.name +" (DEAD)" + Style.RESET_ALL)
+            elif person.gender == "male":
+                print(Fore.GREEN + "Person in this room: " + (Fore.CYAN + person.name + Style.RESET_ALL))
+            elif person.gender == "female":
+                print(Fore.GREEN + "Person in this room: " + " " + (Fore.MAGENTA + person.name + Style.RESET_ALL + " "))
+        else:
+            print(Fore.GREEN + "People in this room: ")
+            for people in people_in_room:
+                if not people.alive:
+                    print("    " + Fore.BLACK + people.name + " (DEAD)"  + Style.RESET_ALL)
+                elif people.gender == "male":
+                    print("    " + Fore.CYAN + people.name + Style.RESET_ALL + " ")
+                elif people.gender == "female":
+                    print("    " + Fore.MAGENTA + people.name + Style.RESET_ALL + " ")
     else:
         print(Fore.LIGHTBLACK_EX + "There are no people here" + Style.RESET_ALL)
 

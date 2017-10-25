@@ -28,7 +28,7 @@ def start_of_game_cinematic(context):
          + Fore.WHITE + "them or other things in the room and"
           )
     print(Fore.YELLOW + "Look "
-         + Fore.WHITE + "containers to find items which you can then"
+         + Fore.WHITE + "in containers to find items which you can then"
          + Fore.YELLOW + " take "
          + Style.RESET_ALL, 0.005
           )

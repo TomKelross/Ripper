@@ -26,6 +26,17 @@ class Character(object):
     def get_name(self):
         return self.name
 
+    def investigate(self):
+        investigation_to_print = []
+        investigation_to_print.append(Fore.GREEN + "[" + Fore.LIGHTGREEN_EX + self.name + Fore.GREEN + "]")
+        investigation_to_print.append(Fore.GREEN+"  "+"Occupation " + Fore.BLUE + Style.RESET_ALL)
+        investigation_to_print.append(Fore.GREEN+"  "+"Gender " + Fore.BLUE + self.gender)
+        if self.check != "None" and self.check!= "none":
+            investigation_to_print.append(Fore.GREEN+"  "+"["+Fore.LIGHTBLUE_EX+"Check"+Fore.GREEN+"]" + Style.RESET_ALL)
+            investigation_to_print.append(Fore.WHITE+"     " + self.check)
+        investigation_to_print.append(" " + Style.RESET_ALL)
+        return investigation_to_print
+
     def next_dialogue_text(self):
         dialogue = self.dialogue
         if dialogue:
