@@ -124,7 +124,7 @@ def commands(command): #KYLE
         if len(command) > 1:
             execute_go(command[1])
         else:
-            print_locations()
+             print(Style.BRIGHT + Fore.RED + "Please specify where?" + Style.RESET_ALL)
     elif command[0] == "talk":
         if len(command) > 1:
             execute_talk(command[1])
