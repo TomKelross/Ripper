@@ -12,14 +12,11 @@ bank = {
     "people": [],
     
     "inventory": [],
-<<<<<<< HEAD
-=======
 
     "exits" : {"east" : "Hospital",
                "south" : "Scotland Yard",
                "west" : "Church",
                }
->>>>>>> 80e0eb233e4e75303a473574e20c73112a15d41c
 }
 
 # Church
@@ -171,7 +168,7 @@ gamestore = {
 gamestore_murder = {
     "name": "XXX GAMESTORE (Murder Scene)",
 
-    "description": "There has been a murder",
+    "description": "Littered around the room are adult films and broken shelves but the cash register is untouched. A bin also stands suspiciously upright in the corner)",
 
     "people": [scene_1_police_officer],
 

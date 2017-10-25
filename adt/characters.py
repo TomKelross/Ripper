@@ -238,7 +238,7 @@ police_man = {
 scene_1_police_officer = {
     "name" : "Police Officer",
     "occupation" : "Copper",
-    "age" : 31,,
+    "age" : 31,
     "gender" : "male",
     "check": "none",
     "dialogue": ["Horrible situation isn't it. The investigative team found an unfired 9mm bullet outside.",
@@ -260,5 +260,7 @@ getCharacter = {
     "Clark Davidson": clark, 
 }
 
+
 char_list = [kirill,clark,police_man,scene_1_police_officer,denzel,barry,smith,blade,patrick,diane,james,clark_2,diane_killer,thomas,trisha,christine,steven,doctor,brian,priest]
+
 

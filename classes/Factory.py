@@ -14,11 +14,11 @@ from .Container import Container
 
 
 def create_character(char_dict):
-    name = char_dict["name"]
-    occupation = char_dict["occupation"]
-    gender = char_dict["gender"]
-    check = char_dict["check"]
-    dialogue = char_dict["dialogue"]
+    name = char_dict.get("name","Joe Bloggs")
+    occupation = char_dict.get("occupation","NA")
+    gender = char_dict.get("gender","male")
+    check = char_dict.get("check","NA")
+    dialogue = char_dict.get("dialogue",[])
 
     char_object = Character(name, occupation, gender, check, dialogue)
 
