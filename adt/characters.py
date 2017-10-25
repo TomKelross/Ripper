@@ -1,3 +1,4 @@
+
 brian = {
     "name": "Brian Ferguson",
 
@@ -9,7 +10,11 @@ brian = {
 
     "check": "none",
 
-    "dialogue":["I'm trying to convince trisha to take my next shift."]
+    "dialogue":["I'm trying to convince trisha to take my next shift."], # If visited before murder scene (6)
+
+    "extra":{
+        "dialogue1": ["Can't believe she's dead"] # Hospital murder scene (6)
+    }
 }
 doctor = {
     "name": "Dr. House",
@@ -20,9 +25,12 @@ doctor = {
 
     "gender": "male",
 
-    "check": "Assault, vandalism, and property destruction."
+    "check": "Assault, vandalism, and property destruction.",
 
-    "dialogue": ["Gotta go! Building full of sick people, if I hurry, maybe I can avoid them."]
+    "dialogue":["Gotta go! Building full of sick people, if I hurry, maybe I can avoid them."], # If visited before murder scene (6)
+    "extra":{
+        "dialogue1": ["I saw trisha and brian arguing earlier about their shifts"] # Hospital murder Scene (6)
+    }
 }
 priest = {
     "name": "Father Putin",
@@ -36,6 +44,7 @@ priest = {
     "check": "none",
 
     "dialogue": ["This book is bullsh..... OH!...I didnt see you there."]
+
 }
 diane_killer = {
     "name": "Miss Diane Brass",
@@ -50,6 +59,7 @@ diane_killer = {
 
     "dialogue": []
 
+}
 denzel = {
     "name": "Mr Denzel Brass",
 
@@ -104,7 +114,11 @@ patrick = {
 
     "check": "Brother-in-law to Mr Steven Cornwall.",
 
-    "dialogue": ["How can i help you today?"]
+    "dialogue": ["How can I help you today?"], # If visited before the murder scene (5)
+
+    "extra":{
+        "dialogue1":["I wasn't here when it happened, the CCTV shows that I was in my office"] # Bank murder Scene (5)
+    }
 }
 diane = {
     "name": "Miss Diane B",
@@ -147,7 +161,7 @@ clark_2 = {
 thomas = {
     "name": "Thomas Reese",
 
-    "occupation": "Store Manager",
+    "occupation": "Factory Manager",
 
     "age": 26,
 
@@ -168,7 +182,7 @@ trisha = {
 
     "check": "Witness of a 6 year murder investigation.",
 
-    "dialogue": ["I'm not taking brian's next shift ive been awake for 30 hours straight."]
+    "dialogue": ["I'm not taking brian's next shift I've been awake for 30 hours straight."]
 
 }
 christine = {
@@ -255,12 +269,14 @@ scene_2_police_officer = {
                  "The results may take a few hours"]
 }
 
+
 getCharacter = {
     "Kirill": kirill,
     "Clark Davidson": clark, 
 }
 
 
-char_list = [kirill,clark,police_man,scene_1_police_officer,denzel,barry,smith,blade,patrick,diane,james,clark_2,diane_killer,thomas,trisha,christine,steven,doctor,brian,priest]
+
+char_list = [kirill,clark,police_man,scene_1_police_officer,denzel,barry,smith,blade,patrick,diane,james,clark_2,diane_killer,thomas,trisha,christine,steven,doctor,brian,priest,scene_2_police_officer]
 
 

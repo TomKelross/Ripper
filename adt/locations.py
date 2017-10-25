@@ -25,7 +25,7 @@ church = {
 
     "description": "Welcome to Church ",
 
-    "people": [vicar],
+    "people": [priest],
 
     "inventory": [],
 
@@ -40,7 +40,7 @@ hospital ={
     
     "description": "Welcome to Hospital ",
 
-    "people": [trisha , brian_ferguson , doctor],
+    "people": [trisha , brian, doctor],
     
     "inventory": [],
 
@@ -107,7 +107,7 @@ kirills = {
     
     "description": "Welcome to Kirills Tavern!",
 
-    "people": [kirill, clark],
+    "people": [kirill],
     
     "inventory": [beer, beer, beer],
 
@@ -156,7 +156,7 @@ gamestore = {
     
     "description": "Welcome to the Gamestore! ",
 
-    "people": [clark , store_owner],
+    "people": [clark],
     
     "inventory": [scene_1_police_officer , clark],
 
@@ -170,7 +170,7 @@ gamestore_murder = {
 
     "description": "Littered around the room are adult films and broken shelves but the cash register is untouched. A bin also stands suspiciously upright in the corner)",
 
-    "people": [scene_1_police_officer , gamestore_murder],
+    "people": [scene_1_police_officer], # Removed gamestore_murderer
 
     "inventory": [],
 
@@ -223,7 +223,7 @@ hospital_murder ={
     
     "description": "There has been another murder!",
 
-    "people": [brian_ferguson , doctor],
+    "people": [brian, doctor],
     
     "inventory": [],
 
