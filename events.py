@@ -1,9 +1,11 @@
 # from .game import print
 from colorama import init,Fore,Back,Style
-def murder_one(context):
-    context['display'].print('Someone was murdered in the night')
+from adt.locations import *
 
-def start_of_game(context):
+# def murder_one(context):
+#     context['display'].print('Someone was murdered in the night')
+
+def start_of_game_cinematic(context):
     type = context["display"].type
     type(Style.BRIGHT + Fore.MAGENTA + "London 2017",0.08)
     type(Style.RESET_ALL + Fore.WHITE + "You walk into Scotland Yard a fresh faced Police Detective with full training",0.01)
@@ -15,6 +17,15 @@ def start_of_game(context):
 
     #todo - swap out exit for game stor for game store (murder scene)
 
+def murder_one(context):
+    locations = context["locations"]
+    marketplace_object = locations.get_location(marketplace["name"])
+    gamestore_murder_location = locations.get_location(gamestore_murder["name"])
+    marketplace_object.exits["south"] = gamestore_murder_location.get_name()
+
+
+
+
 def murder_two(context):
     #murder at the docks in the evening of the first day
     #todo: turn into a murder scene
@@ -23,7 +34,7 @@ def murder_two(context):
 
 
 def add_events(narrative):
-    narrative.add_event(1,2,0,murder_one)
-    # narrative.add_event(1,1,0,start_of_game)
+    narrative.add_event(1,1,0,murder_one)
+    # narrative.add_event(1,1,0,start_of_game_cinematic)
     # narrative.add_event(1,1,1260,murder_two)
 

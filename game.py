@@ -48,7 +48,7 @@ locations = LocationManager(list_of_location_objects)
 
 
 time = Time()
-narrative = Narrative(time,disp)
+narrative = Narrative(time,disp,locations)
 from events import add_events
 add_events(narrative)
 player = Player("Detective Joe Smith")

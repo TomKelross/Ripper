@@ -29,10 +29,11 @@ def nextEvent(time, day):
 class Narrative(object):
     #This class makes sure events happen at the right time in the story
 
-    def __init__(self,time,display_manager):
+    def __init__(self,time,display_manager,locations):
         self.time_manager = time
         self.display_manager = display_manager
         self.events = []
+        self.locations = locations
 
     def check(self):
         pass #Given an instance of the time_manager, check if there are any events due to run and run them
@@ -67,7 +68,8 @@ class Narrative(object):
         callback = event["callback"]
         context = {
             "display" : self.display_manager,
-            "time" : self.time_manager
+            "time" : self.time_manager,
+            "locations" : self.locations
         }
         callback(context)
 

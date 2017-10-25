@@ -67,7 +67,7 @@ scotland = {
                "south" : "Thames"
                },
 
-    "investigatables" : [ vending_machine ]
+    "investigatables" : [ wanted_poster ]
 }
 
 # Thames
@@ -152,7 +152,7 @@ marketplace = {
 
 # Gamestore
 gamestore = {
-    "name": "Gamestore",
+    "name": "XXX GAMESTORE",
     
     "description": "Welcome to the Gamestore! ",
 
@@ -166,13 +166,17 @@ gamestore = {
 }
 
 gamestore_murder = {
-    "name": "Gamestore (Murder Scene)",
+    "name": "XXX GAMESTORE (Murder Scene)",
 
     "description": "There has been a murder",
 
-    "people": [],
+    "people": [scene_1_police_officer],
 
     "inventory": [],
+
+    "containers" : [scene_1_bin],
+
+    "investigatables" : [cash_register,shop_counter],
 
     "exits": {
         "north": "MARKETPLACE",
@@ -197,4 +201,4 @@ getLocation = {
     "Marketplace": marketplace,
     "Gamestore": gamestore,
 }
-location_list = [bank,church,hospital,scotland,thames,factory,kirills,docks,marketplace,gamestore]
+location_list = [bank,church,hospital,scotland,thames,factory,kirills,docks,marketplace,gamestore,gamestore_murder]

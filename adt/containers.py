@@ -6,5 +6,10 @@ drawers = {
     "inventory" : [beer,beer,beer]
 }
 
+scene_1_bin = {
+    "name" : "Upright Bin",
+    "description" : "Suspiciously upright",
+    "inventory" : [murder_knife]
+}
 
-container_list = [drawers]
+container_list = [drawers,scene_1_bin]
