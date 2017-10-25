@@ -2,7 +2,7 @@ from fuzzywuzzy import process
 from colorama import Fore,Back,Style
 
 class Character(object):
-    def __init__(self, name="Joe Bloggs", occupation="Townsperson", gender="Male", check="None", dialogue=[]):
+    def __init__(self, name="Joe Bloggs", occupation="Townsperson", gender="Male", check="None", dialogue=[],inventory=[]):
         self.name = name
         self.occupation = occupation
         self.gender = gender
@@ -10,6 +10,7 @@ class Character(object):
         self.dialogue = dialogue
         self._dialogue_counter = 0
         self.location = None
+        self.inventory = []
 
         self.alive = True
 
@@ -56,6 +57,16 @@ class Character(object):
 
     def get_dialogue_length(self):
         return len(self.dialogue)
+
+    def get_items(self):
+        return self.inventory
+
+    def add_item(self, item):
+        self.inventory.append(item)
+
+    def remove_item(self, item):
+        return self.inventory.remove(item)
+
 
 
 

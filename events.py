@@ -74,6 +74,7 @@ def scene_1_found_murder_weapon(context):
     charachters = context["characters"]
     display = context["display"]
 
+    screen = display.get_screen('story')
     display.delay_print("You found the murder weapon, now take it back to the police station for DNA analysis")
     scotland_yard = locations.get_location(scotland["name"])
     lab_technician = charachters.get_character(scene_2_police_officer["name"])

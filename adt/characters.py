@@ -1,3 +1,4 @@
+from adt.items import *
 brian = {
     "name": "Brian Ferguson",
 
@@ -10,6 +11,22 @@ brian = {
     "check": "none",
 
     "dialogue":["I'm trying to convince trisha to take my next shift."]
+}
+dead_developer = {
+    "name": "Dead Developer",
+
+    "occupation": "Nurse",
+
+    "age": 26,
+
+    "gender": "male",
+
+    "check": "none",
+
+    "alive" : False,
+
+    "inventory" : [police_badge],
+    "dialogue":[]
 }
 doctor = {
     "name": "Dr. House",
@@ -267,6 +284,7 @@ getCharacter = {
 }
 
 
-char_list = [kirill,clark,police_man,scene_1_police_officer,scene_2_police_officer,denzel,barry,smith,blade,patrick,diane,james,clark_2,diane_killer,thomas,trisha,christine,steven,doctor,brian,priest]
+char_list = [kirill,dead_developer,clark,police_man,scene_1_police_officer,scene_2_police_officer,denzel,barry,smith,blade,patrick,diane,james,clark_2,diane_killer,thomas,trisha,christine,steven,doctor,brian,priest]
+
 
 

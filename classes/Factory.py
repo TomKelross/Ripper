@@ -19,8 +19,9 @@ def create_character(char_dict):
     gender = char_dict.get("gender","male")
     check = char_dict.get("check","NA")
     dialogue = char_dict.get("dialogue",[])
+    inventory = char_dict.get("inventory",[])
 
-    char_object = Character(name, occupation, gender, check, dialogue)
+    char_object = Character(name, occupation, gender, check, dialogue,inventory)
 
     return char_object
 

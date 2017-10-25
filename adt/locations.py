@@ -66,7 +66,8 @@ scotland = {
     "exits" : {"east" : "Hospital",
                "north" : "Bank of England",
                "west" : "Church",
-               "south" : "Thames"
+               "south" : "Thames",
+               "inside" : "The Morgue"
                },
 
     "investigatables" : [ wanted_poster ]
@@ -205,6 +206,23 @@ gamestore_murder = {
         "north": "MARKETPLACE",
     }
 }
+morgue = {
+    "name": "The Morgue",
+
+    "description": "Full of dead rotting corpses, you don't want to spend anymore time than needed here!",
+    # "people": [scene_1_police_officer , gamestore_murder],
+    "people": [dead_developer],
+
+    "inventory": [],
+
+    "containers" : [],
+
+    "investigatables" : [],
+
+    "exits": {
+        "outside": "Scotland Yard",
+    }
+}
 
 # docks_murder = {
 #     "name": "Docks (Murder Scene)",
@@ -293,4 +311,4 @@ getLocation = {
     "Gamestore": gamestore,
 }
 location_list = [bank,church,hospital,scotland,thames,factory,kirills,docks,marketplace,gamestore,
-                 gamestore_murder,docks_murder]
+                 gamestore_murder,docks_murder,morgue]
