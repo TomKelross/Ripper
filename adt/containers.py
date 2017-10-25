@@ -28,7 +28,7 @@ container_list = [drawers, bin, boot, body_2]
 scene_1_bin = {
     "name": "Upright Bin",
     "description": "Suspiciously upright",
-    "inventory": [murder_knife]
+    "inventory": [knife]
 }
 
 container_list = [drawers, scene_1_bin]
