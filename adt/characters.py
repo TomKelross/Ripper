@@ -202,7 +202,7 @@ police_man = {
 scene_1_police_officer = {
     "name" : "Police Officer",
     "occupation" : "Copper",
-    "age" : 31,,
+    "age" : 31,
     "gender" : "male",
     "check": "none",
     "dialogue": ["Horrible situation isn't it. The investigative team found an unfired 9mm bullet outside.",
