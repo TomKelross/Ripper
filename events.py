@@ -19,7 +19,7 @@ def start_of_game_cinematic(context):
     print("the more squalid side of town",0.005)
     type(Fore.MAGENTA + "You should go there now" + Style.RESET_ALL,0.005)
     context["display"].print()
-    type("Use" + Fore.YELLOW + " GO "
+    print("Use" + Fore.YELLOW + " GO "
          + Fore.WHITE + "to get around. You can "
          + Style.BRIGHT + Fore.YELLOW + " talk "
          + Style.NORMAL + Fore.WHITE + " to people,"
@@ -29,7 +29,7 @@ def start_of_game_cinematic(context):
          + Fore.WHITE + "containers for items which you can then"
          + Fore.YELLOW + " take "
          + Style.RESET_ALL, 0.005)
-    type("Use " + Fore.YELLOW + "HELP"
+    print("Use " + Fore.YELLOW + "HELP"
          + Fore.WHITE + "to display useful commands if you get confused")
     context["display"].print()
     display.wait_for_input(False)
@@ -96,7 +96,17 @@ def scene_2_analyse_knife(context):
     display.wait_for_input(False)
     display.set_screen("default")
 
+def scene_3_murder_two(context):
+    locations = context["locations"]
+    display = context["display"]
 
+    tavern_object = locations.get_location(kirills["name"])
+    docks_murder_location = locations.get_location(docks_murder["name"])
+    tavern_object.exits["east"] = docks_murder_location.get_name()
+
+    display.delay_print("YIt's been only 2 hours since the first murder, the blood has barely dried at the scene,")
+    display.delay_print("and yet another body has been found at the Docks. Could they be linked?")
+    display.delay_print("You must get there right away!")
 
 
 def add_events(narrative):
@@ -112,6 +122,9 @@ def add_events(narrative):
     narrative.add_item_take_event(knife,scene_1_found_murder_weapon)
     
     narrative.add_item_drop_event(knife,scene_2_analyse_knife)
+
+    narrative.add_time_event(1,1,1380,scene_3_murder_two)
+
 
 
     # narrative.add_event(1,1,1260,murder_two)

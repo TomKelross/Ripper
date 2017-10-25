@@ -134,6 +134,25 @@ docks = {
     }
 }
 
+docks_murder = {
+    "name": "Docks (Murder Scene)",
+
+    "description": "The body is yet unidentified and lays sprawled in the boot of a car, lifeless with a small pool of blood around his caved in skull. \nYou need to check the crime scene",
+
+    "people": [],
+
+    "inventory": [],
+
+    "containers": [s4_body_steven],
+
+    "investigatables": [s4_car_seats,s4_underneath_car],
+
+
+    "exits": {
+        "west": "Kirills Tavern",
+    }
+}
+
 # Marketpalce
 marketplace = {
     "name": "Marketplace",
@@ -184,6 +203,7 @@ gamestore_murder = {
 }
 
 
+
 # northern_courtyard = {
 #     "name" : 'Northern Courtyard'
 #     "description" {}
@@ -201,4 +221,5 @@ getLocation = {
     "Marketplace": marketplace,
     "Gamestore": gamestore,
 }
-location_list = [bank,church,hospital,scotland,thames,factory,kirills,docks,marketplace,gamestore,gamestore_murder]
+location_list = [bank,church,hospital,scotland,thames,factory,kirills,docks,marketplace,gamestore,
+                 gamestore_murder,docks_murder]

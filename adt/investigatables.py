@@ -1,8 +1,17 @@
-car_seats = {
-    "name": "Boot of car",
 
+
+# Scene 4
+s4_car_seats = {
+    "name": "Car Seats",
     "description": "You find 10p between the seats, not much in terms of evidence but you are now richer"
 }
+s4_underneath_car = {
+    "name": "Underneath Car",
+    "description": "There is a car jack and burn't cigarette stub"
+}
+
+
+########
 
 wanted_poster = {
     "name": "Wanted Poster",
@@ -22,4 +31,4 @@ cash_register = {
     "description" : "Empty, perhaps it was a robbery"
 }
 
-investigatable_list = [car_seats,wanted_poster,shop_counter,cash_register]
+investigatable_list = [s4_car_seats,s4_underneath_car,wanted_poster,shop_counter,cash_register]

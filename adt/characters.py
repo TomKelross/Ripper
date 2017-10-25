@@ -159,8 +159,11 @@ steven = {
 
     "check": "Theft, possession of illegal substance and witness in a 6 year murder investigation.",
  
-    "dialogue": []
+    "dialogue": [],
+
+    "alive" : False
 }
+
 kirill = {
     
     "name": "Kirill",
