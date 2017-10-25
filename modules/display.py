@@ -5,7 +5,7 @@ from colorama import Fore, Style
 
 
 class DisplayManager():
-    _line_nums = 40
+    _line_nums = 25
     _print_func = print
     _input_func = input
 
