@@ -137,6 +137,11 @@ def commands(command): #KYLE
             execute_take(command[1])
         else:
             print("Take what?")
+    elif command[0] == "investigate":
+        if len(command) > 1:
+            execute_investigate(command[1])
+        else:
+            print("Investigate what?")
     elif command[0] == "arrest":
         if len(command) > 1:
             pass
@@ -233,8 +238,15 @@ def execute_take(item_to_take): #KYLE
     if flag == False:
         print("That item doesn't seem to be here.")
 
-#
-def execute_investigate(who): #Judith 
+
+def execute_investigate(target): #Judith
+    current_location = player.getLocation()
+    investigatables_in_room = current_location.get_investigatables()
+
+    if investigatables_in_room:
+        thing_to_investigate = investigatables.get_investigatable_fuzzy(target, investigatables_in_room)
+        if thing_to_investigate:
+            print(thing_to_investigate.investigate())
     pass
 
 #

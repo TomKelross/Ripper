@@ -29,6 +29,9 @@ class Location(object):
     def get_people(self):
         return self.people
 
+    def get_investigatables(self):
+        return self.investigatables
+
     def remove_person(self, person):
         self.people.remove(person)
 

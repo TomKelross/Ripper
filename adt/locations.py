@@ -165,6 +165,21 @@ gamestore = {
     }
 }
 
+gamestore_murder = {
+    "name": "Gamestore (Murder Scene)",
+
+    "description": "There has been a murder",
+
+    "people": [],
+
+    "inventory": [],
+
+    "exits": {
+        "north": "MARKETPLACE",
+    }
+}
+
+
 # northern_courtyard = {
 #     "name" : 'Northern Courtyard'
 #     "description" {}
