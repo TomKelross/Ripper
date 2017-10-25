@@ -1,3 +1,42 @@
+brian = {
+    "name": "Brian Ferguson",
+
+    "occupation": "Nurse",
+
+    "age": 26,
+
+    "gender": "male",
+
+    "check": "none",
+
+    "dialogue":["I'm trying to convince trisha to take my next shift."]
+}
+doctor = {
+    "name": "Dr. House",
+
+    "occupation": "Doctor",
+
+    "age": 58,
+
+    "gender": "male",
+
+    "check": "Assault, vandalism, and property destruction."
+
+    "dialogue": ["Gotta go! Building full of sick people, if I hurry, maybe I can avoid them."]
+}
+priest = {
+    "name": "Father Putin",
+
+    "occupation": "Priest",
+
+    "age": 75,
+
+    "gender": "male",
+
+    "check": "none",
+
+    "dialogue": ["This book is bullsh..... OH!...I didnt see you there."]
+}
 diane_killer = {
     "name": "Miss Diane Brass",
 
@@ -10,7 +49,7 @@ diane_killer = {
     "check": "The Killer",
 
     "dialogue": []
-}
+
 denzel = {
     "name": "Mr Denzel Brass",
 
@@ -41,7 +80,6 @@ smith = {
 
     "check": "Mr Steven's Best Friend.",
 
-    "dialogue": []
 }
 blade = {
     "name": "Blade",
@@ -54,7 +92,6 @@ blade = {
 
     "check": "Used to be Mr Steven Cornwall's cellmate.",
 
-    "dialogue": []
 }
 patrick = {
     "name": "Mr Patrick",
@@ -67,7 +104,7 @@ patrick = {
 
     "check": "Brother-in-law to Mr Steven Cornwall.",
 
-    "dialogue": []
+    "dialogue": ["How can i help you today?"]
 }
 diane = {
     "name": "Miss Diane B",
@@ -80,7 +117,6 @@ diane = {
 
     "check": "Mistress to Mr Clark Davidson.",
 
-    "dialogue": []
 }
 james = {
     "name": "Mr James Robin",
@@ -132,7 +168,7 @@ trisha = {
 
     "check": "Witness of a 6 year murder investigation.",
 
-    "dialogue": []
+    "dialogue": ["I'm not taking brian's next shift ive been awake for 30 hours straight."]
 
 }
 christine = {
@@ -159,7 +195,7 @@ steven = {
 
     "check": "Theft, possession of illegal substance and witness in a 6 year murder investigation.",
  
-    "dialogue": []
+    "dialogue": ["I'm busy, i'm in the middle of a job."]
 }
 kirill = {
     
@@ -202,7 +238,7 @@ police_man = {
 scene_1_police_officer = {
     "name" : "Police Officer",
     "occupation" : "Copper",
-    "age" : 31,,
+    "age" : 31,
     "gender" : "male",
     "check": "none",
     "dialogue": ["Horrible situation isn't it. The investigative team found an unfired 9mm bullet outside.",
@@ -224,5 +260,7 @@ getCharacter = {
     "Clark Davidson": clark, 
 }
 
-char_list = [kirill,clark,police_man,scene_1_police_officer,denzel,barry,smith,blade,patrick,diane,james,clark_2,diane_killer,thomas,trisha,christine,steven]
+
+char_list = [kirill,clark,police_man,scene_1_police_officer,denzel,barry,smith,blade,patrick,diane,james,clark_2,diane_killer,thomas,trisha,christine,steven,doctor,brian,priest]
+
 

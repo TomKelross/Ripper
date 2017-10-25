@@ -1,15 +1,9 @@
 beer = {
     "name": "Beer",
-    
+
     "description": "A hearty lager"
 }
 
-murder_knife = {
-    "name": "Bloody Knife",
-
-    "description": "The knife is covered in blood, this must be the murder weapon. "
-
-}
 
 police_badge = {
     "name": "Police badge",
@@ -19,84 +13,85 @@ police_badge = {
 }
 
 knife = {
-	"name": "Bloody Knife",
+    "name": "Bloody Knife",
 
-	"description": "Hunting Knife found at The Adult Video Store. Freshly blood stained"
+    "description": "Hunting Knife found at The Adult Video Store. Freshly blood stained"
 }
 
 bullet = {
-	"name": "Bullet Casing",
+    "name": "Bullet Casing",
 
-	"description": "Bullet Casing found at the Adult Video Store. It shows no signs of damage so must not have been fired"
+    "description": "Bullet Casing found at the Adult Video Store. It shows no signs of damage so must not have been fired"
 }
 
 bottle = {
-	"name": "Broken Bottle Shards",
-	"description": "Broken Bottle Shards found at the Adult Video Store. There doesnt appear to be blood stains"
+    "name": "Broken Bottle Shards",
+    "description": "Broken Bottle Shards found at the Adult Video Store. There doesnt appear to be blood stains"
 }
 
 wrench = {
-	"name": "Wrench"
-	"description": "Wrench found at the Docks. Blood fragments discovered on the head"
+    "name": "Wrench",
+    "description": "Wrench found at the Docks. Blood fragments discovered on the head"
 }
 
 jack = {
-	"name": "Car Jack"
-	"description": "Car Jack found underneath the car at the Docks. The car must have broken down"
+    "name": "Car Jack",
+    "description": "Car Jack found underneath the car at the Docks. The car must have broken down"
 }
 
 cigarette = {
-	"name": "Cigarette"
-	"description": "Cigarette found underneath the car at the Docks. It has fingerprints on it but no match has been discovered"
+    "name": "Cigarette",
+    "description": "Cigarette found underneath the car at the Docks. It has fingerprints on it but no match has been discovered"
 }
 
-10p = {
-	"name": "10p Coin"
-	"description": "10p found between the seats of the car at the Docks. Might as well keep it"
+ten_pence = {
+    "name": "10p Coin",
+    "description": "10p found between the seats of the car at the Docks. Might as well keep it"
 }
 
 phone = {
-	"name": "Mobile Phone"
-	"description": "Mobile found on the victim at the Docks. Message exchange with his Robbery accomplice Jack Brown"
+    "name": "Mobile Phone",
+    "description": "Mobile found on the victim at the Docks. Message exchange with his Robbery accomplice Jack Brown"
 }
 
 card = {
-	"name": "Credit Cards"
-	"description": "Found on the victim's body at the Marketplace. These weren't taken so the crime probably wasn't theft"
+    "name": "Credit Cards",
+    "description": "Found on the victim's body at the Marketplace. These weren't taken so the crime probably wasn't theft"
 }
 
 cash = {
+<<<<<<< HEAD
 	"name": "£200 in Cash"
 	"description": "Found on the victim's body at the Marketplace. Unfortunately you can't keep this money"
+=======
+    "name": "£200 in Cash",
+    "description": "Found on the victim's body at the Marketplace. This wasn't taken so the crime probably wasn't theft"
+>>>>>>> b0808e602c628eb69c90cae220f878004c7a6738
 }
 
 tissue = {
-	"name": "Tissue"
-	"description": "Found at the murder site at the Hospital. It has a strong chemical smell to it"
+    "name": "Tissue",
+    "description": "Found at the murder site at the Hospital. It has a strong chemical smell to it"
 }
 
 axe = {
-	"name": "Bloody Axe"
-	"description": "Axe found in a dumpster at the Factory. The fingerprints on it match two previous murders"
+    "name": "Bloody Axe",
+    "description": "Axe found in a dumpster at the Factory. The fingerprints on it match two previous murders"
 }
 
 cloth = {
-	"name": "Bloody Cloth"
-	"description": "Bloody Cloth found in a dumpster at the Factory. The blood of the victim covers it"
+    "name": "Bloody Cloth",
+    "description": "Bloody Cloth found in a dumpster at the Factory. The blood of the victim covers it"
 }
 
-rod	= {
-	"name": "Iron Rod"
-	"description": "Iron Rod found by the body at the Factory. Only the victims blood is discovered from the tests"
-}	
-
+rod = {
+    "name": "Iron Rod",
+    "description": "Iron Rod found by the body at the Factory. Only the victims blood is discovered from the tests"
+}
 
 getItem = {
     "Beer": beer
 }
 
-<<<<<<< HEAD
-item_list = [beer , knife , bullet , bottle , wrench , jack , cigarette , 10p , phone , card , cash , tissue , axe , cloth , rod]
-=======
-item_list = [beer,murder_knife,police_badge]
->>>>>>> 80e0eb233e4e75303a473574e20c73112a15d41c
+item_list = [beer, knife, bullet, bottle, wrench, jack, cigarette, ten_pence, phone, card, cash, tissue, axe, cloth,
+             rod, police_badge]

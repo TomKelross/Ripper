@@ -71,7 +71,7 @@ def main(): #KYLE
         ############################################
         # DEBUGGING REMOVE ON COMPLETION           #
         #############################################
-        # disp.reset_display()
+        # disp.reset_screen()
         # location = player.get_location()
         # print(location)
         # print("Location" + location.name)
@@ -346,7 +346,7 @@ def execute_look(target): # Nathan
 
 
 def display_information():
-    disp.reset_display()
+    disp.reset_screen()
     current_location = player.get_location()
     print_exits(current_location)
     print()
@@ -495,7 +495,7 @@ def print_locations(): # Kyle
 def change_location(location,reset_display=True):
     player.set_location(location)
     if reset_display:
-        disp.reset_display()
+        disp.reset_screen()
     narrative.check_location_event()
     display_information()
 
