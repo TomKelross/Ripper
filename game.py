@@ -46,12 +46,13 @@ characters = CharacterManager(list_of_character_objects)
 list_of_location_objects = Factory.location_factory(characters,items,containers,investigatables)
 locations = LocationManager(list_of_location_objects)
 
+player = Player("Detective Joe Smith")
 
 time = Time()
-narrative = Narrative(time,disp,locations)
+narrative = Narrative(time,disp,locations,player)
 from events import add_events
 add_events(narrative)
-player = Player("Detective Joe Smith")
+
 
 
 # Creates a Timer Object
@@ -66,7 +67,7 @@ def main(): #KYLE
     # In this case, we are starting at scotland yard, so we get the scotland yard location
     starting_location = locations.get_location("Scotland Yard")
     # And set the player current location here
-    narrative.check()
+    narrative.check_time_event()
     change_location(starting_location,False)
     while True:
          
@@ -86,8 +87,8 @@ def main(): #KYLE
         # Updates the top of the screen with the current time information
         print_time()
 
-        # Check and run and scheduled events that should have happened by now
-        narrative.check()
+        # Check and run and scheduled time_events that should have happened by now
+        narrative.check_time_event()
 
         # Print the map
         # print_map()
@@ -397,6 +398,7 @@ def change_location(location,reset_display=True):
     player.setLocation(location)
     if reset_display:
         disp.reset_display()
+    narrative.check_location_event()
     execute_look()
 
 

@@ -2,8 +2,8 @@
 from colorama import init,Fore,Back,Style
 from adt.locations import *
 
-# def murder_one(context):
-#     context['display'].print('Someone was murdered in the night')
+def murder_one(context):
+    context['display'].print('Someone was murdered in the night')
 
 def start_of_game_cinematic(context):
     type = context["display"].type
@@ -23,7 +23,8 @@ def murder_one(context):
     gamestore_murder_location = locations.get_location(gamestore_murder["name"])
     marketplace_object.exits["south"] = gamestore_murder_location.get_name()
 
-
+def tavern_first_time(context):
+    context['display'].print('Kirill Eyes You With Suspicion')
 
 
 def murder_two(context):
@@ -34,7 +35,8 @@ def murder_two(context):
 
 
 def add_events(narrative):
-    narrative.add_event(1,1,0,murder_one)
+    narrative.add_time_event(1, 1, 0, murder_one)
+    narrative.add_location_event(kirills,tavern_first_time)
     # narrative.add_event(1,1,0,start_of_game_cinematic)
     # narrative.add_event(1,1,1260,murder_two)
 
