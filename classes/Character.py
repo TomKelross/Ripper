@@ -34,6 +34,14 @@ class Character(object):
             self._dialogue_counter = 0
             return dialogue[0]
 
+    def get_dialogue_count(self):
+        return self._dialogue_counter
+
+    def get_dialogue_length(self):
+        return len(self.dialogue)
+
+
+
 
 class CharacterManager(object):
     def __init__(self, list_of_characters):

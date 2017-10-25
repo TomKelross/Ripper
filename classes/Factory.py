@@ -2,7 +2,9 @@ from adt.characters import char_list
 from adt.locations import location_list
 from adt.containers import container_list
 from adt.items import item_list
+from adt.investigatables import investigatable_list
 from classes.Item import Item
+from classes.Investigatable import Investigatable
 from .Character import Character
 from .Location import Location
 from .Container import Container
@@ -32,10 +34,11 @@ def character_factory():
     return list_of_chars
 
 
-def create_location(location_dict, characters, items,containers):
+def create_location(location_dict, characters, items,containers,investigatables):
     name = location_dict["name"]
     description = location_dict["description"]
     inventory = location_dict["inventory"]
+    exits = location_dict.get("exits",[])
     
     people = []
     for person_dict in location_dict["people"]:
@@ -47,21 +50,25 @@ def create_location(location_dict, characters, items,containers):
         item_object = items.get_item(item_dict["name"])
         inventory.append(item_object)
 
-    containers = []
+    room_containers = []
     for container_dict in location_dict.get("containers",[]):
         container = containers.get_container(container_dict["name"])
-        containers.append(person_object)
-        
-        
-    location_object = Location(name,description,people,inventory,containers)
+        room_containers.append(container)
+
+    room_investigatables = []
+    for investigatable_dict in location_dict.get("investigatables", []):
+        investigatable = investigatables.get_investigatable(investigatable_dict["name"])
+        room_investigatables.append(investigatable)
+
+    location_object = Location(name,description,exits,people,inventory,room_containers,room_investigatables)
 
     return location_object
 
 
-def location_factory(characters,items,containers):
+def location_factory(characters,items,containers,investigatables):
     list_of_locations = []
     for location_dict in location_list:
-        location_o = create_location(location_dict, characters,items,containers)
+        location_o = create_location(location_dict, characters,items,containers,investigatables)
         list_of_locations.append(location_o)
 
     return list_of_locations
@@ -109,3 +116,21 @@ def container_factory(items):
         list_of_containers.append(container_o)
 
     return list_of_containers
+
+
+def create_investigatable(investigatable_dict):
+    name = investigatable_dict["name"]
+    description = investigatable_dict["description"]
+    
+    investigatable_object = Investigatable(name, description)
+
+    return investigatable_object
+
+
+def investigatable_factory():
+    list_of_investigatables = []
+    for investigatable_dict in investigatable_list:
+        investigatable_o = create_investigatable(investigatable_dict)
+        list_of_investigatables.append(investigatable_o)
+
+    return list_of_investigatables

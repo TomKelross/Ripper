@@ -11,6 +11,11 @@ class Item(object):
     def __repr__(self):
         return "<Item {}>".format(self.name)
 
+    def get_name(self):
+        return self.name
+
+    def get_description(self):
+        return self.description
 
 class ItemManager(object):
     def __init__(self, list_of_Items):

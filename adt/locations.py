@@ -1,6 +1,7 @@
 from adt.items import *
 from adt.characters import *
 from adt.containers import *
+from adt.investigatables import  *
 
 # Bank of England
 bank = {
@@ -11,6 +12,14 @@ bank = {
     "people": [],
     
     "inventory": [],
+<<<<<<< HEAD
+=======
+
+    "exits" : {"east" : "Hospital",
+               "south" : "Scotland Yard",
+               "west" : "Church",
+               }
+>>>>>>> 80e0eb233e4e75303a473574e20c73112a15d41c
 }
 
 # Church
@@ -22,6 +31,10 @@ church = {
     "people": [],
 
     "inventory": [],
+
+    "exits": {"north": "Bank of England",
+              "south": "Scotland Yard",
+              }
 }
 
 # Hospital
@@ -33,6 +46,10 @@ hospital ={
     "people": [],
     
     "inventory": [],
+
+    "exits": {"north": "Bank of England",
+              "south": "Scotland Yard",
+              }
 }
 
 # Scotland Yard
@@ -43,9 +60,17 @@ scotland = {
 
     "people": [police_man],
     
-    "inventory": [],
+    "inventory": [police_badge],
 
-    "container" : [drawers]
+    "containers" : [drawers],
+
+    "exits" : {"east" : "Hospital",
+               "north" : "Bank of England",
+               "west" : "Church",
+               "south" : "Thames"
+               },
+
+    "investigatables" : [ wanted_poster ]
 }
 
 # Thames
@@ -57,6 +82,11 @@ thames = {
     "people": [],
 
     "inventory": [],
+
+    "exits": {
+              "north": "Scotland Yard",
+              "south": "Kirills Tavern"
+              }
 }
 
 # Factory
@@ -68,17 +98,28 @@ factory = {
     "people": [],
 
     "inventory": [],
+
+    "exits": {
+        "east": "Kirills Tavern",
+    }
 }
 
-# Krills Tavern
-krills = {
-    "name": "Krills Tavern",
+# Kirills Tavern
+kirills = {
+    "name": "Kirills Tavern",
     
-    "description": "Welcome to Krills Tavern!",
+    "description": "Welcome to Kirills Tavern!",
 
-    "people": [krill, clark],
+    "people": [kirill, clark],
     
     "inventory": [beer, beer, beer],
+
+    "exits": {
+        "north": "Thames",
+        "east": "Docks",
+        "south" : "Marketplace",
+        "west" : "Factory"
+    }
 }
 
 # Docks
@@ -89,7 +130,11 @@ docks = {
 
     "people": [],
 
-    "inventory" : []
+    "inventory" : [],
+
+    "exits": {
+        "west": "Kirills Tavern",
+    }
 }
 
 # Marketpalce
@@ -100,19 +145,52 @@ marketplace = {
 
     "people": [],
     
-    "inventory": []
+    "inventory": [],
+
+    "exits": {
+        "north": "Kirills Tavern",
+        "south": "XXX GAMESTORE"
+    }
 }
 
 # Gamestore
 gamestore = {
-    "name": "Gamestore",
+    "name": "XXX GAMESTORE",
     
     "description": "Welcome to the Gamestore! ",
 
     "people": [],
     
-    "inventory": []
+    "inventory": [],
+
+    "exits": {
+        "north": "MARKETPLACE",
+    }
 }
+
+gamestore_murder = {
+    "name": "XXX GAMESTORE (Murder Scene)",
+
+    "description": "There has been a murder",
+
+    "people": [scene_1_police_officer],
+
+    "inventory": [],
+
+    "containers" : [scene_1_bin],
+
+    "investigatables" : [cash_register,shop_counter],
+
+    "exits": {
+        "north": "MARKETPLACE",
+    }
+}
+
+
+# northern_courtyard = {
+#     "name" : 'Northern Courtyard'
+#     "description" {}
+# }
 
 getLocation = {
     "Bank": bank,
@@ -121,9 +199,9 @@ getLocation = {
     "Scotland": scotland,
     "Thames": thames,
     "Factory": factory,
-    "Krills": krills,
+    "Kirills": kirills,
     "Docks": docks,
     "Marketplace": marketplace,
     "Gamestore": gamestore,
 }
-location_list = [bank,church,hospital,scotland,thames,factory,krills,docks,marketplace,gamestore]
+location_list = [bank,church,hospital,scotland,thames,factory,kirills,docks,marketplace,gamestore,gamestore_murder]

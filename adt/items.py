@@ -1,7 +1,21 @@
 beer = {
     "name": "Beer",
     
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc a faucibus nunc, at tincidunt tellus. Nunc at porttitor sem. Pellentesque eu congue augue. Aliquam porta tempor"
+    "description": "A hearty lager"
+}
+
+murder_knife = {
+    "name": "Bloody Knife",
+
+    "description": "The knife is covered in blood, this must be the murder weapon. "
+
+}
+
+police_badge = {
+    "name": "Police badge",
+
+    "description": "This might make it easier to convince people to talk. It may also draw unwanted attention"
+
 }
 
 knife = {
@@ -81,4 +95,8 @@ getItem = {
     "Beer": beer
 }
 
+<<<<<<< HEAD
 item_list = [beer , knife , bullet , bottle , wrench , jack , cigarette , 10p , phone , card , cash , tissue , axe , cloth , rod]
+=======
+item_list = [beer,murder_knife,police_badge]
+>>>>>>> 80e0eb233e4e75303a473574e20c73112a15d41c

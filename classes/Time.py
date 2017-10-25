@@ -76,8 +76,8 @@ class Time:
 
     def get_time_string(self):
         time = self.time
-        hours = math.floor(time / 60)
-        minutes = time % 60
+        hours = str(math.floor(time / 60)).zfill(2)
+        minutes = str(time % 60).zfill(2)
         return "{}:{}".format(hours,minutes)
 
     def get_day_name(self):

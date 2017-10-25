@@ -2,12 +2,14 @@ from fuzzywuzzy import process
 
 
 class Location(object):
-    def __init__(self, name, description, people=[], inventory=[],containers=[]):
+    def __init__(self, name, description,exits=[], people=[], inventory=[],containers=[],investigatables=[]):
         self.name = name
         self.description = description
+        self.exits = exits
         self.people = people
         self.inventory = inventory
         self.containers = containers
+        self.investigatables = investigatables
 
     def __repr__(self):
         return "< Location {} with {} people>".format(self.name, len(self.people))
@@ -26,6 +28,21 @@ class Location(object):
 
     def get_people(self):
         return self.people
+
+    def get_investigatables(self):
+        return self.investigatables
+
+    def get_containers(self):
+        return self.containers
+
+    def get_items(self):
+        return self.inventory
+
+    def add_item(self,item):
+        self.inventory.append(item)
+
+    def remove_item(self,item):
+        self.inventory.remove(item)
 
     def remove_person(self, person):
         self.people.remove(person)
