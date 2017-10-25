@@ -132,7 +132,6 @@ docks = {
 
     "exits": {
         "west": "Kirills Tavern",
-        "south": "XXX Gamestore",
     }
 }
 
@@ -152,7 +151,6 @@ docks_murder = {
 
     "exits": {
         "west": "Kirills Tavern",
-        "south": "XXX Gamestore",
     }
 }
 
@@ -180,7 +178,7 @@ gamestore = {
 
     "people": [clark],
     
-    # "inventory": [scene_1_police_officer , clark],
+    "inventory": [],
 
     "exits": {
         "north": "MARKETPLACE",
