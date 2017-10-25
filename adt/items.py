@@ -60,8 +60,13 @@ card = {
 }
 
 cash = {
+<<<<<<< HEAD
+	"name": "£200 in Cash"
+	"description": "Found on the victim's body at the Marketplace. Unfortunately you can't keep this money"
+=======
     "name": "£200 in Cash",
     "description": "Found on the victim's body at the Marketplace. This wasn't taken so the crime probably wasn't theft"
+>>>>>>> b0808e602c628eb69c90cae220f878004c7a6738
 }
 
 tissue = {

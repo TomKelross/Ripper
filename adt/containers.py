@@ -28,11 +28,23 @@ s4_body_steven = {
 }
 # ######
 
-container_list = [drawers, bin, s4_car_boot, s4_body_steven]
+seats = {
+	"name" : "Between the Seats"
+	"description" : "There is always something between the seats of a car"
+	"inventory" : [10p]
+}
+
+under_car = {
+	"name" : "Underneath the Car"
+	"description" : "Underneath the Car which held the body"
+	"inventory" : [jack , cigarettes]
+}
+
+
 scene_1_bin = {
     "name": "Upright Bin",
     "description": "Suspiciously upright",
     "inventory": [knife]
 }
 
-container_list = [drawers, scene_1_bin]
+container_list = [drawers, bin, s4_car_boot, s4_body_steven]
