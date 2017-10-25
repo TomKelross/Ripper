@@ -47,4 +47,4 @@ scene_1_bin = {
     "inventory": [knife]
 }
 
-container_list = [drawers, bin, s4_car_boot, s4_body_steven]
+container_list = [drawers, bin, s4_car_boot, s4_body_steven,scene_1_bin]

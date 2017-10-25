@@ -37,7 +37,7 @@ class DisplayManager():
         else:
             Exception()
 
-    def print(self, message="", update=True, tag=''):
+    def print(self, message="", update=False, tag=''):
         # Add
         screen = self.get_current_screen()
         screen.print(message, update, tag)

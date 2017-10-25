@@ -26,13 +26,13 @@ class Character(object):
 
     def next_dialogue(self):
         dialogue = self.dialogue
-
-        if self._dialogue_counter < len(dialogue):
-            self._dialogue_counter += 1
-            return dialogue[self._dialogue_counter - 1]
-        else:
-            self._dialogue_counter = 0
-            return dialogue[0]
+        if dialogue:
+            if self._dialogue_counter < len(dialogue):
+                self._dialogue_counter += 1
+                return dialogue[self._dialogue_counter - 1]
+            else:
+                self._dialogue_counter = 0
+                return dialogue[0]
 
     def get_dialogue_count(self):
         return self._dialogue_counter

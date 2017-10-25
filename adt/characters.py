@@ -267,6 +267,6 @@ getCharacter = {
 }
 
 
-char_list = [kirill,clark,police_man,scene_1_police_officer,denzel,barry,smith,blade,patrick,diane,james,clark_2,diane_killer,thomas,trisha,christine,steven,doctor,brian,priest]
+char_list = [kirill,clark,police_man,scene_1_police_officer,scene_2_police_officer,denzel,barry,smith,blade,patrick,diane,james,clark_2,diane_killer,thomas,trisha,christine,steven,doctor,brian,priest]
 
 
