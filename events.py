@@ -2,7 +2,7 @@
 from colorama import init,Fore,Back,Style
 from adt.locations import *
 from adt.characters import *
-
+from adt.Logo import logo
 # def scene_1_murder_one(context):
 #     context['display'].print('Someone was murdered in the night')
 
@@ -12,7 +12,11 @@ def start_of_game_cinematic(context):
     screen = display.get_screen('story')
     print = screen.print
     type = screen.type
-
+    for line in logo: 
+        print(Style.BRIGHT+ Fore.RED + line + Style.RESET_ALL)
+    print("")
+    print("")
+    
     print(Style.BRIGHT + Fore.MAGENTA + "London 2017")
     print(Style.RESET_ALL + Fore.WHITE + "You walk into Scotland Yard a fresh faced Police Detective with full training")
     print("but only a week's experience to your name. The voice coming from the phone ")
