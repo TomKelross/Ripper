@@ -51,7 +51,7 @@ locations = LocationManager(list_of_location_objects)
 player = Player("Detective Joe Smith")
 
 time = Time()
-narrative = Narrative(time,disp,locations,player)
+narrative = Narrative(time,disp,locations,player,items)
 from events import add_events
 add_events(narrative)
 
@@ -259,6 +259,7 @@ def execute_take(name_to_take): #KYLE
                         break
             if item in items_in_room:
                 current_location.remove_item(item)
+            narrative.check_item_event()
             execute_look()
         else:
             print("Not sure what you were trying to take")
@@ -272,9 +273,10 @@ def execute_drop(name_to_drop,container=False):
         certainty = best_guess[0][1]
         guess_name = best_guess[0][0]
         if certainty > 80:
-            item = item.get_item(guess_name)
+            item = items.get_item(guess_name)
             player.remove_from_inventory(item)
             current_location.add_item(item)
+            execute_look()
         else:
             print('Not sure what you were trying to drop')
     else:

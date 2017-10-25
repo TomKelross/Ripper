@@ -42,6 +42,9 @@ def murder_one(context):
 def tavern_first_time(context):
     context['display'].delay_print('Kirill Eyes You With Suspicion')
 
+def badge_pickup(context):
+    context['display'].delay_print("You hope that wearing this badge won't have conseqeunces")
+
 
 def murder_two(context):
     #murder at the docks in the evening of the first day
@@ -54,5 +57,6 @@ def add_events(narrative):
     # narrative.add_time_event(1, 1, 0, start_of_game_cinematic)
     narrative.add_time_event(1, 1, 1, murder_one)
     narrative.add_location_event(kirills,tavern_first_time,sticky=True)
+    narrative.add_item_event(police_badge,badge_pickup)
     # narrative.add_event(1,1,1260,murder_two)
 

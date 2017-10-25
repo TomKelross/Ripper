@@ -30,10 +30,11 @@ def nextEvent(time, day):
 class Narrative(object):
     #This class makes sure time_events happen at the right time in the story
 
-    def __init__(self,time,display_manager,location_manager,player):
+    def __init__(self,time,display_manager,location_manager,player,item_manager):
         self.time_manager = time
         self.display_manager = display_manager
         self.location_manager = location_manager
+        self.item_manager = item_manager
         self.time_events = []
         self.location_events = []
         self.item_events = []
