@@ -7,7 +7,7 @@ drawers = {
 }
 
 <<<<<<< HEAD
-bin = {
+scene_1_bin = {
 	"name" : "Bin in the XXX Video Store"
 	"description" : "While the rest of the store is trashed, this bin seems supiciously upright"
 	"inventory" : [knife]
@@ -23,6 +23,18 @@ body_2 = {
 	"name" : "Body of Steven Cornwall"
 	"description" : "The Body of the late Steven Cornwall"
 	"inventory" : [phone]
+}
+
+seats = {
+	"name" : "Between the Seats"
+	"description" : "There is always something between the seats of a car"
+	"inventory" : [10p]
+}
+
+under_car = {
+	"name" : "Underneath the Car"
+	"description" : "Underneath the Car which held the body"
+	"inventory" : [jack , cigarettes]
 }
 
 

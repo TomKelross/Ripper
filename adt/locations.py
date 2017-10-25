@@ -9,17 +9,14 @@ bank = {
 
     "description": "Bank of England",
 
-    "people": [],
+    "people": [patrick , steven],
     
     "inventory": [],
-<<<<<<< HEAD
-=======
 
     "exits" : {"east" : "Hospital",
                "south" : "Scotland Yard",
                "west" : "Church",
                }
->>>>>>> 80e0eb233e4e75303a473574e20c73112a15d41c
 }
 
 # Church
@@ -28,7 +25,7 @@ church = {
 
     "description": "Welcome to Church ",
 
-    "people": [],
+    "people": [vicar],
 
     "inventory": [],
 
@@ -43,7 +40,7 @@ hospital ={
     
     "description": "Welcome to Hospital ",
 
-    "people": [],
+    "people": [trisha , brian_ferguson , doctor],
     
     "inventory": [],
 
@@ -95,7 +92,7 @@ factory = {
     
     "description": "Welcome to the Factory!",
 
-    "people": [],
+    "people": [thomas],
 
     "inventory": [],
 
@@ -143,7 +140,7 @@ marketplace = {
     
     "description": "Welcome to the Market!",
 
-    "people": [],
+    "people": [christine],
     
     "inventory": [],
 
@@ -159,9 +156,9 @@ gamestore = {
     
     "description": "Welcome to the Gamestore! ",
 
-    "people": [],
+    "people": [clark , store_owner],
     
-    "inventory": [],
+    "inventory": [scene_1_police_officer , clark],
 
     "exits": {
         "north": "MARKETPLACE",
@@ -173,7 +170,7 @@ gamestore_murder = {
 
     "description": "There has been a murder",
 
-    "people": [scene_1_police_officer],
+    "people": [scene_1_police_officer , gamestore_murder],
 
     "inventory": [],
 
@@ -186,6 +183,72 @@ gamestore_murder = {
     }
 }
 
+docks_murder = {
+    "name": "Docks",
+    
+    "description": "There has been another murder!",
+
+    "people": [],
+
+    "inventory" : [],
+
+    "containers" : [boot , body_2 , seats , under_car],
+
+    "investigatables" : [],
+
+    "exits": {
+        "west": "Kirills Tavern",
+    }
+}
+
+marketplace_murder = {
+    "name": "Marketplace",
+    
+    "description": "There has been another murder!",
+
+    "people": [],
+    
+    "inventory": [],
+
+    "investigatables": [card , cash],
+
+    "exits": {
+        "north": "Kirills Tavern",
+        "south": "XXX GAMESTORE"
+    }
+}
+
+hospital_murder ={
+    "name": "Hospital",
+    
+    "description": "There has been another murder!",
+
+    "people": [brian_ferguson , doctor],
+    
+    "inventory": [],
+
+    "investigatables": [tissue],
+
+    "exits": {"north": "Bank of England",
+              "south": "Scotland Yard",
+              }
+}
+
+factory_murder = {
+    "name": "Factory",
+    
+    "description": "There has been another murder!",
+
+    "people": [],
+
+    "inventory": [],
+
+    "investigatables": [axe , cloth , rod],
+
+    "exits": {
+        "east": "Kirills Tavern",
+    }
+}
 
 # northern_courtyard = {
 #     "name" : 'Northern Courtyard'
