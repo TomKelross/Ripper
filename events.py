@@ -3,6 +3,7 @@ from colorama import init,Fore,Back,Style
 from adt.locations import *
 from adt.characters import *
 from adt.Logo import logo
+from time import sleep
 # def scene_1_murder_one(context):
 #     context['display'].print('Someone was murdered in the night')
 
@@ -13,31 +14,39 @@ def start_of_game_cinematic(context):
     print = screen.print
     type = screen.type
     for line in logo: 
-        print(Style.BRIGHT+ Fore.RED + line + Style.RESET_ALL)
+        type(Style.BRIGHT+ Fore.RED + line + Style.RESET_ALL,0.005)
     print("")
     print("")
     
-    print(Style.BRIGHT + Fore.MAGENTA + "London 2017")
-    print(Style.RESET_ALL + Fore.WHITE + "You walk into Scotland Yard a fresh faced Police Detective with full training")
-    print("but only a week's experience to your name. The voice coming from the phone ")
-    print("in your hand is telling you about the homicide case - your first homicide case")
-    print("that has just been discovered in the more squalid side of town")
-    print(Fore.MAGENTA + "You should go to the" + Fore.YELLOW +  " Adult Gamestore " + Fore.MAGENTA + "now!" + Style.RESET_ALL)
+    type(Style.BRIGHT + Fore.MAGENTA + "London 2017",0.08)
+    sleep(1)
+    print(Style.RESET_ALL + Fore.WHITE + "You walk into Scotland Yard a fresh faced Police Detective with full training",True)
+    sleep(0.7)
+    print("but only a week's experience to your name. The voice coming from the phone ",True)
+    sleep(0.7)
+    print("in your hand is telling you about the homicide case - your first homicide case",True)
+    sleep(0.7)
+    print("that has just been discovered in the more squalid side of town",True)
+    sleep(1.2)
+    type(Fore.MAGENTA + "You should go to the" + Fore.YELLOW +  " Adult Gamestore " + Fore.MAGENTA + "now!" + Style.RESET_ALL)
     context["display"].print()
-    print("Use" + Fore.YELLOW + " GO "
-         + Fore.WHITE + "to get around. You can"
+    type("Use" + Style.BRIGHT + Fore.YELLOW + " GO "
+         + Style.NORMAL + Fore.WHITE + "to get around. You can"
          + Style.BRIGHT + Fore.YELLOW + " talk "
-         + Style.NORMAL + Fore.WHITE + " to people,"
-         + Fore.YELLOW + " investigate "
-         + Fore.WHITE + "them or other things in the room and"
+         + Style.NORMAL + Fore.WHITE + "to people,"
+         + Style.BRIGHT + Fore.YELLOW + " investigate "
+         + Style.NORMAL + Fore.WHITE + "them or other things in the room and"
           )
-    print(Fore.YELLOW + "Look "
-         + Fore.WHITE + "in containers to find items which you can then"
-         + Fore.YELLOW + " take "
-         + Style.RESET_ALL, 0.005
+    sleep(0.1)
+    type(Style.BRIGHT + Fore.YELLOW + "Look "
+         + Style.NORMAL + Fore.WHITE + "in containers to find items which you can then"
+         + Style.BRIGHT + Fore.YELLOW + " take"
+         + Style.NORMAL + Fore.WHITE + "."
+         + Style.RESET_ALL
           )
-    print("Use" + Fore.YELLOW + " HELP "
-         + Fore.WHITE + "to display useful commands if you get confused")
+    sleep(0.1)
+    # print("Use" + Fore.YELLOW + " HELP "
+    #      + Fore.WHITE + "to display useful commands if you get confused")
     print("",True)
     display.wait_for_input(False)
     display.set_screen("default")
@@ -110,6 +119,11 @@ def scene_2_analyse_knife(context):
     display.set_screen('default')
     display.update_display()
 
+def drop_beer(context):
+    chars = context['characters']
+    kirill_obj = chars.get_character(kirill["name"])
+    kirill_obj.dialogue.append('Why would you waste good beer like that, get out of my sight!')
+
 def scene_3_murder_two(context):
     locations = context["locations"]
     display = context["display"]
@@ -146,7 +160,7 @@ def add_events(narrative):
 
     narrative.add_time_event(1,1,1380,scene_3_murder_two)
 
-
+    narrative.add_item_drop_event(beer,drop_beer)
 
     # narrative.add_event(1,1,1260,murder_two)
 

@@ -270,7 +270,7 @@ police_man = {
     "age" : 36,
     "gender" : "male",
     "check" : "none",
-    "dialogue" : ["Time to catch a killer!"]
+    "dialogue" : ["Morning Detective, I think you left your badge in the morgue!"]
 }
 
 scene_1_police_officer = {

@@ -5,7 +5,7 @@ from colorama import Fore, Style
 
 
 class DisplayManager():
-    _line_nums = 25
+    _line_nums = 20
     _print_func = print
     _input_func = input
 
@@ -104,7 +104,7 @@ class DisplayManager():
 # 	print(input(">"))
 
 class Screen(object):
-    def __init__(self, name, print_func, input_func, number_of_lines=40):
+    def __init__(self, name, print_func, input_func, number_of_lines=25):
         self._print_func = print_func
         self._input_func = input_func
         self.name = name
@@ -158,8 +158,8 @@ class Screen(object):
 
 
 class DefaultScreen(Screen):
-    def __init__(self, name, print_func, input_func, number_of_lines=40):
-        super().__init__(name, print_func, input_func, number_of_lines=40)
+    def __init__(self, name, print_func, input_func, number_of_lines=25):
+        super().__init__(name, print_func, input_func, number_of_lines=25)
         self.name = "Default"
         self.top_bar = ""
         self.room_lines = [{'content': "", 'chunk': 'room', 'tag': ''},
